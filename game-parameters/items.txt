@@ -1,0 +1,5 @@
+// name; description; size; value;
+gold;none;0;1;
+banana;none;1;5;
+barrel of rum;none;8;50;
+bread;none;2;8;
