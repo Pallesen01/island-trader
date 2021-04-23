@@ -10,5 +10,6 @@ iron bar;none;6;35;
 copper bar;none;5;30;
 jewelry;none;3;25;
 crate of animal pelts;none;15;80;
-wool;none;3;20
-jar of spices;none;2;10
+wool;none;3;20;
+jar of spices;none;2;10;
+rice;none;2;3;
