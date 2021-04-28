@@ -7,20 +7,23 @@ package core;
  */
 public class Item {
 	
-	String name;
-	String desc;
-	int size;
+	private String name;
+	private String desc;
+	private int size;
+	private int basePrice;
 	
 	/**
 	 * Creates an item with the given parameter values.
 	 * @param name item's name
 	 * @param desc item's description
+	 * @param basePrice item's base price
 	 * @param size item's size
 	 */
-	public Item(String name, String desc, int size) {
+	public Item(String name, String desc, int size, int basePrice) {
 		this.name = name;
 		this.desc = desc;
 		this.size = size;
+		this.basePrice = basePrice;
 	}
 	
 	/** 
@@ -45,5 +48,13 @@ public class Item {
 	 */
 	public int getSize() {
 		return size;
+	}
+	
+	/**
+	 * Returns the item's base price.
+	 * @return item's base price
+	 */
+	public int getBasePrice() {
+		return basePrice;
 	}
 }
