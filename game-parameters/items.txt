@@ -1,0 +1,15 @@
+name;description;size;value;
+banana;none;1;4;
+barrel of rum;none;8;50;
+bread;none;2;6;
+silk;none;1;10;
+cloth;none;1;5;
+gold bar;none;5;50;
+silver bar;none;5;40;
+iron bar;none;6;35;
+copper bar;none;5;30;
+jewelry;none;3;25;
+crate of animal pelts;none;15;80;
+wool;none;3;20;
+jar of spices;none;2;10;
+rice;none;2;3;
