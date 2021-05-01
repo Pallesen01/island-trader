@@ -16,6 +16,7 @@ public class Ship {
 	private int health;
 	private int maxHealth;
 	private int speed;
+	private int endurance;
 	private ArrayList<Item> cargo = new ArrayList<Item>();
 	
 	/**
@@ -26,13 +27,14 @@ public class Ship {
 	 * @param health amount of health the ship has
 	 * @param speed ship's speed
 	 */
-	public Ship(String name, int crew, int space, int health, int speed) {
+	public Ship(String name, int crew, int space, int health, int speed, int endurance) {
 		this.name = name;
 		this.crew = crew;
 		this.space = space;
 		this.health = health;
 		this.maxHealth = health;
 		this.speed = speed;
+		this.endurance = endurance;
 	}
 	
 	/** 
@@ -105,6 +107,22 @@ public class Ship {
 	 */
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+	
+	/**
+	 * Returns the ship's endurance.
+	 * @return ship's endurance
+	 */
+	public int getEndurance() {
+		return endurance;
+	}
+	
+	/**
+	 * Sets the ship's endurance.
+	 * @param speed new ship endurance
+	 */
+	public void setEndurance(int endurance) {
+		this.endurance = endurance;
 	}
 	
 	/**
