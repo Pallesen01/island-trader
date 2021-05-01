@@ -11,6 +11,7 @@ public class Item {
 	private String desc;
 	private int size;
 	private int basePrice;
+	private int price;
 	
 	/**
 	 * Creates an item with the given parameter values.
@@ -24,6 +25,7 @@ public class Item {
 		this.desc = desc;
 		this.size = size;
 		this.basePrice = basePrice;
+		this.price = basePrice;
 	}
 	
 	/** 
@@ -52,9 +54,25 @@ public class Item {
 	
 	/**
 	 * Returns the item's base price.
-	 * @return item's base price
+	 * @return item's basePrice
 	 */
 	public int getBasePrice() {
 		return basePrice;
+	}
+	
+	/**
+	 * Returns the item's price.
+	 * @return item's price
+	 */
+	public int getPrice() {
+		return price;
+	}
+	
+	/**
+	 *  Sets a new price for the item
+	 * @param newPrice for the item
+	 */
+	public void setPrice(int newPrice) {
+		this.price = newPrice;
 	}
 }

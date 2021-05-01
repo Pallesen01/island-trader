@@ -1,7 +1,8 @@
 package core;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.HashMap;
+
+//import java.util.HashMap;
 
 /**
  * This class models a store.
@@ -14,8 +15,8 @@ public class Store {
 	final private double VARIATION_MODIFIER = 0.4;
 	
 	private Random randomGenerator = new Random();
-	private HashMap<Item, Integer> buys = new HashMap<Item, Integer>();
-	private HashMap<Item, Integer> sells = new HashMap<Item, Integer>();
+	private ArrayList<Item> buys = new ArrayList<>();
+	private ArrayList<Item> sells = new ArrayList<>();
 	
 	/**
 	 * Constructs hash maps of item and price pairs for each item the store buys and sells.
@@ -23,14 +24,6 @@ public class Store {
 	public Store() {
 		this.generateBuys();
 		this.generateSells();
-		/*for (Item item : buys) {
-			int price = randomizePrice(item);
-			this.buys.put(item, price);
-		}
-		for (Item item : sells) {
-			int price = randomizePrice(item);
-			this.sells.put(item, price);
-		}*/
 	}
 	
 	/**
@@ -50,14 +43,14 @@ public class Store {
 	 * Returns hash map of item and price pairs for each item the store buys.
 	 * @return 
 	 */
-	public HashMap<Item, Integer> getBuys() {
+	public ArrayList<Item> getBuys() {
 		return buys;
 	}
 	/**
 	 * Returns hash map of item and price pairs for each item the store sells.
 	 * @return 
 	 */
-	public HashMap<Item, Integer> getSells() {
+	public ArrayList<Item> getSells() {
 		return sells;
 	}
 	
@@ -65,12 +58,13 @@ public class Store {
 	 * Generates a random list of items bought by the store
 	 */
 	public void generateBuys() {
-		HashMap<Item, Integer> newBuys = new HashMap<Item, Integer>();
+		ArrayList<Item> newBuys = new ArrayList<>();
 		ArrayList<Item> allItems = ItemsListGenerator.generateItem();
 		for (int i=0;i<10; i++) {
 			Item newItem = allItems.get(randomGenerator.nextInt(allItems.size()));
 			int price = randomizePrice(newItem);
-			newBuys.put(newItem, price);
+			newItem.setPrice(price);
+			newBuys.add(newItem);
 		}
 		buys = newBuys;
 		
@@ -79,12 +73,13 @@ public class Store {
 	 * Generates a random list of items sold by the store
 	 */
 	public void generateSells() {
-		HashMap<Item, Integer> newSells = new HashMap<Item, Integer>();
+		ArrayList<Item> newSells = new ArrayList<>();
 		ArrayList<Item> allItems = ItemsListGenerator.generateItem();
 		for (int i=0;i<10; i++) {
 			Item newItem = allItems.get(randomGenerator.nextInt(allItems.size()));
 			int price = randomizePrice(newItem);
-			newSells.put(newItem, price);
+			newItem.setPrice(price);
+			newSells.add(newItem);
 		}
 		sells = newSells;
 		
