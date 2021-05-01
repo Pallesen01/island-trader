@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * This class generates and ArrayList of in-game items using the parameters specified in items.txt and weapons.txt.
+ * This class generates ArrayLists of in-game objects using the parameters specified game-parameters.
  * @author Dillon Pike, Daniel Pallesen
  * @version 24 April 2021
  */
@@ -92,7 +92,18 @@ public class ItemsListGenerator {
 	    String currentPath = testFile.getAbsolutePath();
 	    System.out.println("current path is: " + currentPath);*/
 		// Run generator
-		System.out.println(ItemsListGenerator.generateItem());
+		System.out.println(ItemsListGenerator.generateItem().size());
+		Store newStore = new Store();
+		System.out.println(newStore.getBuys());
+		for (Item item : newStore.getBuys()) {
+			System.out.println(item.getName() + " " + item.getPrice());
+	}
+		System.out.println("NEXT STORE");
+		newStore.generateBuys();
+		System.out.println(newStore.getBuys());
+		for (Item item : newStore.getBuys()) {
+			System.out.println(item.getName() + " " + item.getPrice());
+	}
 	}
 
 }
