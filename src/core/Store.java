@@ -2,8 +2,6 @@ package core;
 import java.util.ArrayList;
 import java.util.Random;
 
-//import java.util.HashMap;
-
 /**
  * This class models a store.
  * @author Dillon Pike, Daniel Pallesen
@@ -59,9 +57,15 @@ public class Store {
 	 */
 	public void generateBuys() {
 		ArrayList<Item> newBuys = new ArrayList<>();
-		ArrayList<Item> allItems = ItemsListGenerator.generateItem();
+		ArrayList<Item> allItems = ObjectsListGenerator.generateItem();
+		ArrayList<Integer> prevInts = new ArrayList<>();
 		for (int i=0;i<10; i++) {
-			Item newItem = allItems.get(randomGenerator.nextInt(allItems.size()));
+			int nextInt = randomGenerator.nextInt(allItems.size());
+			while (prevInts.contains(nextInt)) {
+				nextInt = randomGenerator.nextInt(allItems.size());
+			}
+			prevInts.add(nextInt);
+			Item newItem = allItems.get(nextInt);
 			int price = randomizePrice(newItem);
 			newItem.setPrice(price);
 			newBuys.add(newItem);
@@ -74,9 +78,15 @@ public class Store {
 	 */
 	public void generateSells() {
 		ArrayList<Item> newSells = new ArrayList<>();
-		ArrayList<Item> allItems = ItemsListGenerator.generateItem();
+		ArrayList<Item> allItems = ObjectsListGenerator.generateItem();
+		ArrayList<Integer> prevInts = new ArrayList<>();
 		for (int i=0;i<10; i++) {
-			Item newItem = allItems.get(randomGenerator.nextInt(allItems.size()));
+			int nextInt = randomGenerator.nextInt(allItems.size());
+			while (prevInts.contains(nextInt)) {
+				nextInt = randomGenerator.nextInt(allItems.size());
+			}
+			prevInts.add(nextInt);
+			Item newItem = allItems.get(nextInt);
 			int price = randomizePrice(newItem);
 			newItem.setPrice(price);
 			newSells.add(newItem);

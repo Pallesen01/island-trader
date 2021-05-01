@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
  * @author Dillon Pike, Daniel Pallesen
  * @version 24 April 2021
  */
-public class ItemsListGenerator {
+public class ObjectsListGenerator {
 
 	/** 
 	 * Returns an ArrayList of in-game items 
