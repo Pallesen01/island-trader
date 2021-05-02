@@ -87,5 +87,74 @@ public class ObjectsListGenerator {
 		return itemList;
 		
 	}
+	
+	/** 
+	 * Returns an ArrayList of in-game ships 
+	 * @return ArrrayList of Ship objects
+	 */
+	public static ArrayList<Ship> generateShip() {
+		ArrayList<Ship> shipList = new ArrayList<Ship>();
+		Scanner shipData = null;
+		
+		try {
+			shipData = new Scanner(new File("game-parameters/ships.txt"));
+		} catch (FileNotFoundException e) {
+			System.out.println("Ships data file not found!");
+			e.printStackTrace();
+		}
+		
+		shipData.useDelimiter(";");
+		
+		// skip first line in file
+		shipData.nextLine();
+		
+		// generate object for each line and add to ArrayList
+		while(shipData.hasNext()) {
+			String name = shipData.next();
+			int crew = shipData.nextInt();
+			int space = shipData.nextInt();
+			int health = shipData.nextInt();
+			int speed = shipData.nextInt();
+			int endurance = shipData.nextInt();
+			Ship newShip = new Ship(name,crew,space,health,speed,endurance);
+			shipList.add(newShip);
+		}
+		
+		
+		return shipList;
+		
+	}
+	
+	/** 
+	 * Returns an ArrayList of in-game ships 
+	 * @return ArrrayList of Ship objects
+	 */
+	public static ArrayList<Island> generateIsland() {
+		ArrayList<Island> islandList = new ArrayList<Island>();
+		Scanner islandData = null;
+		
+		try {
+			islandData = new Scanner(new File("game-parameters/islands.txt"));
+		} catch (FileNotFoundException e) {
+			System.out.println("Islands data file not found!");
+			e.printStackTrace();
+		}
+		
+		islandData.useDelimiter(";");
+		
+		// skip first line in file
+		islandData.nextLine();
+		
+		// generate object for each line and add to ArrayList
+		while(islandData.hasNext()) {
+			String name = islandData.next();			
+			Island newIsland = new Island(name);
+			islandList.add(newIsland);
+		}
+		
+		
+		return islandList;
+		
+	}
 
 }
