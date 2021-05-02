@@ -11,4 +11,28 @@ public class Island {
 	private String name;
 	private Store store;
 	private ArrayList<Route> routes;
+	
+	public Island(String name) {
+		this.store = new Store();
+	}
+	
+	/**
+	 * returns the name of the island
+	 * @return island name
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * returns the store on the island
+	 * @return island store
+	 */
+	public Store getStore() {
+		return store;
+	}
+	
+	public void addRoute(Route route) {
+		routes.add(route);
+	}
 }
