@@ -1,0 +1,6 @@
+name;
+Tropical Island;
+Desert Island;
+Volcanic Island;
+Lost Island;
+Caribbean Island;
