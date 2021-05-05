@@ -2,8 +2,20 @@ package core;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class handles the man logic of the game and runs it.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 6 May 2021
+ */
 public class GameEnvironment {	
 	
+	/**
+	 *  Handles logic for selecting and traveling to a new island.
+	 * @param island
+	 * @param ship
+	 * @param input
+	 * @return island traveled to
+	 */
 	private static Island travel(Island island, Ship ship, Scanner input) {
 		System.out.println("Reachable Islands:");
 		ArrayList<Route> routes = island.getRoutes(); 
@@ -16,14 +28,14 @@ public class GameEnvironment {
 			System.out.println("\tDays: " + routes.get(i).getDays(ship)); //int days, int pirateDanger, int weatherDanger, int sailorsOdds
 			System.out.println("\tChance of encountering pirates: " + routes.get(i).getPirateDanger() + '%');
 			System.out.println("\tChance of encountering dangerous weather: " + routes.get(i).getWeatherDanger() + '%');
-			System.out.println("\tChance of encountering lost sailors: " + routes.get(i).getSailorsOdds() + '%');
+			System.out.println("\tChance of encountering lost sailors: " + routes.get(i).getSailorsOdds() + "%\n");
 		}
 		System.out.print("Choose route to take or enter '-1' to cancel: ");
 		int routeChosen = input.nextInt() - 1;
 		if (routeChosen < 0) {
 			return island;
 		}
-		ship.minusDays(routes.get(routeChosen).getDays(ship));
+		ship.travelForDays(routes.get(routeChosen).getDays(ship));
 		Island[] routeIslands = routes.get(routeChosen).getIslands();
 		if (routeIslands[0] != island) {
 			return routeIslands[0];
