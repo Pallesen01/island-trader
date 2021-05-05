@@ -33,16 +33,11 @@ public class ObjectsListGenerator {
 		
 		// generate object for each line and add to ArrayList
 		while(itemData.hasNext()) {
-			String name = itemData.next();
-			//System.out.println(name);
+			String name = itemData.next().strip();
 			String desc = itemData.next();
-			//System.out.println(desc);
 			int size = itemData.nextInt();
-			//System.out.println(size);
 			int value = itemData.nextInt();
-			//System.out.println(value);
 			Item newItem = new Item(name, desc, size, value);
-			//System.out.println(newItem);
 			itemList.add(newItem);
 		}
 		
@@ -73,7 +68,7 @@ public class ObjectsListGenerator {
 		
 		// generate object for each line and add to ArrayList
 		while(itemData.hasNext()) {
-			String name = itemData.next();
+			String name = itemData.next().strip();
 			String desc = itemData.next();
 			int size = itemData.nextInt();
 			int value = itemData.nextInt();
@@ -110,7 +105,7 @@ public class ObjectsListGenerator {
 		
 		// generate object for each line and add to ArrayList
 		while(shipData.hasNext()) {
-			String name = shipData.next();
+			String name = shipData.next().strip();
 			int crew = shipData.nextInt();
 			int space = shipData.nextInt();
 			int health = shipData.nextInt();
@@ -147,9 +142,11 @@ public class ObjectsListGenerator {
 		
 		// generate object for each line and add to ArrayList
 		while(islandData.hasNext()) {
-			String name = islandData.next();			
+			String name = islandData.next().strip();			
 			Island newIsland = new Island(name);
+			
 			islandList.add(newIsland);
+			
 		}
 		
 		
@@ -179,7 +176,7 @@ public class ObjectsListGenerator {
 		
 		// generate object for each line and add to ArrayList
 		while(routeData.hasNext()) {
-			String islandName1 = routeData.next();	
+			String islandName1 = routeData.next().strip();	
 			String islandName2 = routeData.next();
 			int days = routeData.nextInt();
 			int pirateDanger = routeData.nextInt();
@@ -188,12 +185,11 @@ public class ObjectsListGenerator {
 			Island island1 = null;
 			Island island2 = null;
 			for (Island island : Islands ) {
-				System.out.println(islandName1);
-				System.out.println(island.getName());
-				if (islandName1 == island.getName()) {
+				String islandName = island.getName();
+				if (islandName1.equals(islandName)) {
 					island1 = island;
 				}
-				if (islandName2 == island.getName()) {
+				if (islandName2.equals(islandName)) {
 					island2 = island;
 				}
 			}

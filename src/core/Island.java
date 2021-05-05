@@ -10,7 +10,7 @@ public class Island {
 	
 	private String name;
 	private Store store;
-	private ArrayList<Route> routes;
+	private ArrayList<Route> routes = new ArrayList<Route>();
 	
 	public Island(String name) {
 		this.name = name;

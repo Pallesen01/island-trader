@@ -1,6 +1,6 @@
 id;name;
-0;Tropical Island;
-1;Desert Island;
-2;Volcanic Island;
-3;Lost Island;
-4;Caribbean Island;
+Tropical Island;
+Desert Island;
+Volcanic Island;
+Lost Island;
+Caribbean Island;
