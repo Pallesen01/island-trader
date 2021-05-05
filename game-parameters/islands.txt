@@ -1,6 +1,6 @@
 id;name;
-Tropical Island;
-Desert Island;
-Volcanic Island;
-Lost Island;
-Caribbean Island;
+Smugglers' Bay;
+Mermaid's Hideaway;
+Marauder's Arch;
+Shipwreck Bay;
+Lonely Isle;

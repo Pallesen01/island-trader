@@ -1,3 +1,9 @@
 island1;island2;days;pirateDanger;weatherDanger;sailorsOdds;
-Tropical Island;Volcanic Island;5;5;20;10;
-Lost Island;Volcanic Island;5;5;20;10;
+Smugglers' Bay;Mermaid's Hideaway;5;5;8;15;
+Smugglers' Bay;Shipwreck Bay;3;5;30;20;
+Smugglers' Bay;Marauder's Arch;3;15;10;5;
+Shipwreck Bay;Marauder's Arch;2;8;25;15;
+Shipwreck Bay;Mermaid's Hideaway;3;10;20;15;
+Shipwreck Bay;Lonely Isle;5;20;20;25;
+Marauder's Arch;Lonely Isle;6;15;5;20;
+Mermaid's Hideaway;Lonely Isle;7;25;5;30;
