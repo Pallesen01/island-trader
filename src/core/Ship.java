@@ -17,6 +17,8 @@ public class Ship {
 	private int maxHealth;
 	private int speed;
 	private int endurance;
+	private int gold;
+	private int days;
 	private ArrayList<Item> cargo = new ArrayList<Item>();
 	private String title; // name given by player
 	
@@ -68,6 +70,46 @@ public class Ship {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	/** 
+	 * Returns the ship's gold. 
+	 * @return ship's gold
+	 */
+	public int getGold() {
+		return gold;
+	}
+	
+	/** 
+	 * Sets the ship's gold
+	 * @param name new gold for the ship
+	 */
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	
+	/** 
+	 * Returns the ship's days. 
+	 * @return ship's days
+	 */
+	public int getDays() {
+		return days;
+	}
+	
+	/** 
+	 * Sets the ship's days
+	 * @param name new days for the ship
+	 */
+	public void setDays(int days) {
+		this.days = days;
+	}
+	
+	/** 
+	 * Removes from the ship's days
+	 * @param amount to be removed
+	 */
+	public void minusDays(int days) {
+		this.days -= days;
 	}
 	
 	/**

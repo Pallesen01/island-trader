@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class GameEnvironment {	
 	
-	private static Island travel(Island island, Ship ship,Scanner input) {
+	private static Island travel(Island island, Ship ship, Scanner input) {
 		System.out.println("Reachable Islands:");
 		ArrayList<Route> routes = island.getRoutes(); 
 		for (int i = 0; i <routes.size(); i++) {
@@ -23,6 +23,7 @@ public class GameEnvironment {
 		if (routeChosen < 0) {
 			return island;
 		}
+		ship.minusDays(routes.get(routeChosen).getDays(ship));
 		Island[] routeIslands = routes.get(routeChosen).getIslands();
 		if (routeIslands[0] != island) {
 			return routeIslands[0];
@@ -42,7 +43,6 @@ public class GameEnvironment {
 		ArrayList<Island> islands = ObjectsListGenerator.generateIsland();
 		ObjectsListGenerator.generateRoute(islands);
 		Island currentIsland = islands.get(0);
-		int gold = 100;
 		Ship playerShip;
 		boolean gameRunning = true;
 		
@@ -64,11 +64,16 @@ public class GameEnvironment {
 		System.out.print("Enter a name for your ship: ");
 		String shipName = input.next();
 		playerShip.setTitle(shipName);
-		System.out.print("Ship named: " + playerShip.getTitle()+"\n\n");
+		System.out.print("Ship named: " + playerShip.getTitle() + "\n");
+		System.out.print("Set number of days for game to last (reccomended > 50): ");
+		playerShip.setDays(input.nextInt());
 		
 		
-		while (gameRunning) {
-			currentIsland = travel(currentIsland, playerShip ,input);
+		
+		while (gameRunning && playerShip.getDays() > 0) {
+			currentIsland = travel(currentIsland, playerShip , input);
+			System.out.println(playerShip.getDays());
+			
 			
 		}
 		
