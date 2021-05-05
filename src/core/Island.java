@@ -13,6 +13,7 @@ public class Island {
 	private ArrayList<Route> routes;
 	
 	public Island(String name) {
+		this.name = name;
 		this.store = new Store();
 	}
 	

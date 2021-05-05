@@ -126,8 +126,8 @@ public class ObjectsListGenerator {
 	}
 	
 	/** 
-	 * Returns an ArrayList of in-game ships 
-	 * @return ArrrayList of Ship objects
+	 * Returns an ArrayList of in-game islands
+	 * @return ArrrayList of Island objects
 	 */
 	public static ArrayList<Island> generateIsland() {
 		ArrayList<Island> islandList = new ArrayList<Island>();
@@ -154,6 +154,61 @@ public class ObjectsListGenerator {
 		
 		
 		return islandList;
+		
+	}
+	
+	/** 
+	 * Returns an ArrayList of in-game routes
+	 * @return ArrrayList of Route objects
+	 */
+	public static ArrayList<Route> generateRoute(ArrayList<Island> Islands) {
+		ArrayList<Route> routeList = new ArrayList<Route>();
+		Scanner routeData = null;
+		
+		try {
+			routeData = new Scanner(new File("game-parameters/routes.txt"));
+		} catch (FileNotFoundException e) {
+			System.out.println("Islands data file not found!");
+			e.printStackTrace();
+		}
+		
+		routeData.useDelimiter(";");
+		
+		// skip first line in file
+		routeData.nextLine();
+		
+		// generate object for each line and add to ArrayList
+		while(routeData.hasNext()) {
+			String islandName1 = routeData.next();	
+			String islandName2 = routeData.next();
+			int days = routeData.nextInt();
+			int pirateDanger = routeData.nextInt();
+			int weatherDanger = routeData.nextInt();
+			int sailorsOdds = routeData.nextInt();
+			Island island1 = null;
+			Island island2 = null;
+			for (Island island : Islands ) {
+				System.out.println(islandName1);
+				System.out.println(island.getName());
+				if (islandName1 == island.getName()) {
+					island1 = island;
+				}
+				if (islandName2 == island.getName()) {
+					island2 = island;
+				}
+			}
+			if (island1 == null || island2 == null) {
+				throw new java.lang.Error("Not all islands found when generating route list");
+			}
+			
+			Route newRoute = new Route(island1,island2,days,pirateDanger,weatherDanger,sailorsOdds);
+			island1.addRoute(newRoute);
+			island2.addRoute(newRoute);
+			routeList.add(newRoute);
+		}
+		
+		
+		return routeList;
 		
 	}
 

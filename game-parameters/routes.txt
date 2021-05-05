@@ -1,1 +1,3 @@
 island1;island2;days;pirateDanger;weatherDanger;sailorsOdds;
+Tropical Island;Volcanic Island;5;5;20;10;
+Lost Island;Volcanic Island;5;5;20;10;
