@@ -47,8 +47,8 @@ public class Route {
 	 * Returns number of days route takes
 	 * @return days
 	 */
-	public int getDays() {
-		return days;
+	public int getDays(Ship ship) {
+		return days * (ship.getSpeed()/20);
 	}
 	
 	/**
@@ -58,6 +58,31 @@ public class Route {
 	public boolean encouterPirates() {
 		return (randomGenerator.nextInt(100) <= pirateDanger);
 	}
+	
+	/**
+	 * Returns chance of encountering pirates
+	 * @return pirateDanger
+	 */
+	public int getPirateDanger() {
+		return pirateDanger;
+	}
+	
+	/**
+	 * Returns chance of encountering dangerous weather
+	 * @return weatherDanger
+	 */
+	public int getWeatherDanger() {
+		return weatherDanger;
+	}
+	
+	/**
+	 * Returns chance of encountering lost sailors
+	 * @return sailorOdds
+	 */
+	public int getSailorsOdds() {
+		return sailorsOdds;
+	}
+	
 	
 	/**
 	 * Returns true if the player encounters dangerous weather
