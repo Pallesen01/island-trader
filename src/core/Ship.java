@@ -18,6 +18,7 @@ public class Ship {
 	private int speed;
 	private int endurance;
 	private ArrayList<Item> cargo = new ArrayList<Item>();
+	private String title; // name given by player
 	
 	/**
 	 * Creates a ship at full health with the given parameter values.
@@ -51,6 +52,22 @@ public class Ship {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/** 
+	 * Returns the ship's title. 
+	 * @return ship's title
+	 */
+	public String getTitle() {
+		return title;
+	}
+	
+	/** 
+	 * Sets the ship's title.
+	 * @param name new title for the ship
+	 */
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	/**

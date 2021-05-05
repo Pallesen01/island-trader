@@ -6,6 +6,7 @@ public class GameEnvironment {
 	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
+		input.useDelimiter("\\s*\n\\s*");
 		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
 		ArrayList<Item> items = ObjectsListGenerator.generateItem();
 		ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
@@ -26,7 +27,12 @@ public class GameEnvironment {
 		System.out.print("Choose a ship to captain: ");
 		int selectedShip = input.nextInt();
 		playerShip = ships.get(selectedShip);
-		System.out.print(playerShip.getName() + " Selected");
+		System.out.println(playerShip.getName() + " Selected");
+		System.out.print("Enter a name for your ship: ");
+		String shipName = input.next();
+		playerShip.setTitle(shipName);
+		System.out.print("Ship named: " + playerShip.getTitle());
+		
 	
 		
 	}
