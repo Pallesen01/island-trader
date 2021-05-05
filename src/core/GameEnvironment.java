@@ -10,7 +10,7 @@ public class GameEnvironment {
 		for (int i = 0; i <routes.size(); i++) {
 			for (Island island2: routes.get(i).getIslands()) {
 				if (island2 != island) {
-					System.out.println(i + " - " + island2.getName());
+					System.out.println((i+1) + " - " + island2.getName());
 				}
 			}
 			System.out.println("\tDays: " + routes.get(i).getDays(ship)); //int days, int pirateDanger, int weatherDanger, int sailorsOdds
@@ -19,7 +19,7 @@ public class GameEnvironment {
 			System.out.println("\tChance of encountering lost sailors: " + routes.get(i).getSailorsOdds() + '%');
 		}
 		System.out.print("Choose route to take or enter '-1' to cancel: ");
-		int routeChosen = input.nextInt();
+		int routeChosen = input.nextInt() - 1;
 		if (routeChosen < 0) {
 			return island;
 		}
@@ -49,7 +49,7 @@ public class GameEnvironment {
 		
 		System.out.println("Playable ships:");
 		for (int i = 0; i < ships.size(); i++) {
-			System.out.println(i+" - "+ships.get(i).getName()+':');
+			System.out.println((i+1)+" - "+ships.get(i).getName()+':');
 			System.out.println("\tCrew Members: "+ships.get(i).getCrew());
 			System.out.println("\tCargo Space: "+ships.get(i).getSpace());
 			System.out.println("\tHealth: "+ships.get(i).getHealth());
@@ -58,7 +58,7 @@ public class GameEnvironment {
 		}
 		
 		System.out.print("Choose a ship to captain: ");
-		int selectedShip = input.nextInt();
+		int selectedShip = input.nextInt() - 1;
 		playerShip = ships.get(selectedShip);
 		System.out.println(playerShip.getName() + " Selected");
 		System.out.print("Enter a name for your ship: ");
