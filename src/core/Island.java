@@ -33,6 +33,18 @@ public class Island {
 		return store;
 	}
 	
+	/**
+	 * returns the routes to and from the island
+	 * @return an ArrayList of route objects
+	 */
+	public ArrayList<Route> getRoutes() {
+		return routes;
+	}
+	
+	/**
+	 * Adds a route to or from the island
+	 * @param The Route object to be added
+	 */
 	public void addRoute(Route route) {
 		routes.add(route);
 	}
