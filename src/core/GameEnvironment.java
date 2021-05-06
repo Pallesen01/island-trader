@@ -46,7 +46,12 @@ public class GameEnvironment {
 		
 	}
 	
-	
+	/**
+	 * Handles game logic for buying from a store
+	 * @param island
+	 * @param ship
+	 * @param input
+	 */
 	private static void buyFromStore(Island island, Ship ship, Scanner input) {		
 		System.out.println("Current gold: " + ship.getGold());
 		System.out.println("Items avaliable for purchase:");
@@ -60,10 +65,6 @@ public class GameEnvironment {
 			if (!ship.buyCargo(items.get(itemChosen))) {
 				System.out.println("Failed to buy item - insufficient gold or cargo space");
 			}
-			for (Item item: ship.getCargo()) {
-				System.out.println(item.getName()+", "+item.getSize()+"kg, "+item.getPrice()+" gold"); //name;description;size;value;);
-			}
-			
 			
 		}
 		

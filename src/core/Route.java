@@ -48,7 +48,7 @@ public class Route {
 	 * @return days
 	 */
 	public int getDays(Ship ship) {
-		return days * (ship.getSpeed()/20);
+		return (days * (ship.getSpeed()/20));
 	}
 	
 	/**
