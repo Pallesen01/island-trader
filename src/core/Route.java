@@ -34,21 +34,23 @@ public class Route {
 		this.sailorsOdds = sailorsOdds;
 		
 	}
+	
 	/**
 	 * Returns a list with the islands the route goes between
 	 * @return island list
 	 */
-	public Island[] getIslands(){
+	public Island[] getIslands() {
 		Island[] islands= {island1,island2};
 		return islands;
 	}
 	
 	/**
 	 * Returns number of days route takes
+	 * @param speed ship's speed
 	 * @return days
 	 */
-	public int getDays(Ship ship) {
-		return (days * (ship.getSpeed()/20));
+	public int getDays(int speed) {
+		return (days * (speed/20));
 	}
 	
 	/**
@@ -82,7 +84,6 @@ public class Route {
 	public int getSailorsOdds() {
 		return sailorsOdds;
 	}
-	
 	
 	/**
 	 * Returns true if the player encounters dangerous weather

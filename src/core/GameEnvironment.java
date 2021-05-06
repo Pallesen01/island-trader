@@ -7,7 +7,9 @@ import java.util.Scanner;
  * @author Dillon Pike, Daniel Pallesen
  * @version 6 May 2021
  */
-public class GameEnvironment {	
+public class GameEnvironment {
+	
+	final static String VALID_INT_MSG = "\nPlease enter a valid integer.\n";
 	
 	/**
 	 *  Handles logic for selecting and traveling to a new island.
@@ -25,7 +27,7 @@ public class GameEnvironment {
 					System.out.println((i+1) + " - " + island2.getName());
 				}
 			}
-			System.out.println("\tDays: " + routes.get(i).getDays(ship)); //int days, int pirateDanger, int weatherDanger, int sailorsOdds
+			System.out.println("\tDays: " + routes.get(i).getDays(ship.getSpeed())); //int days, int pirateDanger, int weatherDanger, int sailorsOdds
 			System.out.println("\tChance of encountering pirates: " + routes.get(i).getPirateDanger() + '%');
 			System.out.println("\tChance of encountering dangerous weather: " + routes.get(i).getWeatherDanger() + '%');
 			System.out.println("\tChance of encountering lost sailors: " + routes.get(i).getSailorsOdds() + "%\n");
@@ -35,7 +37,7 @@ public class GameEnvironment {
 		if (routeChosen < 0) {
 			return island;
 		}
-		ship.travelForDays(routes.get(routeChosen).getDays(ship));
+		ship.travelForDays(routes.get(routeChosen).getDays(ship.getSpeed()));
 		Island[] routeIslands = routes.get(routeChosen).getIslands();
 		if (routeIslands[0] != island) {
 			return routeIslands[0];
@@ -69,7 +71,22 @@ public class GameEnvironment {
 		}
 		
 	}
-
+	
+	/** 
+	 * Checks if the next input is a valid int and returns it
+	 * Otherwise skips it and returns -1
+	 * @param input scanner that's scanning the input
+	 * @return next valid int in the input, otherwise -1
+	 */
+	public static int nextValidInt(Scanner input) {
+		int next = -1;
+		try {
+			next = input.nextInt();
+		} catch (java.util.InputMismatchException e) {
+			input.nextLine();
+		}
+		return next;
+	}
 	
 	public static void main(String[] args) {
 		final int STARTING_GOLD = 250;
@@ -95,23 +112,35 @@ public class GameEnvironment {
 			System.out.println("\tEndurance: "+ships.get(i).getEndurance()+'\n');
 		}
 		
-		System.out.print("Choose a ship to captain: ");
-		int selectedShip = input.nextInt() - 1;
+		int selectedShip = -1;
+		while (selectedShip < 0 || ships.size() <= selectedShip) {
+			System.out.print("Choose a ship to captain: ");
+			selectedShip = nextValidInt(input) - 1;
+			if (selectedShip < 0 || ships.size() <= selectedShip) {
+				System.out.println(VALID_INT_MSG);
+			}
+		}
 		playerShip = ships.get(selectedShip);
 		System.out.println(playerShip.getName() + " Selected");
 		System.out.print("Enter a name for your ship: ");
 		String shipName = input.next();
 		playerShip.setTitle(shipName);
 		System.out.print("Ship named: " + playerShip.getTitle() + "\n");
-		System.out.print("Set number of days for game to last (reccomended > 50): ");
-		playerShip.setDays(input.nextInt());
-		playerShip.setGold(STARTING_GOLD);
 		
+		int days = -1;
+		while (days == -1) {
+			System.out.print("Set number of days for game to last (recommended > 50): ");
+			days = nextValidInt(input);
+			if (days == -1) {
+				System.out.println(VALID_INT_MSG);
+			}
+		}
+		playerShip.setDays(days);
+		playerShip.setGold(STARTING_GOLD);
 		
 		while (gameRunning && playerShip.getDays() > 0) {
 			
 			System.out.println(playerShip.getDays()+" Days Remaining");
-			
 			System.out.println("Avaliable Actions:");
 			System.out.println("1 - Travel");
 			System.out.println("2 - Buy from store");
@@ -119,17 +148,19 @@ public class GameEnvironment {
 			System.out.println("4 - Check cargo");
 			System.out.print("Select Action to Perform: ");
 			
-	        int selection = input.nextInt();
+			int selection = nextValidInt(input);
+
 	        switch (selection) {
-	            case 1:  currentIsland = travel(currentIsland, playerShip , input);;
+	            case 1:  currentIsland = travel(currentIsland, playerShip , input);
 	                     break;
 	            case 2:  buyFromStore(currentIsland, playerShip, input);
 	                     break;
 	            case 3:  buyFromStore(currentIsland, playerShip, input);//sellToStore();
 	                     break;
-	            case 4: buyFromStore(currentIsland, playerShip, input);//checkCargo();
-	                     break;
-					
+	            case 4:  buyFromStore(currentIsland, playerShip, input);//checkCargo();
+	                     break;	
+	            default: System.out.println(VALID_INT_MSG);
+	            		 break;
 	        }
 		}
 	}
