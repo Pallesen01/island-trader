@@ -108,7 +108,8 @@ public class Ship {
 	 * Removes from the ship's days
 	 * @param amount to be removed
 	 */
-	public void minusDays(int days) {
+	public void travelForDays(int days) {
+		this.gold -= (days*this.getCrew());
 		this.days -= days;
 	}
 	
@@ -190,6 +191,20 @@ public class Ship {
 	 */
 	public ArrayList<Item> getCargo() {
 		return cargo;
+	}
+	
+	/**
+	 * Adds an item to the ship's cargo if there is enough space and the ship has enough gold.
+	 * @param item item to be added
+	 * @return true if successful, otherwise false
+	 */
+	public boolean buyCargo(Item item) {
+		boolean added = false;
+		if (this.getGold() >= item.getPrice()) {
+			this.gold -= item.getPrice();
+			added = addCargo(item);						
+		}
+		return added;
 	}
 	
 	/**

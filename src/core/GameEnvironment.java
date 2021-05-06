@@ -46,7 +46,32 @@ public class GameEnvironment {
 		
 	}
 	
+	
+	private static void buyFromStore(Island island, Ship ship, Scanner input) {		
+		System.out.println("Current gold: " + ship.getGold());
+		System.out.println("Items avaliable for purchase:");
+		ArrayList<Item> items = island.getStore().getBuys(); 
+		for (int i = 0; i < items.size(); i++) {
+			System.out.println("\t"+(i+1)+" - "+items.get(i).getName()+", "+items.get(i).getSize()+"kg, "+items.get(i).getPrice()+" gold"); //name;description;size;value;
+			}
+		System.out.print("Choose item to buy or enter '-1' to cancel: ");
+		int itemChosen = input.nextInt() - 1;
+		if (itemChosen > 0) {
+			if (!ship.buyCargo(items.get(itemChosen))) {
+				System.out.println("Failed to buy item - insufficient gold or cargo space");
+			}
+			for (Item item: ship.getCargo()) {
+				System.out.println(item.getName()+", "+item.getSize()+"kg, "+item.getPrice()+" gold"); //name;description;size;value;);
+			}
+			
+			
+		}
+		
+	}
+
+	
 	public static void main(String[] args) {
+		final int STARTING_GOLD = 250;
 		Scanner input = new Scanner(System.in);
 		input.useDelimiter("\\s*\n\\s*");
 		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
@@ -79,19 +104,32 @@ public class GameEnvironment {
 		System.out.print("Ship named: " + playerShip.getTitle() + "\n");
 		System.out.print("Set number of days for game to last (reccomended > 50): ");
 		playerShip.setDays(input.nextInt());
-		
+		playerShip.setGold(STARTING_GOLD);
 		
 		
 		while (gameRunning && playerShip.getDays() > 0) {
-			currentIsland = travel(currentIsland, playerShip , input);
-			System.out.println(playerShip.getDays());
 			
+			System.out.println(playerShip.getDays()+" Days Remaining");
 			
+			System.out.println("Avaliable Actions:");
+			System.out.println("1 - Travel");
+			System.out.println("2 - Buy from store");
+			System.out.println("3 - Sell to store");
+			System.out.println("4 - Check cargo");
+			System.out.print("Select Action to Perform: ");
+			
+	        int selection = input.nextInt();
+	        switch (selection) {
+	            case 1:  currentIsland = travel(currentIsland, playerShip , input);;
+	                     break;
+	            case 2:  buyFromStore(currentIsland, playerShip, input);
+	                     break;
+	            case 3:  buyFromStore(currentIsland, playerShip, input);//sellToStore();
+	                     break;
+	            case 4: buyFromStore(currentIsland, playerShip, input);//checkCargo();
+	                     break;
+					
+	        }
 		}
-		
-	
-		
 	}
-	
-
 }
