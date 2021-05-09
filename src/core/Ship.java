@@ -40,6 +40,20 @@ public class Ship {
 		this.endurance = endurance;
 	}
 	
+	/**
+	 * Returns a string representation of the ship's attributes.
+	 * @return string representation of ship
+	 */
+	public String toString() {
+		String string = name + ":";
+		string += "\n\tCrew Members: " + crew;
+		string += "\n\tCargo Space: " + space;
+		string += "\n\tHealth: " + health;
+		string += "\n\tSpeed: " + speed;
+		string += "\n\tEndurance: " + endurance;
+		return string;
+	}
+	
 	/** 
 	 * Returns the ship's name. 
 	 * @return ship's name

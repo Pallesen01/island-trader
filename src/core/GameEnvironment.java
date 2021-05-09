@@ -104,12 +104,7 @@ public class GameEnvironment {
 		
 		System.out.println("Playable ships:");
 		for (int i = 0; i < ships.size(); i++) {
-			System.out.println((i+1)+" - "+ships.get(i).getName()+':');
-			System.out.println("\tCrew Members: "+ships.get(i).getCrew());
-			System.out.println("\tCargo Space: "+ships.get(i).getSpace());
-			System.out.println("\tHealth: "+ships.get(i).getHealth());
-			System.out.println("\tSpeed: "+ships.get(i).getSpeed());
-			System.out.println("\tEndurance: "+ships.get(i).getEndurance()+'\n');
+			System.out.println((i+1) + " - " + ships.get(i).toString() + "\n");
 		}
 		
 		int selectedShip = -1;
