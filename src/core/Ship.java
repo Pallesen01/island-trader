@@ -208,20 +208,6 @@ public class Ship {
 	}
 	
 	/**
-	 * Adds an item to the ship's cargo if there is enough space and the ship has enough gold.
-	 * @param item item to be added
-	 * @return true if successful, otherwise false
-	 */
-	public boolean buyCargo(Item item) {
-		boolean added = false;
-		if (this.getGold() >= item.getPrice()) {
-			this.gold -= item.getPrice();
-			added = addCargo(item);						
-		}
-		return added;
-	}
-	
-	/**
 	 * Adds an item to the ship's cargo if there is enough space.
 	 * @param item item to be added
 	 * @return true if successful, otherwise false
@@ -237,17 +223,47 @@ public class Ship {
 	}
 	
 	/**
+	 * Adds an item to the ship's cargo if there is enough space and the ship has enough gold.
+	 * @param item item to be added
+	 * @return true if successful, otherwise false
+	 */
+	public boolean buyCargo(Item item) {
+		boolean bought = false;
+		if (gold >= item.getPrice() && space > item.getSize()) {
+			gold -= item.getPrice();
+			bought = addCargo(item);						
+		}
+		return bought;
+	}
+	
+	/**
 	 * Removes an item from the ship's cargo if the ship's cargo contains the item.
 	 * @param item item to be removed
 	 * @return true if successful, otherwise false
 	 */
 	public boolean removeCargo(Item item) {
 		boolean removed = false;
-		if (cargo.contains(item)) {
-			cargo.remove(item);
-			space += item.getSize();
-			removed = true;
+		for (Item cargoItem : cargo) {
+			if (cargoItem.getName().equals(item.getName())) {
+				cargo.remove(item);
+				space += item.getSize();
+				removed = true;
+				break;
+			}
 		}
 		return removed;
+	}
+	
+	/**
+	 * Removes an item from the ship's cargo if it's there and adds the price to the ship's gold.
+	 * @param item item to be removed
+	 * @return true if successful, otherwise false
+	 */
+	public boolean sellCargo(Item item) {
+		boolean sold = removeCargo(item);
+		if (sold) {
+			gold += item.getPrice();
+		}
+		return sold;
 	}
 }

@@ -61,15 +61,41 @@ public class GameEnvironment {
 		for (int i = 0; i < items.size(); i++) {
 			System.out.println("\t"+(i+1)+" - "+items.get(i).getName()+", "+items.get(i).getSize()+"kg, "+items.get(i).getPrice()+" gold"); //name;description;size;value;
 			}
-		System.out.print("Choose item to buy or enter '-1' to cancel: ");
-		int itemChosen = input.nextInt() - 1;
-		if (itemChosen > 0) {
-			if (!ship.buyCargo(items.get(itemChosen))) {
-				System.out.println("Failed to buy item - insufficient gold or cargo space");
+		String prompt = "Choose item to buy or enter '0' to cancel: ";
+		String errorMessage = VALID_INT_MSG;
+		int choice = getValidInt(input, 0, items.size(), prompt, errorMessage) - 1;
+		if (choice != -1) {
+			if (ship.buyCargo(items.get(choice))) {
+				System.out.println("Item bought.");
+			} else {
+				System.out.println("Failed to buy item - insufficient gold or cargo space.");
 			}
-			
 		}
-		
+	}
+	
+	/**
+	 * Handles game logic for selling to a store
+	 * @param island
+	 * @param ship
+	 * @param input
+	 */
+	private static void sellToStore(Island island, Ship ship, Scanner input) {
+		System.out.println("Current gold: " + ship.getGold());
+		System.out.println("Items able to sell:");
+		ArrayList<Item> items = island.getStore().getSells();
+		for (int i = 0; i < items.size(); i++) {
+			System.out.println("\t"+(i+1)+" - "+items.get(i).getName()+", "+items.get(i).getSize()+"kg, "+items.get(i).getPrice()+" gold"); //name;description;size;value;
+			}
+		String prompt = "Choose item to buy or enter '0' to cancel: ";
+		String errorMessage = VALID_INT_MSG;
+		int choice = getValidInt(input, 0, items.size(), prompt, errorMessage) - 1;
+		if (choice != -1) {
+			if (ship.sellCargo(items.get(choice))) {
+				System.out.println("Item sold.");
+			} else {
+				System.out.println("Failed to sell item - not in cargo.");
+			}
+		}
 	}
 	
 	/** 
@@ -86,6 +112,27 @@ public class GameEnvironment {
 			input.nextLine();
 		}
 		return next;
+	}
+	
+	/**
+	 * Gets a valid integer from the user within a specific range.
+	 * @param input
+	 * @param lowerBound
+	 * @param upperBound
+	 * @param prompt
+	 * @param errorMessage
+	 * @return
+	 */
+	public static int getValidInt(Scanner input, int lowerBound, int upperBound, String prompt, String errorMessage) {
+		int choice = lowerBound - 1;
+		while (choice < lowerBound || choice > upperBound) {
+			System.out.print(prompt);
+			choice = nextValidInt(input);
+			if (choice < lowerBound || choice > upperBound) {
+				System.out.println(errorMessage);
+			}
+		}
+		return choice;
 	}
 	
 	public static void main(String[] args) {
@@ -150,7 +197,7 @@ public class GameEnvironment {
 	                     break;
 	            case 2:  buyFromStore(currentIsland, playerShip, input);
 	                     break;
-	            case 3:  buyFromStore(currentIsland, playerShip, input);//sellToStore();
+	            case 3:  sellToStore(currentIsland, playerShip, input);//sellToStore();
 	                     break;
 	            case 4:  buyFromStore(currentIsland, playerShip, input);//checkCargo();
 	                     break;	
