@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class GameEnvironment {
 	
-	final static String VALID_INT_MSG = "\nPlease enter a valid integer.\n";
+	final static String VALID_INT_MSG = "Please enter a valid integer.\n";
 	
 	/**
 	 *  Handles logic for selecting and traveling to a new island.
@@ -197,9 +197,9 @@ public class GameEnvironment {
 	                     break;
 	            case 2:  buyFromStore(currentIsland, playerShip, input);
 	                     break;
-	            case 3:  sellToStore(currentIsland, playerShip, input);//sellToStore();
+	            case 3:  sellToStore(currentIsland, playerShip, input);
 	                     break;
-	            case 4:  buyFromStore(currentIsland, playerShip, input);//checkCargo();
+	            case 4:  playerShip.printCargo();
 	                     break;	
 	            default: System.out.println(VALID_INT_MSG);
 	            		 break;
