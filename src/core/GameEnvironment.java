@@ -139,13 +139,6 @@ public class GameEnvironment {
 		return choice;
 	}
 	
-	/**
-	 * 
-	 */
-	private static void initialiseGame() {
-		
-	}
-	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		input.useDelimiter("\\s*\n\\s*");
