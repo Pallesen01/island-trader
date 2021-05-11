@@ -4,3 +4,4 @@ pirate event
 lost sailors event
 repair ship
 upgrade ship
+make player class for attributes relating to the player, e.g. gold, days?

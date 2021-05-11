@@ -17,8 +17,6 @@ public class Ship {
 	private int maxHealth;
 	private int speed;
 	private int endurance;
-	private int gold;
-	private int days;
 	private ArrayList<Item> cargo = new ArrayList<Item>();
 	private String title; // name given by player
 	
@@ -84,47 +82,6 @@ public class Ship {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	
-	/** 
-	 * Returns the ship's gold. 
-	 * @return ship's gold
-	 */
-	public int getGold() {
-		return gold;
-	}
-	
-	/** 
-	 * Sets the ship's gold
-	 * @param name new gold for the ship
-	 */
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-	
-	/** 
-	 * Returns the ship's days. 
-	 * @return ship's days
-	 */
-	public int getDays() {
-		return days;
-	}
-	
-	/** 
-	 * Sets the ship's days
-	 * @param name new days for the ship
-	 */
-	public void setDays(int days) {
-		this.days = days;
-	}
-	
-	/** 
-	 * Removes from the ship's days
-	 * @param amount to be removed
-	 */
-	public void travelForDays(int days) {
-		this.gold -= (days*this.getCrew());
-		this.days -= days;
 	}
 	
 	/**
@@ -259,7 +216,7 @@ public class Ship {
 		boolean removed = false;
 		for (Item cargoItem : cargo) {
 			if (cargoItem.getName().equals(item.getName())) {
-				cargo.remove(item);
+				cargo.remove(cargoItem);
 				space += item.getSize();
 				removed = true;
 				break;
@@ -268,16 +225,12 @@ public class Ship {
 		return removed;
 	}
 	
-	/**
+	/** REMOVE
 	 * Removes an item from the ship's cargo if it's there and adds the price to the ship's gold.
 	 * @param item item to be removed
 	 * @return true if successful, otherwise false
 	 */
 	public boolean sellCargo(Item item) {
-		boolean sold = removeCargo(item);
-		if (sold) {
-			gold += item.getPrice();
-		}
-		return sold;
+		return removeCargo(item);
 	}
 }

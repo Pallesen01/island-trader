@@ -40,7 +40,7 @@ public class Route {
 	 * @return island list
 	 */
 	public Island[] getIslands() {
-		Island[] islands= {island1,island2};
+		Island[] islands= {island1, island2};
 		return islands;
 	}
 	
