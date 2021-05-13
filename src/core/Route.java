@@ -32,7 +32,6 @@ public class Route {
 		this.pirateDanger = pirateDanger;
 		this.weatherDanger = weatherDanger;
 		this.sailorsOdds = sailorsOdds;
-		
 	}
 	
 	/**
@@ -40,8 +39,27 @@ public class Route {
 	 * @return island list
 	 */
 	public Island[] getIslands() {
-		Island[] islands= {island1, island2};
+		Island[] islands = {island1, island2};
 		return islands;
+	}
+	
+	/**
+	 * Prints paragraph of what island the route will go to,
+	 * how many days it will take,
+	 * and the chances of encountering random events.
+	 * @param currentIsland island the player is currently on
+	 * @param speed speed of the player's ship
+	 */
+	public void printInfo(Island currentIsland, int speed) {
+		if (currentIsland != island1) {
+			System.out.println(island1.getName());
+		} else {
+			System.out.println(island2.getName());
+		}
+		System.out.println("\tDays: " + this.getDays(speed)); // int days, int pirateDanger, int weatherDanger, int sailorsOdds
+		System.out.println("\tChance of encountering pirates: " + this.getPirateDanger() + '%');
+		System.out.println("\tChance of encountering dangerous weather: " + this.getWeatherDanger() + '%');
+		System.out.println("\tChance of encountering lost sailors: " + this.getSailorsOdds() + "%\n");
 	}
 	
 	/**
@@ -51,14 +69,6 @@ public class Route {
 	 */
 	public int getDays(int speed) {
 		return (days * (speed/20));
-	}
-	
-	/**
-	 * Returns true if the player encounters pirates
-	 * @return if pirates encountered
-	 */
-	public boolean encouterPirates() {
-		return (randomGenerator.nextInt(100) <= pirateDanger);
 	}
 	
 	/**
@@ -86,11 +96,19 @@ public class Route {
 	}
 	
 	/**
+	 * Returns true if the player encounters pirates
+	 * @return if pirates encountered
+	 */
+	public boolean encouterPirates() {
+		return (randomGenerator.nextInt(100) < pirateDanger);
+	}
+	
+	/**
 	 * Returns true if the player encounters dangerous weather
 	 * @return if dangerous weather encountered
 	 */
 	public boolean encouterWeatherEvent() {
-		return (randomGenerator.nextInt(100) <= weatherDanger);
+		return (randomGenerator.nextInt(100) < weatherDanger);
 	}
 	
 	/**
@@ -98,7 +116,7 @@ public class Route {
 	 * @return if lost sailors encountered
 	 */
 	public boolean encouterLostSailors() {
-		return (randomGenerator.nextInt(100) <= sailorsOdds);
+		return (randomGenerator.nextInt(100) < sailorsOdds);
 	}
 }
 

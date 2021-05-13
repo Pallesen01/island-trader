@@ -23,15 +23,8 @@ public class GameEnvironment {
 		System.out.println("Reachable Islands:");
 		ArrayList<Route> routes = currentIsland.getRoutes(); 
 		for (int i = 0; i < routes.size(); i++) {
-			for (Island island : routes.get(i).getIslands()) {
-				if (island != currentIsland) {
-					System.out.println((i+1) + " - " + island.getName());
-				}
-			}
-			System.out.println("\tDays: " + routes.get(i).getDays(ship.getSpeed())); // int days, int pirateDanger, int weatherDanger, int sailorsOdds
-			System.out.println("\tChance of encountering pirates: " + routes.get(i).getPirateDanger() + '%');
-			System.out.println("\tChance of encountering dangerous weather: " + routes.get(i).getWeatherDanger() + '%');
-			System.out.println("\tChance of encountering lost sailors: " + routes.get(i).getSailorsOdds() + "%\n");
+			System.out.print((i+1) + " - ");
+			routes.get(i).printInfo(currentIsland, ship.getSpeed());
 		}
 		String prompt = "Choose route to take or enter '0' to cancel: ";
 		int routeChosen = getValidInt(input, 0, routes.size(), prompt, VALID_INT_MSG) - 1;
@@ -172,6 +165,7 @@ public class GameEnvironment {
 		while (gameRunning && state.getDays() > 0) {
 			
 			System.out.println(state.getDays()+" Days Remaining");
+			System.out.println("Current Island: " + state.getIsland().getName());
 			System.out.println("Avaliable Actions:");
 			System.out.println("1 - Travel");
 			System.out.println("2 - Buy from store");
