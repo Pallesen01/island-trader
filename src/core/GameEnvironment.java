@@ -2,6 +2,8 @@ package core;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import ui.GameUI;
+
 /**
  * This class handles the man logic of the game and runs it.
  * @author Dillon Pike, Daniel Pallesen
@@ -9,8 +11,54 @@ import java.util.Scanner;
  */
 public class GameEnvironment {
 	
-	private final static int STARTING_GOLD = 250;
-	private final static String VALID_INT_MSG = "Please enter a valid integer.\n";
+	private final ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
+	private final ArrayList<Item> items = ObjectsListGenerator.generateItem();
+	private final ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
+	private final ArrayList<Island> islands = ObjectsListGenerator.generateIsland();
+	private final ArrayList<Route> routes = ObjectsListGenerator.generateRoute(islands);
+
+	
+	private GameUI ui;
+	private Island island;
+	private int gold;
+	private String name;
+	private int days;
+	private Ship ship;
+	
+	public GameEnvironment(GameUI ui, Island island, int gold) {
+		this.ui = ui;
+		this.island = island;
+		this.gold = gold; // private final int STARTING_GOLD = 250;
+		ui.start(this);
+	}
+	
+	public void finishSetup(String name, int days, Ship ship) {
+		this.name = name;
+		this.days = days;
+		this.ship = ship;
+		ui.menu();
+	}
+	
+	
+	public ArrayList<Ship> getShips() {
+		return ships;
+	}
+	
+	/** 
+	 * Returns the number of days left.
+	 * @return number of days left
+	 */
+	public int getDays() {
+		return days;
+	}
+	
+	/**
+	 * Returns the current island.
+	 * @return current island
+	 */
+	public Island getIsland() {
+		return island;
+	}
 
 	/**
 	 *  Handles logic for selecting and traveling to a new island.
@@ -133,40 +181,9 @@ public class GameEnvironment {
 	}
 	
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		input.useDelimiter("\\s*\n\\s*");
-		
-		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
-		ArrayList<Item> items = ObjectsListGenerator.generateItem();
-		ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
-		ArrayList<Island> islands = ObjectsListGenerator.generateIsland();
-		ObjectsListGenerator.generateRoute(islands);
 		boolean gameRunning = true;
 		
-		
-		System.out.println("Playable ships:");
-		for (int i = 0; i < ships.size(); i++) {
-			System.out.println((i+1) + " - " + ships.get(i).toString() + "\n");
-		}
-		String prompt = "Choose a ship to captain: ";
-		int selectedShip = getValidInt(input, 1, ships.size(), prompt, VALID_INT_MSG) - 1;
-		Ship playerShip = ships.get(selectedShip);
-		System.out.println(playerShip.getName() + " Selected");
-		
-		System.out.print("Enter a name for your ship: ");
-		playerShip.setTitle(input.next());
-		System.out.print("Ship named: " + playerShip.getTitle() + "\n");
-		
-		prompt = "Set number of days for game to last (recommended > 50): ";
-		int days = getValidInt(input, 1, (int) Math.pow(2, 31) - 1, prompt, VALID_INT_MSG);
-
-		GameState state = new GameState(STARTING_GOLD, days, islands.get(0));
-		
 		while (gameRunning && state.getDays() > 0) {
-			
-			System.out.println(state.getDays()+" Days Remaining");
-			System.out.println("Current Island: " + state.getIsland().getName());
-			System.out.println("Avaliable Actions:");
 			System.out.println("1 - Travel");
 			System.out.println("2 - Buy from store");
 			System.out.println("3 - Sell to store");
