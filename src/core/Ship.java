@@ -210,4 +210,8 @@ public class Ship {
 		}
 		return removed;
 	}
+	
+	public void printUpgrades() {
+		// TODO implement
+	}
 }
