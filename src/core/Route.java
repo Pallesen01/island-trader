@@ -44,22 +44,25 @@ public class Route {
 	}
 	
 	/**
-	 * Prints paragraph of what island the route will go to,
+	 * Returns string of what island the route will go to,
 	 * how many days it will take,
 	 * and the chances of encountering random events.
 	 * @param currentIsland island the player is currently on
 	 * @param speed speed of the player's ship
+	 * @return string of information
 	 */
-	public void printInfo(Island currentIsland, int speed) {
-		if (currentIsland != island1) {
-			System.out.println(island1.getName());
+	public String getInfo(Island island, int speed) {
+		String string = "";
+		if (island != island1) {
+			string += island1.getName() + "\n";
 		} else {
-			System.out.println(island2.getName());
+			string += island2.getName() + "\n";
 		}
-		System.out.println("\tDays: " + this.getDays(speed)); // int days, int pirateDanger, int weatherDanger, int sailorsOdds
-		System.out.println("\tChance of encountering pirates: " + this.getPirateDanger() + '%');
-		System.out.println("\tChance of encountering dangerous weather: " + this.getWeatherDanger() + '%');
-		System.out.println("\tChance of encountering lost sailors: " + this.getSailorsOdds() + "%\n");
+		string += "\tDays: " + this.getDays(speed) + "\n"; // int days, int pirateDanger, int weatherDanger, int sailorsOdds
+		string += "\tChance of encountering pirates: " + pirateDanger + "%\n";
+		string += "\tChance of encountering dangerous weather: " + weatherDanger + "%\n";
+		string += "\tChance of encountering lost sailors: " + sailorsOdds + "%";
+		return string;
 	}
 	
 	/**
@@ -68,7 +71,7 @@ public class Route {
 	 * @return days
 	 */
 	public int getDays(int speed) {
-		return (days * (speed/20));
+		return days * 20 / speed;
 	}
 	
 	/**

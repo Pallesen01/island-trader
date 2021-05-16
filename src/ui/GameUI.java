@@ -20,7 +20,7 @@ public interface GameUI {
 		SHIP_INFO("View ship information"),
 		GOODS("View goods"),
 		ISL_INFO("View island information"),
-		SHOP("Visit the shop"),
+		STORE("Visit the store"),
 		TRAVEL("Travel to another island");
 		
 		public final String label;
@@ -45,7 +45,7 @@ public interface GameUI {
 	void islandInfo();
 	
 	
-	void shop();
+	void store();
 	
 	
 	void travel();
