@@ -58,6 +58,8 @@ public class Store {
 	public void generateBuys() {
 		ArrayList<Item> newBuys = new ArrayList<>();
 		ArrayList<Item> allItems = ObjectsListGenerator.generateItem();
+		ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
+		allItems.addAll(weapons);
 		ArrayList<Integer> prevInts = new ArrayList<>();
 		for (int i=0;i<10; i++) {
 			int nextInt = randomGenerator.nextInt(allItems.size());
@@ -79,6 +81,8 @@ public class Store {
 	public void generateSells() {
 		ArrayList<Item> newSells = new ArrayList<>();
 		ArrayList<Item> allItems = ObjectsListGenerator.generateItem();
+		ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
+		allItems.addAll(weapons);
 		ArrayList<Integer> prevInts = new ArrayList<>();
 		for (int i=0;i<10; i++) {
 			int nextInt = randomGenerator.nextInt(allItems.size());

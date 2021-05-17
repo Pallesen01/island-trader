@@ -37,7 +37,7 @@ public class ObjectsListGenerator {
 			String desc = itemData.next();
 			int size = itemData.nextInt();
 			int value = itemData.nextInt();
-			Item newItem = new Item(name, desc, size, value);
+			Item newItem = new Item(name, desc, size, value, false);
 			itemList.add(newItem);
 		}
 		

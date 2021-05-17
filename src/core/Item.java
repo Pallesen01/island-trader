@@ -12,6 +12,7 @@ public class Item {
 	private int size;
 	private int basePrice;
 	private int price;
+	private boolean isWeapon;
 	
 	/**
 	 * Creates an item with the given parameter values.
@@ -20,12 +21,13 @@ public class Item {
 	 * @param basePrice item's base price
 	 * @param size item's size
 	 */
-	public Item(String name, String desc, int size, int basePrice) {
+	public Item(String name, String desc, int size, int basePrice, boolean isWeapon) {
 		this.name = name;
 		this.desc = desc;
 		this.size = size;
 		this.basePrice = basePrice;
 		this.price = basePrice;
+		this.isWeapon = isWeapon;
 	}
 	
 	/** 
@@ -74,5 +76,8 @@ public class Item {
 	 */
 	public void setPrice(int newPrice) {
 		this.price = newPrice;
+	}
+	public boolean isWeapon() {
+		return isWeapon;
 	}
 }

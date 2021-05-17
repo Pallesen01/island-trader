@@ -49,4 +49,10 @@ public interface GameUI {
 	
 	
 	void travel();
+	
+	void pirateEncounter();
+	
+	void weatherEncounter();
+	
+	void sailorsEncounter();
 }

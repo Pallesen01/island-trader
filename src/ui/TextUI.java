@@ -231,8 +231,13 @@ public class TextUI implements GameUI{
 	private void printItems(ArrayList<Item> items) {
 		int i = 0;
 		for (Item item : items) {
-			System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold"); //name;description;size;value;
+			if (item.isWeapon()) {
+				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold - \""+item.getDesc()+"\"");
+			}
+			else {
+				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold");
 			i++;
+			}
 		}
 	}
 	
@@ -246,5 +251,23 @@ public class TextUI implements GameUI{
 			System.out.println(route.getInfo(island, ship.getSpeed()) + "\n");
 			i++;
 		}
+	}
+
+	@Override
+	public void pirateEncounter() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void weatherEncounter() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sailorsEncounter() {
+		// TODO Auto-generated method stub
+		
 	}
 }
