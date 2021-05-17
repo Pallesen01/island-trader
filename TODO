@@ -2,3 +2,5 @@ fix sell pricing
 add variation to pirate ships and give some random goods
 upgrade ship
 make player class for attributes relating to the player, e.g. gold, days?
+ship can't depart until repaired
+purchase history (trade log)
