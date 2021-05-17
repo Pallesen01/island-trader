@@ -362,7 +362,7 @@ public class TextUI implements GameUI{
 	public void sailorsEncounter() {
 		// TODO Auto-generated method stub
 		
-		// Offer gold or offer to work on ship for free?
+		// Give monetary reward
 		
 	}
 }
