@@ -62,6 +62,8 @@ public class TextUI implements GameUI{
 	                     		break;
 	            case STORE:  	store();
 	                     		break;
+	            case REPAIR:    repair();
+	            				break;
 	            case TRAVEL:	travel();
 	            				break;
 			}
@@ -77,6 +79,7 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void goods() {
+		// TODO implement sold goods
 		System.out.println("Current goods:");
 		int i = 0;
 		for (Item item : game.getShip().getCargo()) {
@@ -116,6 +119,29 @@ public class TextUI implements GameUI{
 			}
 		}
 		
+	}
+	
+	@Override
+	public void repair() {
+		Ship ship = game.getShip();
+		if (ship.getHealth() == ship.getMaxHealth()) {
+			System.out.println("Ship already at max health.");
+		} else {
+			System.out.println("Cost: " + ship.getRepairCost() + "\nWould you like to repair your ship?");
+			String options[] = {"Yes", "No"};
+			for (int i = 0; i < options.length; i++) {
+				System.out.println((i+1) + " - " + options[i]);
+			}
+			String prompt = "\nSelect Action to Perform:";
+			int choice = getValidInt(1, options.length, prompt, INT_ERROR);
+			if (choice == 1) {
+				if (game.repairShip()) {
+					System.out.println(REPAIR_SUCCESS);
+				} else {
+					System.out.println(REPAIR_FAIL);
+				}
+			}
+		}
 	}
 
 	@Override

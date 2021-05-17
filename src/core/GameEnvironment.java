@@ -1,6 +1,5 @@
 package core;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import ui.GameUI;
 
@@ -11,11 +10,13 @@ import ui.GameUI;
  */
 public class GameEnvironment {
 	
-	final ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
-	final ArrayList<Item> items = ObjectsListGenerator.generateItem();
-	final ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
-	final ArrayList<Island> islands = ObjectsListGenerator.generateIsland();
-	final ArrayList<Route> routes = ObjectsListGenerator.generateRoute(islands);
+	private final ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
+	private final ArrayList<Item> items = ObjectsListGenerator.generateItem();
+	private final ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
+	private final ArrayList<Island> islands = ObjectsListGenerator.generateIsland();
+	private final ArrayList<Route> routes = ObjectsListGenerator.generateRoute(islands);
+	
+	private final double WAGE_MODIFIER = 0.5;
 	
 	private GameUI ui;
 	private Island island;
@@ -110,10 +111,25 @@ public class GameEnvironment {
 		}
 		return sold;
 	}
+	
+	/** 
+	 * Attempts to repair ship, but fails if the player doesn't have enough gold.
+	 * @return true if successful, otherwise false
+	 */
+	public boolean repairShip() {
+		boolean repaired = false;
+		int cost = ship.getRepairCost();
+		if (gold > cost) {
+			gold -= cost;
+			ship.setHealth(ship.getMaxHealth());
+			repaired = true;
+		}
+		return repaired;
+	}
 
 	/** 
-	 * Decreases the number of days by the days of the route, decreases gold by the crew's wages, 
-	 * and changes island to the destination of the route.
+	 * Decreases the number of days by the days of the route, decreases gold by the crew's wages,
+	 * possibly encounters random events, and changes island to the destination of the route.
 	 * @param route the route to travel on
 	 */
 	public void travelRoute(Route route) {
@@ -126,9 +142,9 @@ public class GameEnvironment {
 		if (route.encouterLostSailors()){
 			ui.sailorsEncounter();
 		}
-		
-		this.days -= route.getDays(ship.getSpeed());
-		this.gold -= days * ship.getCrew();
+		int daysTaken = route.getDays(ship.getSpeed());
+		this.days -= daysTaken;
+		this.gold -= daysTaken * ship.getCrew() * WAGE_MODIFIER;
 		Island[] islands = route.getIslands();
 		if (islands[0] != island) {
 			island = islands[0];

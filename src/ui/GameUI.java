@@ -16,11 +16,15 @@ public interface GameUI {
 	final String SHIP_PROMPT = "What ship would you like to captain?";
 	final String SHIP_HEADER = "Playable ships:";
 	
+	final String REPAIR_SUCCESS = "Ship repaired.";
+	final String REPAIR_FAIL = "Ship not repaired - insufficient gold.";
+	
 	enum MenuOption {
 		SHIP_INFO("View ship information"),
 		GOODS("View goods"),
 		ISL_INFO("View island information"),
 		STORE("Visit the store"),
+		REPAIR("Repair your ship"),
 		TRAVEL("Travel to another island");
 		
 		public final String label;
@@ -29,6 +33,7 @@ public interface GameUI {
             this.label = label;
         }
 	}
+	
 	
 	void start(GameEnvironment game);
 	
@@ -48,11 +53,17 @@ public interface GameUI {
 	void store();
 	
 	
+	void repair();
+	
+	
 	void travel();
+	
 	
 	void pirateEncounter();
 	
+	
 	void weatherEncounter();
+	
 	
 	void sailorsEncounter();
 }

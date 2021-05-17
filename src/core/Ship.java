@@ -8,7 +8,8 @@ import java.util.ArrayList;
  */
 public class Ship {
 	
-	final int MIN_HEALTH = 0;
+	private final int MIN_HEALTH = 0;
+	private final double REPAIR_MODIFIER = 0.5;
 	
 	private String name;
 	private int crew;
@@ -124,6 +125,22 @@ public class Ship {
 	 */
 	public void setHealth(int health) {
 		this.health = Math.max(MIN_HEALTH, Math.min(health, maxHealth));
+	}
+	
+	/**
+	 * Returns the ship's maximum health.
+	 * @return ship's maxhealth
+	 */
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	
+	/**
+	 * Returns the cost to repair the ship.
+	 * @return ship's repair cost
+	 */
+	public int getRepairCost() {
+		return (int) ((maxHealth - health) * REPAIR_MODIFIER);
 	}
 	
 	/**
