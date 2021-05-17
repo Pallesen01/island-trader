@@ -398,9 +398,12 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void sailorsEncounter() {
-		// TODO Auto-generated method stub
-		
-		// Give monetary reward
-		
+		final int MIN_REWARD = 20;
+		final int MAX_REWARD = 60;
+		System.out.println("Your ship has come across lost sailors");		
+		// Give monetary reward between a range
+		int reward = randomGenerator.nextInt(MAX_REWARD - MIN_REWARD) + MIN_REWARD;
+		System.out.println("The sailors give you "+reward+" gold as a reward for rescuing them");
+		game.setGold(game.getGold() + reward);
 	}
 }

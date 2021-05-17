@@ -94,6 +94,14 @@ public class GameEnvironment {
 		gold = 0;
 	}
 	
+	/**
+	 * Sets the players gold
+	 * @param gold
+	 */
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	
 	public boolean buyItem(Item item) {
 		boolean bought = false;
 		if (gold >= item.getPrice() && ship.addCargo(item)) {
