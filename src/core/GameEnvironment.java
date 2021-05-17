@@ -55,6 +55,13 @@ public class GameEnvironment {
 		return days;
 	}
 	
+	/** 
+	 * Sets the remaining number of days left to 0 ending the game.
+	 */
+	public void endGame() {
+		days = 0;
+	}
+	
 	/**
 	 * Returns the current island.
 	 * @return current island
@@ -103,6 +110,16 @@ public class GameEnvironment {
 	 * @param route the route to travel on
 	 */
 	public void travelRoute(Route route) {
+		if (route.encouterPirates()){
+			ui.pirateEncounter();
+		}
+		if (route.encouterWeatherEvent()){
+			ui.weatherEncounter();
+		}
+		if (route.encouterLostSailors()){
+			ui.sailorsEncounter();
+		}
+		
 		this.days -= route.getDays(ship.getSpeed());
 		this.gold -= days * ship.getCrew();
 		Island[] islands = route.getIslands();

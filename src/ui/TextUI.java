@@ -1,18 +1,22 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import core.GameEnvironment;
 import core.Island;
 import core.Item;
+import core.ObjectsListGenerator;
 import core.Route;
 import core.Ship;
+import core.Weapon;
 
 public class TextUI implements GameUI{
 	
 	private final Scanner input;
 	private GameEnvironment game;
+	private Random randomGenerator = new Random();
 	
 	enum StoreOption {
 		LEAVE("Leave"),
@@ -73,7 +77,17 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void goods() {
-		// TODO Auto-generated method stub
+		System.out.println("Current goods:");
+		int i = 0;
+		for (Item item : game.getShip().getCargo()) {
+			if (item.isWeapon()) {
+				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold - \""+item.getDesc()+"\"");
+			}
+			else {
+				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold");
+			i++;
+			}
+		}
 
 	}
 
@@ -255,7 +269,82 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void pirateEncounter() {
-		// TODO Auto-generated method stub
+		final String VICTORY_MESSAGE = "Pirates defeated";
+		final int CARGO_THRESHOLD = 100;
+		System.out.println("Pirates Encountered!\n");
+		
+		// Generate enemy ship
+		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
+		int shipInt = randomGenerator.nextInt(ships.size());
+		Ship pirateShip = ships.get(shipInt);
+		Ship playerShip = game.getShip();
+		
+		// Player and pirate take turns rolling dice
+		while (playerShip.getHealth() > 0 && pirateShip.getHealth() > 0) {
+			// Print Health
+			System.out.println("Your Health - " + playerShip.getHealth());
+			System.out.println("Pirate Health - " + pirateShip.getHealth());
+			// Player Turn
+			System.out.println("Your Turn:");
+			for (Item item : playerShip.getWeapons()) {
+				Weapon weapon = (Weapon) item; 
+				System.out.println("\tFiring " + weapon.getName()+'!');
+				for (int i = 0; i < weapon.shots(); i++) {
+					int damage = randomGenerator.nextInt(weapon.damage());
+					if (damage == 0) {
+						System.out.println("Missed pirate ship");
+					}
+					else {
+						System.out.println("\t"+damage+" damage dealt to pirate ship");
+						int resisted = randomGenerator.nextInt(pirateShip.getEndurance());
+						resisted = Math.min(resisted, damage);
+						System.out.println("\t"+resisted+" damage resisted by pirate ship");
+						pirateShip.setHealth(pirateShip.getHealth() - damage + resisted);
+					}
+					
+					
+				}				
+			}
+			if (pirateShip.getHealth() <= 0){
+				System.out.println(VICTORY_MESSAGE);
+				return;
+			}
+			// Pirate Turn
+			System.out.println("Pirate's Turn:");
+			for (Item item : pirateShip.getWeapons()) {
+				Weapon weapon = (Weapon) item; 
+				System.out.println("\tFiring " + weapon.getName()+'!');
+				for (int i = 0; i < weapon.shots(); i++) {
+					int damage = randomGenerator.nextInt(weapon.damage());
+					if (damage == 0) {
+						System.out.println("Missed your ship");
+					}
+					else {
+						System.out.println("\t"+damage+" damage dealt to your ship");
+						int resisted = randomGenerator.nextInt(playerShip.getEndurance());
+						resisted = Math.min(resisted, damage);
+						System.out.println("\t"+resisted+" damage resisted by your ship");
+						playerShip.setHealth(playerShip.getHealth() - damage + resisted);
+					}
+				}				
+			}
+		}
+		
+		// If loss pirates steal all goods
+		int totalValue = 0;
+		for (Item item : playerShip.getCargo()) {
+			totalValue += item.getBasePrice();
+		}
+		playerShip.emptyCargo();
+		// If good value below threshold lose game
+		if (totalValue < CARGO_THRESHOLD) {
+			System.out.println("The pirates are NOT satisfied with the value of your cargo\nYou are forced to walk the plank");
+			game.endGame();
+		}
+		else {
+			System.out.println("The pirates are satisfied with the value of your cargo");
+		}
+		
 		
 	}
 

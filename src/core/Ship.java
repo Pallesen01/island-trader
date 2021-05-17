@@ -227,6 +227,13 @@ public class Ship {
 		return removed;
 	}
 	
+	/**
+	 * Empties player's cargo
+	 */
+	public void emptyCargo() {
+		cargo =  new ArrayList<Item>();
+	}
+	
 	public void printUpgrades() {
 		// TODO implement
 	}

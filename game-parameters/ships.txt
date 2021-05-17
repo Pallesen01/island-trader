@@ -1,5 +1,5 @@
 name;crew;space;health;speed;endurance;
-Galleon;8;120;120;20;10;
+Galleon;8;120;120;20;6;
 Storeship;5;200;60;20;4;
-Flyboat;5;100;80;30;7;
-Ship of the Line;10;130;200;15;15;
+Flyboat;5;100;80;30;4;
+Ship of the Line;10;130;200;15;10;
