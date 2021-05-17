@@ -377,10 +377,22 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void weatherEncounter() {
-		// TODO Auto-generated method stub
+		final int MIN_DAMAGE = 10;
+		final int MAX_DAMAGE = 40;
+		Ship playerShip = game.getShip();
+		System.out.println("Your ship has been struck by unfortunate weather.");
 		
 		// Deal random damage between a range
+		int damage = randomGenerator.nextInt(MAX_DAMAGE - MIN_DAMAGE) + MIN_DAMAGE;
+		System.out.println("Your ship has taken "+damage+" damage");
+		playerShip.setHealth(playerShip.getHealth() - damage);
 		// end game if ship is destroyed
+		if (playerShip.getHealth() <= 0) {
+			System.out.println("Your ship has been destroyed in the storm");
+			playerShip.emptyCargo();
+			game.loseGold();
+			game.endGame();
+		}
 		
 	}
 
