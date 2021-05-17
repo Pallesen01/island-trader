@@ -18,6 +18,7 @@ public class Ship {
 	private int speed;
 	private int endurance;
 	private ArrayList<Item> cargo = new ArrayList<Item>();
+	private ArrayList<Item> weapons = new ArrayList<Item>();
 	private String title; // name given by player
 	
 	/**
@@ -36,6 +37,7 @@ public class Ship {
 		this.maxHealth = health;
 		this.speed = speed;
 		this.endurance = endurance;
+		this.addCargo(ObjectsListGenerator.generateWeapon().get(0)); // Add basic cannon to ship
 	}
 	
 	/**
@@ -165,6 +167,14 @@ public class Ship {
 	}
 	
 	/**
+	 * Returns an ArrayList of the ship's weapons.
+	 * @return ArrayList of ship's weapons
+	 */
+	public ArrayList<Item> getWeapons() {
+		return weapons;
+	}
+	
+	/**
 	 * Prints the items in the ship's cargo.
 	 */
 	public void printCargo() {
@@ -187,6 +197,9 @@ public class Ship {
 		boolean added = false;
 		if (space > item.getSize()) {
 			cargo.add(item);
+			if (item.isWeapon()) {
+				weapons.add(item);
+			}
 			space -= item.getSize();
 			added = true;
 		}
@@ -203,6 +216,9 @@ public class Ship {
 		for (Item cargoItem : cargo) {
 			if (cargoItem.getName().equals(item.getName())) {
 				cargo.remove(cargoItem);
+				if (cargoItem.isWeapon()){
+					weapons.remove(cargoItem);
+				}
 				space += item.getSize();
 				removed = true;
 				break;
