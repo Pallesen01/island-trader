@@ -86,6 +86,13 @@ public class GameEnvironment {
 		return gold;
 	}
 	
+	/**
+	 * Sets the player's gold to 0.
+	 */
+	public void loseGold() {
+		gold = 0;
+	}
+	
 	public boolean buyItem(Item item) {
 		boolean bought = false;
 		if (gold >= item.getPrice() && ship.addCargo(item)) {

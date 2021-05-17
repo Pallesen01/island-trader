@@ -338,6 +338,7 @@ public class TextUI implements GameUI{
 		playerShip.emptyCargo();
 		// If good value below threshold lose game
 		if (totalValue < CARGO_THRESHOLD) {
+			game.loseGold();
 			System.out.println("The pirates are NOT satisfied with the value of your cargo\nYou are forced to walk the plank");
 			game.endGame();
 		}
@@ -352,11 +353,16 @@ public class TextUI implements GameUI{
 	public void weatherEncounter() {
 		// TODO Auto-generated method stub
 		
+		// Deal random damage between a range
+		// end game if ship is destroyed
+		
 	}
 
 	@Override
 	public void sailorsEncounter() {
 		// TODO Auto-generated method stub
+		
+		// Offer gold or offer to work on ship for free?
 		
 	}
 }
