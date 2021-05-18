@@ -146,13 +146,22 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void travel() {
-		System.out.println("Reachable Islands:");
-		printIslands();
-		ArrayList<Route> routes = game.getIsland().getRoutes();
-		String prompt = "Choose route to take or enter '0' to cancel: ";
-		int choice = getValidInt(0, routes.size(), prompt, INT_ERROR);
-		if (choice != 0) {
-			game.travelRoute(routes.get(choice-1));
+		if (game.getShip().getHealth() != game.getShip().getMaxHealth()) {
+			System.out.println("You cannot sail before repairing your ship.");
+		} else {
+			System.out.println("Reachable Islands:");
+			printIslands();
+			ArrayList<Route> routes = game.getIsland().getRoutes();
+			String prompt = "Choose route to take or enter '0' to cancel: ";
+			int choice = getValidInt(0, routes.size(), prompt, INT_ERROR);
+			if (choice != 0) {
+				Route route = routes.get(choice-1); 
+				if (game.canTravelRoute(route)) {
+					game.travelRoute(route);
+				} else {
+					System.out.println("Cannot travel along this route - insufficient gold to pay wages.");
+				}
+			}
 		}
 	}
 	
