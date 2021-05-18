@@ -84,12 +84,13 @@ public class TextUI implements GameUI{
 		int i = 0;
 		for (Item item : game.getShip().getCargo()) {
 			if (item.isWeapon()) {
-				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold - \""+item.getDesc()+"\"");
+				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getBasePrice() + " gold - \""+item.getDesc()+"\"");
 			}
 			else {
-				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold");
-			i++;
+				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getBasePrice() + " gold");
+			
 			}
+			i++;
 		}
 
 	}
