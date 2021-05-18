@@ -285,8 +285,8 @@ public class TextUI implements GameUI{
 			}
 			else {
 				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getPrice() + " gold");
-			i++;
 			}
+			i++;
 		}
 	}
 	
