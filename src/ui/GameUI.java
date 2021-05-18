@@ -8,7 +8,7 @@ public interface GameUI {
 	
 	final String NAME_PROMPT = "What is your trader name?";
 	final String NAME_ERROR = "Name must be between 3 and 15 letters.";
-	final String NAME_REGEX = "[a-zA-Z]{3,}";
+	final String NAME_REGEX = "[a-zA-Z]{3,15}";
 	
 	final String DAYS_PROMPT = "How many days you would like to play for?";
 	final String DAYS_ERROR = "Days must be between 20 and 50.";
