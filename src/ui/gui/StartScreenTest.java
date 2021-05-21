@@ -77,8 +77,8 @@ public class StartScreenTest {
 		if (checkInput()) {
 			String name = nameField.getText();
 			int days = daysSlider.getValue();
-			Ship ship = game.getShips().get(shipTable.getSelectedRow());
-			game.finishSetup(name, days, ship);
+			//Ship ship = game.getShips().get(shipTable.getSelectedRow());
+			//game.finishSetup(name, days, ship);
 		}
 	}
 

@@ -26,7 +26,7 @@ public abstract class Screen {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	System.out.println("Hi Daniel");
+            	System.out.println("Hi Dillon");
                 game.endGame();
             }
         });

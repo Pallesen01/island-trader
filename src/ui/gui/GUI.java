@@ -1,13 +1,13 @@
 package ui.gui;
 
 import core.GameEnvironment;
-import seng201.rocketmanager.ui.gui.MainScreen;
+// import seng201.rocketmanager.ui.gui.MainScreen;
 import ui.GameUI;
 
 public class GUI implements GameUI {
 
 	private GameEnvironment game;
-    private StartScreen screen;
+    private Screen screen;
 	
 	@Override
 	public void start(GameEnvironment game) {
@@ -19,13 +19,14 @@ public class GUI implements GameUI {
 	@Override
 	public void menu() {
 		screen.quit();
-        //screen = new MainScreen(rocketManager);
-        //screen.show();
+		screen = new MenuScreen(game, this);
+		screen.show();		
 	}
 
 	@Override
 	public void shipInfo() {
 		// TODO Auto-generated method stub
+		System.out.println("Ship Info");
 
 	}
 

@@ -37,6 +37,8 @@ public class StartScreen extends Screen {
 	private JLabel nameErrorLabel;
 	private JLabel shipErrorLabel;
 	
+	/**
+	 */
 	protected StartScreen(GameEnvironment game) {
 		super("Island Trader", game);
 	}
