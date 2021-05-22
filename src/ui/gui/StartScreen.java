@@ -29,6 +29,9 @@ import ui.GameUI;
  */
 public class StartScreen extends Screen {
 	
+	private final String title = "Island Trader";
+	
+    private JFrame frame;
 	private JTextField nameField;
 	private JLabel daysLbl;
 	private JSlider daysSlider;
@@ -40,7 +43,10 @@ public class StartScreen extends Screen {
 	/**
 	 */
 	protected StartScreen(GameEnvironment game) {
-		super("Island Trader", game);
+		super(game);
+		frame = new JFrame();
+		initialiseFrame();
+		configureFrame();
 	}
 	
 	/**
@@ -73,13 +79,17 @@ public class StartScreen extends Screen {
 			valid = false;
 		}
 		return valid;
-		
+	}
+	
+	protected JFrame getFrame() {
+		return frame;
 	}
 
 	/**
 	 * Initialise the contents of the frame.
 	 */
-	void initialise(JFrame frame) {
+	void initialiseFrame() {
+		frame.setTitle(title);
 		frame.setBounds(100, 100, 620, 380);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
