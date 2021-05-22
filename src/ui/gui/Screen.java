@@ -1,6 +1,5 @@
 package ui.gui;
 
-import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -26,7 +25,7 @@ public abstract class Screen {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	System.out.println("Hi Dillon");
+            	System.out.println("Hi DANIEL");
                 game.endGame();
             }
         });

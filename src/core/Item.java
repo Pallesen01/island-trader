@@ -13,6 +13,7 @@ public class Item {
 	private int basePrice;
 	private int price;
 	private boolean isWeapon;
+	private boolean isSold;
 	
 	/**
 	 * Creates an item with the given parameter values.
@@ -28,6 +29,7 @@ public class Item {
 		this.basePrice = basePrice;
 		this.price = basePrice;
 		this.isWeapon = isWeapon;
+		this.isSold = false;
 	}
 	
 	/** 

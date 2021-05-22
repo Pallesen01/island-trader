@@ -30,12 +30,12 @@ import ui.GameUI;
 public class StartScreen extends Screen {
 	
 	private JTextField nameField;
-	private JLabel daysLabel;
+	private JLabel daysLbl;
 	private JSlider daysSlider;
-	private JLabel shipLabel;
+	private JLabel shipLbl;
 	private JTable shipTable;
-	private JLabel nameErrorLabel;
-	private JLabel shipErrorLabel;
+	private JLabel nameErrorLbl;
+	private JLabel shipErrorLbl;
 	
 	/**
 	 */
@@ -62,14 +62,14 @@ public class StartScreen extends Screen {
 	private boolean checkInput() {
 		boolean valid = true;
 		if (nameField.getText().matches(GameUI.NAME_REGEX)) {
-			nameErrorLabel.setText(null);
+			nameErrorLbl.setText(null);
 		} else {
-			nameErrorLabel.setText(GameUI.NAME_ERROR);
+			nameErrorLbl.setText(GameUI.NAME_ERROR);
 			valid = false;
 		} if (shipTable.getSelectedRowCount() == 1) {
-			shipErrorLabel.setText(null);
+			shipErrorLbl.setText(null);
 		} else {
-			shipErrorLabel.setText("You must select a ship.");
+			shipErrorLbl.setText("You must select a ship.");
 			valid = false;
 		}
 		return valid;
@@ -92,7 +92,7 @@ public class StartScreen extends Screen {
 		nameField = new JTextField();
 		nameField.setColumns(10);
 		
-		daysLabel = new JLabel("How many days you would like to play for?");
+		daysLbl = new JLabel("How many days you would like to play for?");
 		
 		daysSlider = new JSlider();
 		daysSlider.setMinorTickSpacing(1);
@@ -104,7 +104,7 @@ public class StartScreen extends Screen {
 		daysSlider.setMaximum(50);
 		daysSlider.setMinimum(20);
 		
-		shipLabel = new JLabel("What ship would you like to captain?");
+		shipLbl = new JLabel("What ship would you like to captain?");
 		
 		JScrollPane tableScrollPane = new JScrollPane();
 		
@@ -132,11 +132,11 @@ public class StartScreen extends Screen {
 		JButton confirmBtn = new JButton("Confirm");
 		confirmBtn.addActionListener(e -> finish());
 		
-		nameErrorLabel = new JLabel("");
-		nameErrorLabel.setForeground(Color.RED);
+		nameErrorLbl = new JLabel("");
+		nameErrorLbl.setForeground(Color.RED);
 		
-		shipErrorLabel = new JLabel("");
-		shipErrorLabel.setForeground(Color.RED);
+		shipErrorLbl = new JLabel("");
+		shipErrorLbl.setForeground(Color.RED);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -152,22 +152,22 @@ public class StartScreen extends Screen {
 									.addGroup(groupLayout.createSequentialGroup()
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 											.addGroup(groupLayout.createSequentialGroup()
-												.addComponent(daysLabel)
+												.addComponent(daysLbl)
 												.addGap(18)
 												.addComponent(daysSlider, GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
 											.addGroup(groupLayout.createSequentialGroup()
 												.addComponent(nameLabel)
 												.addGap(18)
 												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-													.addComponent(nameErrorLabel)
+													.addComponent(nameErrorLbl)
 													.addComponent(nameField, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
 										.addGap(47))
 									.addComponent(confirmBtn)
 									.addComponent(tableScrollPane, GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(shipLabel)
+									.addComponent(shipLbl)
 									.addGap(18)
-									.addComponent(shipErrorLabel)
+									.addComponent(shipErrorLbl)
 									.addPreferredGap(ComponentPlacement.RELATED, 271, GroupLayout.PREFERRED_SIZE)))
 							.addGap(21))))
 		);
@@ -177,7 +177,7 @@ public class StartScreen extends Screen {
 					.addContainerGap()
 					.addComponent(welcomeLabel)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(nameErrorLabel)
+					.addComponent(nameErrorLbl)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(nameLabel)
@@ -185,14 +185,14 @@ public class StartScreen extends Screen {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(35)
-							.addComponent(daysLabel))
+							.addComponent(daysLbl))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(daysSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(shipLabel)
-						.addComponent(shipErrorLabel))
+						.addComponent(shipLbl)
+						.addComponent(shipErrorLbl))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(tableScrollPane, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)

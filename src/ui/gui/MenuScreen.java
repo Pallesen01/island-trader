@@ -63,9 +63,9 @@ public class MenuScreen extends Screen{
 		panel_1.setBackground(new Color(245, 245, 245));
 		splitPane.setLeftComponent(panel_1);
 		
-		JLabel days_label = new JLabel(5 + " Days Remaining");
+		JLabel days_label = new JLabel(getGame().getDays() + " Days Remaining");
 		
-		JLabel gold_label = new JLabel(5 + " Gold");
+		JLabel gold_label = new JLabel(getGame().getGold() + " Gold");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)

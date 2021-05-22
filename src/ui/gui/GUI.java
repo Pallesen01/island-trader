@@ -1,7 +1,6 @@
 package ui.gui;
 
 import core.GameEnvironment;
-// import seng201.rocketmanager.ui.gui.MainScreen;
 import ui.GameUI;
 
 public class GUI implements GameUI {
