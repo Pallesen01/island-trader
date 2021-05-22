@@ -48,6 +48,10 @@ public class GameEnvironment {
 		return ship;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	/** 
 	 * Returns the number of days left.
 	 * @return number of days left

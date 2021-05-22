@@ -19,20 +19,21 @@ public class GUI implements GameUI {
 	public void menu() {
 		screen.quit();
 		screen = new MenuScreen(game, this);
-		screen.show();		
+		screen.show();
 	}
 
 	@Override
 	public void shipInfo() {
-		// TODO Auto-generated method stub
-		System.out.println("Ship Info");
-
+		screen.quit();
+		screen = new ShipInfoScreen(game, this);
+		screen.show();
 	}
 
 	@Override
 	public void goods() {
-		// TODO Auto-generated method stub
-
+		screen.quit();
+		screen = new GoodsScreen(game, this);
+		screen.show();
 	}
 
 	@Override
@@ -49,8 +50,9 @@ public class GUI implements GameUI {
 
 	@Override
 	public void repair() {
-		// TODO Auto-generated method stub
-
+		screen.quit();
+		screen = new RepairScreen(game, this);
+		screen.show();
 	}
 
 	@Override

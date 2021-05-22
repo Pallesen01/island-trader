@@ -9,6 +9,8 @@ import core.GameEnvironment;
 
 public abstract class Screen {
 	
+	final String title = "Island Trader";
+	
     private final GameEnvironment game;
 
     
@@ -18,7 +20,7 @@ public abstract class Screen {
     
     protected void configureFrame() {
         JFrame frame = getFrame();
-
+        frame.setTitle(title);
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -26,9 +28,7 @@ public abstract class Screen {
                 game.endGame();
             }
         });
-
-        frame.pack();
-
+        //frame.pack();
         // Put frame in centre of screen
         frame.setLocationRelativeTo(null);
     }
