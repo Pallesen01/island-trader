@@ -126,7 +126,7 @@ public class TextUI implements GameUI{
 	public void repair() {
 		Ship ship = game.getShip();
 		if (ship.getHealth() == ship.getMaxHealth()) {
-			System.out.println("Ship already at max health.");
+			System.out.println(REPAIR_MAX);
 		} else {
 			System.out.println("Cost: " + ship.getRepairCost() + "\nWould you like to repair your ship?");
 			String options[] = {"Yes", "No"};

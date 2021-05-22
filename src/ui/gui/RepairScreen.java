@@ -3,6 +3,7 @@ package ui.gui;
 import javax.swing.JFrame;
 
 import core.GameEnvironment;
+import core.Ship;
 import ui.GameUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,8 +18,10 @@ public class RepairScreen extends Screen {
 
 	private GameUI ui;
 	private JFrame frame;
-	private int gold;
-	private int repairCost;
+	private JLabel goldLbl;
+	private JLabel healthLbl;
+	private JLabel costLbl;
+	private JLabel resultLbl;
 
 	/**
 	 * Create the application.
@@ -26,16 +29,22 @@ public class RepairScreen extends Screen {
 	public RepairScreen(GameEnvironment game, GameUI ui) {
 		super(game);
 		frame = new JFrame();
-		gold = game.getGold();
-		repairCost = game.getShip().getRepairCost();
 		this.ui = ui;
 		initialiseFrame();
 		configureFrame();
 	}
 	
 	private void repair() {
-		if (gold < repairCost) {
-			
+		Ship ship = getGame().getShip();
+		if (ship.getHealth() == ship.getMaxHealth()) {
+			resultLbl.setText(GameUI.REPAIR_MAX);
+		} else if (getGame().repairShip()) {
+			goldLbl.setText("Gold: " + getGame().getGold());
+			costLbl.setText("Repair Cost: " + getGame().getShip().getRepairCost());
+			healthLbl.setText("Ship Health: " + getGame().getShip().getHealth());
+			resultLbl.setText(GameUI.REPAIR_SUCCESS);
+		} else {
+			resultLbl.setText(GameUI.REPAIR_FAIL);
 		}
 	}
 	
@@ -61,7 +70,7 @@ public class RepairScreen extends Screen {
 		titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLbl.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JLabel costLbl = new JLabel("Repair Cost: " + repairCost);
+		costLbl = new JLabel("Repair Cost: " + getGame().getShip().getRepairCost());
 		costLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JButton btnRepair = new JButton("Repair");
@@ -70,14 +79,14 @@ public class RepairScreen extends Screen {
 		btnRepair.setFocusable(false);
 		btnRepair.setBackground(Color.LIGHT_GRAY);
 		
-		JLabel resultLbl = new JLabel("");
+		resultLbl = new JLabel("");
 		resultLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		resultLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JLabel healthLabel = new JLabel("Ship Health: " + getGame().getShip().getHealth());
-		healthLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		healthLbl = new JLabel("Ship Health: " + getGame().getShip().getHealth());
+		healthLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JLabel goldLbl = new JLabel("Gold: " + gold);
+		goldLbl = new JLabel("Gold: " + getGame().getGold());
 		goldLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -92,7 +101,7 @@ public class RepairScreen extends Screen {
 							.addComponent(btnRepair, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
 						.addComponent(resultLbl, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
 						.addComponent(goldLbl)
-						.addComponent(healthLabel)
+						.addComponent(healthLbl)
 						.addComponent(costLbl))
 					.addContainerGap())
 		);
@@ -106,7 +115,7 @@ public class RepairScreen extends Screen {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(costLbl)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(healthLabel)
+					.addComponent(healthLbl)
 					.addGap(33)
 					.addComponent(resultLbl)
 					.addPreferredGap(ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
