@@ -1,6 +1,12 @@
 package ui.gui;
 
+import java.awt.Component;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import core.GameEnvironment;
+import core.Ship;
 // import seng201.rocketmanager.ui.gui.MainScreen;
 import ui.GameUI;
 
@@ -50,7 +56,7 @@ public class GUI implements GameUI {
 
 	@Override
 	public void repair() {
-		// TODO Auto-generated method stub
+		
 
 	}
 

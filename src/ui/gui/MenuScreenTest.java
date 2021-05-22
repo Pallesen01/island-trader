@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.GroupLayout.Alignment;
@@ -51,6 +52,19 @@ public class MenuScreenTest {
 		GameEnvironment game = new GameEnvironment(ui, 1, 100);
 		this.ui = ui;
 		initialise(frame);
+	}
+	
+	private void repairPopup() {
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame , "Ship Already at max health");
+		int choice = JOptionPane.showConfirmDialog(frame, "Yes or no?",  "Title Here", JOptionPane.YES_NO_OPTION);
+		if (choice == JOptionPane.YES_OPTION) {
+			System.out.println("They pressed yes");
+		} else if (choice == JOptionPane.NO_OPTION) {
+			System.out.println("They pressed no");
+		} else {
+			System.out.println("They didn't press either button!");
+		}
 	}
 
 	/**
@@ -132,7 +146,8 @@ public class MenuScreenTest {
 		viewGoodsbtn.setBackground(Color.LIGHT_GRAY);
 		
 		JButton repairShipBtn = new JButton("Repair Ship");
-		repairShipBtn.addActionListener(e -> ui.repair());
+		//repairShipBtn.addActionListener(e -> ui.repair()); repairPopup()
+		repairShipBtn.addActionListener(e -> repairPopup());
 		repairShipBtn.setFocusable(false);
 		repairShipBtn.setMinimumSize(new Dimension(80, 20));
 		repairShipBtn.setMaximumSize(new Dimension(80, 20));
