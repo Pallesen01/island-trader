@@ -38,7 +38,9 @@ public class GUI implements GameUI {
 
 	@Override
 	public void islandInfo() {
-		// TODO Auto-generated method stub
+		screen.quit();
+		screen = new IslandInfoScreen(game, this);
+		screen.show();
 
 	}
 

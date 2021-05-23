@@ -56,7 +56,7 @@ public class ShipInfoScreen extends Screen {
 		shipLbl_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JTextPane txtpnAaa = new JTextPane();
-		txtpnAaa.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtpnAaa.setFont(new Font("Arial", Font.PLAIN, 15));
 		txtpnAaa.setEditable(false);
 		txtpnAaa.setBackground(UIManager.getColor("Button.background"));
 		txtpnAaa.setText(getGame().getShip().toString());

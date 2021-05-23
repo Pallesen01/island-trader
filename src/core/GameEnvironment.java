@@ -44,6 +44,14 @@ public class GameEnvironment {
 		return ships;
 	}
 	
+	/**
+	 * Returns an Array list of in game islands
+	 * @return islands
+	 */
+	public ArrayList<Island> getIslands() {
+		return islands;
+	}
+	
 	public Ship getShip() {
 		return ship;
 	}
