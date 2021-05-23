@@ -49,7 +49,7 @@ public class Ship {
 		String string = name + ":";
 		string += "\n\tCrew Members: " + crew;
 		string += "\n\tCargo Space: " + space;
-		string += "\n\tHealth: " + health;
+		string += "\n\tMax Health: " + maxHealth;
 		string += "\n\tSpeed: " + speed;
 		string += "\n\tEndurance: " + endurance;
 		return string;
