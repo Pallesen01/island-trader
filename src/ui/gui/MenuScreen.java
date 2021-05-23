@@ -28,20 +28,32 @@ import core.GameEnvironment;
 import ui.GameUI;
 
 public class MenuScreen extends Screen{
+	
+	private final String title = "Island Trader";
+	
 	private GameUI ui;
+	private JFrame frame;
 
 	/**
 	 * Create the application.
 	 */
 	protected MenuScreen(GameEnvironment game, GameUI ui) {	
-		super("Island Trader", game);	
+		super(game);
+		frame = new JFrame();
 		this.ui = ui;
+		initialiseFrame();
+		configureFrame();
+	}
+	
+	protected JFrame getFrame() {
+		return frame;
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	void initialise(JFrame frame) {
+	void initialiseFrame() {
+		frame.setTitle(title);
 		frame.setBounds(100, 100, 620, 380);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -63,9 +75,9 @@ public class MenuScreen extends Screen{
 		panel_1.setBackground(new Color(245, 245, 245));
 		splitPane.setLeftComponent(panel_1);
 		
-		JLabel days_label = new JLabel(5 + " Days Remaining");
+		JLabel days_label = new JLabel(getGame().getDays() + " Days Remaining");
 		
-		JLabel gold_label = new JLabel(5 + " Gold");
+		JLabel gold_label = new JLabel(getGame().getGold() + " Gold");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)

@@ -1,6 +1,5 @@
 package ui.gui;
 
-import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -10,28 +9,23 @@ import core.GameEnvironment;
 
 public abstract class Screen {
 	
-    private JFrame frame;
     private final GameEnvironment game;
 
     
-    protected Screen(String title, GameEnvironment game) {
+    protected Screen(GameEnvironment game) {
         this.game = game;
-        initialise(title);
     }
     
-    private void initialise(final String title) {
-        frame = new JFrame();
-        frame.setTitle(title);
+    protected void configureFrame() {
+        JFrame frame = getFrame();
 
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	System.out.println("Hi Dillon");
+            	System.out.println("Hi DANIEL");
                 game.endGame();
             }
         });
-
-        initialise(frame);
 
         frame.pack();
 
@@ -39,9 +33,9 @@ public abstract class Screen {
         frame.setLocationRelativeTo(null);
     }
     
-    abstract void initialise(JFrame Frame);
     
     protected void show() {
+    	JFrame frame = getFrame();
         frame.setVisible(true);
     }
     
@@ -53,6 +47,9 @@ public abstract class Screen {
      * Quits this screen. This should dispose of the screen as necessary.
      */
     void quit() {
+    	JFrame frame = getFrame();
         frame.dispose();
     }
+    
+    abstract JFrame getFrame();
 }
