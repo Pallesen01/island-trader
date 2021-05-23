@@ -23,6 +23,7 @@ public class GameEnvironment {
 	private int gold;
 	private String name;
 	private int days;
+	private int startDays;
 	private Ship ship;
 	
 	public GameEnvironment(GameUI ui, int islandIndex, int gold) {
@@ -34,6 +35,7 @@ public class GameEnvironment {
 	
 	public void finishSetup(String name, int days, Ship ship) {
 		this.name = name;
+		this.startDays = days;
 		this.days = days;
 		this.ship = ship;
 		ui.menu();
@@ -66,6 +68,14 @@ public class GameEnvironment {
 	 */
 	public int getDays() {
 		return days;
+	}
+	
+	/** 
+	 * Returns the number of days started with.
+	 * @return number of days started with
+	 */
+	public int getStartDays() {
+		return startDays;
 	}
 	
 	/** 

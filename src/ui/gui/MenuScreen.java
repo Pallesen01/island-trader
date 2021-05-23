@@ -26,6 +26,7 @@ import javax.swing.border.LineBorder;
 
 import core.GameEnvironment;
 import ui.GameUI;
+import javax.swing.JProgressBar;
 
 public class MenuScreen extends Screen{
 	
@@ -33,6 +34,7 @@ public class MenuScreen extends Screen{
 	
 	private GameUI ui;
 	private JFrame frame;
+	private GameEnvironment game;
 
 	/**
 	 * Create the application.
@@ -41,6 +43,7 @@ public class MenuScreen extends Screen{
 		super(game);
 		frame = new JFrame();
 		this.ui = ui;
+		this.game = game;
 		initialiseFrame();
 		configureFrame();
 	}
@@ -103,36 +106,45 @@ public class MenuScreen extends Screen{
 		JLabel lblNewLabel = new JLabel("Idk maybe put an image here");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setMaximum(game.getStartDays());
+		progressBar.setValue(game.getDays());
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(daysLbl)
+						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(daysLbl)
+							.addGap(18)
+							.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 474, GroupLayout.PREFERRED_SIZE))
 						.addComponent(goldLbl)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(shipInfoBtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-								.addComponent(visitStoreBtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+								.addComponent(shipInfoBtn, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+								.addComponent(visitStoreBtn, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(viewGoodsbtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
 									.addGap(18)
-									.addComponent(viewIslandInfoBtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+									.addComponent(viewIslandInfoBtn, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(repairShipBtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
 									.addGap(18)
-									.addComponent(travelBtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))))
+									.addComponent(travelBtn, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)))))
 					.addGap(14))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(daysLbl)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(daysLbl))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(goldLbl)
 					.addPreferredGap(ComponentPlacement.RELATED)
