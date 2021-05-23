@@ -122,15 +122,15 @@ public class StartScreen extends Screen {
 		shipTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		ArrayList<Ship> ships = getGame().getShips();
-		Object shipsInfo[][] = new Object[ships.size()][];
+		Object shipsTable[][] = new Object[ships.size()][];
 		int i = 0;
 		for (Ship ship : ships) {
-			Object shipInfo[] = {ship.getName(), ship.getCrew(), ship.getSpace(), ship.getHealth(), ship.getSpeed(), ship.getEndurance()};
-			shipsInfo[i] = shipInfo;
+			Object shipRow[] = {ship.getName(), ship.getCrew(), ship.getSpace(), ship.getHealth(), ship.getSpeed(), ship.getEndurance()};
+			shipsTable[i] = shipRow;
 			i++;
 		}
 		
-		shipTable.setModel(new DefaultTableModel(shipsInfo, new String[] {"Name", "Crew Members", "Cargo Space", "Health", "Speed", "Endurance"}) {
+		shipTable.setModel(new DefaultTableModel(shipsTable, new String[] {"Name", "Crew Members", "Cargo Space", "Health", "Speed", "Endurance"}) {
 			private static final long serialVersionUID = 5594750025154585643L;
 
 			public boolean isCellEditable(int row, int column) {
