@@ -108,6 +108,8 @@ public class MenuScreen extends Screen{
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JProgressBar progressBar = new JProgressBar();
+		progressBar.setPreferredSize(new Dimension(10, 11));
+		progressBar.setMaximumSize(new Dimension(10, 11));
 		progressBar.setMaximum(game.getStartDays());
 		progressBar.setValue(game.getDays());
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
