@@ -19,28 +19,28 @@ public class GUI implements GameUI {
 	@Override
 	public void menu() {
 		screen.quit();
-		screen = new MenuScreen(game, this);
+		screen = new MenuScreen(game);
 		screen.show();
 	}
 
 	@Override
 	public void shipInfo() {
 		screen.quit();
-		screen = new ShipInfoScreen(game, this);
+		screen = new ShipInfoScreen(game);
 		screen.show();
 	}
 
 	@Override
 	public void goods() {
 		screen.quit();
-		screen = new GoodsScreen(game, this);
+		screen = new GoodsScreen(game);
 		screen.show();
 	}
 
 	@Override
 	public void islandInfo() {
 		screen.quit();
-		screen = new IslandInfoScreen(game, this);
+		screen = new IslandInfoScreen(game);
 		screen.show();
 
 	}
@@ -48,7 +48,7 @@ public class GUI implements GameUI {
 	@Override
 	public void displayIslandInfo(Island island) {
 		screen.quit();
-		screen = new DisplayIslandInfoScreen(game, this, island);
+		screen = new DisplayIslandInfoScreen(game, island);
 		screen.show();
 
 	}
@@ -56,39 +56,45 @@ public class GUI implements GameUI {
 	@Override
 	public void store() {
 		screen.quit();
-		screen = new StoreScreen(game, this);
+		screen = new StoreScreen(game);
 		screen.show();
 	}
 
 	@Override
 	public void repair() {
 		screen.quit();
-		screen = new RepairScreen(game, this);
+		screen = new RepairScreen(game);
 		screen.show();
 	}
 
 	@Override
 	public void travel() {
-		// TODO Auto-generated method stub
-
+		screen.quit();
+		screen = new TravelScreen(game);
+		screen.show();
 	}
 
 	@Override
 	public void pirateEncounter() {
-		// TODO Auto-generated method stub
+		screen.quit();
+		screen = new RandomEventScreen(game);
+		screen.show();
 
 	}
 
 	@Override
 	public void weatherEncounter() {
-		// TODO Auto-generated method stub
+		screen.quit();
+		screen = new RandomEventScreen(game);
+		screen.show();
 
 	}
 
 	@Override
 	public void sailorsEncounter() {
-		// TODO Auto-generated method stub
-
+		screen.quit();
+		screen = new RandomEventScreen(game);
+		screen.show();
 	}
 
 }

@@ -12,7 +12,6 @@ public abstract class Screen {
 	final String title = "Island Trader";
 	
     private final GameEnvironment game;
-
     
     protected Screen(GameEnvironment game) {
         this.game = game;

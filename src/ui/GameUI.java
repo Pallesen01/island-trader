@@ -26,6 +26,10 @@ public interface GameUI {
 	final String BUY_FAIL = "Failed to buy item - insufficient gold or cargo space.";
 	final String SELL_FAIL = "Failed to sell item - not found in cargo.";
 	
+	final String TRAVEL_SHIP_ERROR = "You cannot sail before repairing your ship.";
+	final String TRAVEL_GOLD_ERROR = "Cannot travel along this route - insufficient gold to pay wages.";
+	final String TRAVEL_DAYS_ERROR = "There are not enough days left to travel along this route.";
+	
 	enum MenuOption {
 		SHIP_INFO("View ship information"),
 		GOODS("View goods"),
@@ -56,7 +60,9 @@ public interface GameUI {
 	
 	void islandInfo();
 	
-	void displayIslandInfo(Island island);	
+	
+	void displayIslandInfo(Island island);
+	
 	
 	void store();
 	

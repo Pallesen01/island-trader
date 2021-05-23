@@ -25,7 +25,6 @@ public class StoreScreen extends Screen {
 	private final String[] columnNames = {"Name", "Price", "Size", "Description"};
 	private final String NOT_SELECTED = "You must select an item";
 
-	private GameUI ui;
 	private JFrame frame;
 	private JTable buyTable;
 	private JTable sellTable;
@@ -35,10 +34,9 @@ public class StoreScreen extends Screen {
 	/**
 	 * Create the application.
 	 */
-	public StoreScreen(GameEnvironment game, GameUI ui) {
+	public StoreScreen(GameEnvironment game) {
 		super(game);
 		frame = new JFrame();
-		this.ui = ui;
 		initialiseFrame();
 		configureFrame();
 	}
@@ -114,7 +112,7 @@ public class StoreScreen extends Screen {
 		JScrollPane sellScrollPane = new JScrollPane();
 		
 		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(e -> ui.menu());
+		backBtn.addActionListener(e -> getGame().getUI().menu());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);

@@ -148,7 +148,7 @@ public class TextUI implements GameUI{
 	@Override
 	public void travel() {
 		if (game.getShip().getHealth() != game.getShip().getMaxHealth()) {
-			System.out.println("You cannot sail before repairing your ship.");
+			System.out.println(TRAVEL_SHIP_ERROR);
 		} else {
 			System.out.println("Reachable Islands:");
 			printIslands();
@@ -157,10 +157,10 @@ public class TextUI implements GameUI{
 			int choice = getValidInt(0, routes.size(), prompt, INT_ERROR);
 			if (choice != 0) {
 				Route route = routes.get(choice-1); 
-				if (game.canTravelRoute(route)) {
+				if (game.canAffordRoute(route)) {
 					game.travelRoute(route);
 				} else {
-					System.out.println("Cannot travel along this route - insufficient gold to pay wages.");
+					System.out.println(TRAVEL_GOLD_ERROR);
 				}
 			}
 		}

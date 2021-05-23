@@ -3,7 +3,6 @@ package ui.gui;
 import javax.swing.JFrame;
 
 import core.GameEnvironment;
-import ui.GameUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -17,16 +16,14 @@ import javax.swing.UIManager;
 
 public class ShipInfoScreen extends Screen {
 
-	private GameUI ui;
 	private JFrame frame;
 
 	/**
 	 * Create the application.
 	 */
-	public ShipInfoScreen(GameEnvironment game, GameUI ui) {
+	public ShipInfoScreen(GameEnvironment game) {
 		super(game);
 		frame = new JFrame();
-		this.ui = ui;
 		initialiseFrame();
 		configureFrame();
 	}
@@ -47,7 +44,7 @@ public class ShipInfoScreen extends Screen {
 		titleLbl.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(e -> ui.menu());
+		backBtn.addActionListener(e -> getGame().getUI().menu());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
