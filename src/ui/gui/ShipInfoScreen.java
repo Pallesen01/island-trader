@@ -12,6 +12,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 
 public class ShipInfoScreen extends Screen {
 
@@ -44,37 +46,53 @@ public class ShipInfoScreen extends Screen {
 		titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLbl.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JLabel shipLbl = new JLabel(getGame().getShip().toString());
-		shipLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		
 		JButton backBtn = new JButton("Back");
 		backBtn.addActionListener(e -> ui.menu());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
+		
+		JLabel shipLbl_1_1 = new JLabel((String) null);
+		shipLbl_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JTextPane txtpnAaa = new JTextPane();
+		txtpnAaa.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtpnAaa.setEditable(false);
+		txtpnAaa.setBackground(UIManager.getColor("Button.background"));
+		txtpnAaa.setText(getGame().getShip().toString());
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(titleLbl, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
-						.addComponent(shipLbl, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
-						.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(166)
+									.addComponent(txtpnAaa, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
+									.addGap(184)
+									.addComponent(shipLbl_1_1, GroupLayout.PREFERRED_SIZE, 666, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(titleLbl, GroupLayout.PREFERRED_SIZE, 685, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(titleLbl)
-					.addGap(18)
-					.addComponent(shipLbl)
-					.addPreferredGap(ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
-					.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(123)
+							.addComponent(shipLbl_1_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+							.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(64)
+							.addComponent(txtpnAaa, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-
 }
