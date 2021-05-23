@@ -3,7 +3,6 @@ package ui.gui;
 import javax.swing.JFrame;
 
 import core.GameEnvironment;
-import core.Ship;
 import ui.GameUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -16,8 +15,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class GoodsScreen extends Screen {
 	

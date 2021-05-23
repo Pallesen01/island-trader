@@ -179,15 +179,14 @@ public class DisplayIslandInfoScreen extends Screen{
 		scrollPane.setViewportView(tableSold);
 		
 		ArrayList<Route> routes = island.getRoutes();
-		String[] columnNames = {"Island","Days","Pirate Danger","Weather Danger", "Lost Sailors Chance"};
+		String[] columnNames = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
 		Object routesInfo[][] = new Object[routes.size()][];
 		int i = 0;
 		String islandName;
 		for (Route route : routes) {
 			if (route.getIslands()[0].getName() == island.getName()) {
 				islandName = route.getIslands()[1].getName();
-			}
-			else {
+			} else {
 				islandName = route.getIslands()[0].getName();
 			}
 			Object routeInfo[] = {islandName,route.getDays(game.getShip().getSpeed()),route.getPirateDanger(),route.getWeatherDanger(),route.getSailorsOdds()};

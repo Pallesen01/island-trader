@@ -177,13 +177,13 @@ public class GameEnvironment {
 	 * @param route the route to travel on
 	 */
 	public void travelRoute(Route route) {
-		if (route.encouterPirates()){
+		if (route.encouterPirates()) {
 			ui.pirateEncounter();
 		}
-		if (route.encouterWeatherEvent()){
+		if (route.encouterWeatherEvent()) {
 			ui.weatherEncounter();
 		}
-		if (route.encouterLostSailors()){
+		if (route.encouterLostSailors()) {
 			ui.sailorsEncounter();
 		}
 		int daysTaken = route.getDays(ship.getSpeed());

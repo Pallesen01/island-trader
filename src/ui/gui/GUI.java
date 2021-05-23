@@ -69,8 +69,9 @@ public class GUI implements GameUI {
 
 	@Override
 	public void travel() {
-		// TODO Auto-generated method stub
-
+		screen.quit();
+		screen = new TravelScreen(game, this);
+		screen.show();
 	}
 
 	@Override
