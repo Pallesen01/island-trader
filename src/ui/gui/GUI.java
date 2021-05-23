@@ -76,20 +76,25 @@ public class GUI implements GameUI {
 
 	@Override
 	public void pirateEncounter() {
-		// TODO Auto-generated method stub
+		screen.quit();
+		screen = new RandomEventScreen(game);
+		screen.show();
 
 	}
 
 	@Override
 	public void weatherEncounter() {
-		// TODO Auto-generated method stub
+		screen.quit();
+		screen = new RandomEventScreen(game);
+		screen.show();
 
 	}
 
 	@Override
 	public void sailorsEncounter() {
-		// TODO Auto-generated method stub
-
+		screen.quit();
+		screen = new RandomEventScreen(game);
+		screen.show();
 	}
 
 }

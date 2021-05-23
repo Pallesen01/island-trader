@@ -48,7 +48,9 @@ public class TravelScreen extends Screen {
 			Route route = getGame().getIsland().getRoutes().get(routeTable.getSelectedRow());
 			if (getGame().getShip().getHealth() != getGame().getShip().getMaxHealth()) {
 				errorLbl.setText(GameUI.TRAVEL_SHIP_ERROR);
-			} else if (!getGame().canTravelRoute(route)) {
+			} else if (!getGame().isTimeForRoute(route)) {
+				errorLbl.setText(GameUI.TRAVEL_DAYS_ERROR);
+			} else if (!getGame().canAffordRoute(route)) {
 				errorLbl.setText(GameUI.TRAVEL_GOLD_ERROR);
 			} else {
 				getGame().travelRoute(route);

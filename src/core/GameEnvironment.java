@@ -162,17 +162,31 @@ public class GameEnvironment {
 	}
 	
 	/**
-	 * Returns true if the player can travel along route, otherwise false.
+	 * Returns true if the player can afford to travel along route, otherwise false.
 	 * @param route the route to travel on
 	 * @return true if possible, otherwise false
 	 */
-	public boolean canTravelRoute(Route route) {
+	public boolean canAffordRoute(Route route) {
 		boolean can = false;
 		int daysTaken = route.getDays(ship.getSpeed());
 		if (gold >= daysTaken * ship.getCrew() * WAGE_MODIFIER) {
 			can = true;
 		}
 		return can;
+	}
+	
+	/**
+	 * Returns true if there are enough days left for the player to travel along route, otherwise false.
+	 * @param route the route to travel on
+	 * @return true if possible, otherwise false
+	 */
+	public boolean isTimeForRoute(Route route) {
+		boolean isTime = false;
+		int daysTaken = route.getDays(ship.getSpeed());
+		if (days >= daysTaken) {
+			isTime = true;
+		}
+		return isTime;
 	}
 
 	/** 

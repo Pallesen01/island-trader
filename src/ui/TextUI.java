@@ -157,7 +157,7 @@ public class TextUI implements GameUI{
 			int choice = getValidInt(0, routes.size(), prompt, INT_ERROR);
 			if (choice != 0) {
 				Route route = routes.get(choice-1); 
-				if (game.canTravelRoute(route)) {
+				if (game.canAffordRoute(route)) {
 					game.travelRoute(route);
 				} else {
 					System.out.println(TRAVEL_GOLD_ERROR);
