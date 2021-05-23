@@ -416,4 +416,10 @@ public class TextUI implements GameUI{
 		System.out.println("The sailors give you "+reward+" gold as a reward for rescuing them");
 		game.setGold(game.getGold() + reward);
 	}
+
+	@Override
+	public void displayIslandInfo(Island island) {
+		// TODO Auto-generated method stub
+		
+	}
 }

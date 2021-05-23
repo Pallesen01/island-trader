@@ -25,13 +25,44 @@ import javax.swing.DefaultComboBoxModel;
 public class IslandInfoScreen extends Screen {
 	private GameUI ui;
 	private JFrame frame;
+	private GameEnvironment game;
+	private JComboBox comboBoxIslands;
+	private ArrayList<Island> islands = getGame().getIslands();
 
 	/**
 	 * Create the application.
 	 */
-	public IslandInfoScreen(GameEnvironment game, GameUI ui) {
+	protected IslandInfoScreen(GameEnvironment game, GameUI ui) {
 		super(game);
 		frame = new JFrame();
+		this.game = game;
+		this.ui = ui;
+		initialiseFrame();
+		configureFrame();	
+		
+	}
+	
+	private void confirm() {
+		String islandName = comboBoxIslands.getSelectedItem().toString();
+		for (Island island: islands) {
+			if (island.getName() == islandName || (island.getName() + " (Current Island)").equals(islandName)) {
+				ui.displayIslandInfo(island);
+				break;
+			}		
+		}
+	}
+	
+	@Override
+	JFrame getFrame() {
+		return frame;
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialiseFrame() {
+		frame.setBounds(100, 100, 530, 295);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblNewLabel = new JLabel("Island Info");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -49,8 +80,7 @@ public class IslandInfoScreen extends Screen {
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
 		
-		JComboBox comboBoxIslands = new JComboBox();
-		ArrayList<Island> islands = getGame().getIslands();
+		comboBoxIslands = new JComboBox();
 		String[] islandNames = new String[islands.size()];
 		int i = 0;
 		for (Island island : islands) {
@@ -67,6 +97,7 @@ public class IslandInfoScreen extends Screen {
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnConfirm.setFocusable(false);
+		btnConfirm.addActionListener(e -> confirm());
 		btnConfirm.setBackground(Color.LIGHT_GRAY);
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -103,21 +134,5 @@ public class IslandInfoScreen extends Screen {
 					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);
-		this.ui = ui;
-		initialiseFrame();
-		configureFrame();
-	}
-	
-	@Override
-	JFrame getFrame() {
-		return frame;
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialiseFrame() {
-		frame.setBounds(100, 100, 530, 295);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

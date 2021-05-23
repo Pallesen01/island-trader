@@ -1,6 +1,7 @@
 package ui.gui;
 
 import core.GameEnvironment;
+import core.Island;
 import ui.GameUI;
 
 public class GUI implements GameUI {
@@ -40,6 +41,14 @@ public class GUI implements GameUI {
 	public void islandInfo() {
 		screen.quit();
 		screen = new IslandInfoScreen(game, this);
+		screen.show();
+
+	}
+	
+	@Override
+	public void displayIslandInfo(Island island) {
+		screen.quit();
+		screen = new DisplayIslandInfoScreen(game, this, island);
 		screen.show();
 
 	}

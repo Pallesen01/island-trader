@@ -1,6 +1,7 @@
 package ui;
 
 import core.GameEnvironment;
+import core.Island;
 
 public interface GameUI {
 	
@@ -50,6 +51,7 @@ public interface GameUI {
 	
 	void islandInfo();
 	
+	void displayIslandInfo(Island island);	
 	
 	void store();
 	
