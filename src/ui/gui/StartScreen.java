@@ -29,8 +29,6 @@ import ui.GameUI;
  */
 public class StartScreen extends Screen {
 	
-	private final String title = "Island Trader";
-	
     private JFrame frame;
 	private JTextField nameField;
 	private JLabel daysLbl;
@@ -81,7 +79,8 @@ public class StartScreen extends Screen {
 		return valid;
 	}
 	
-	protected JFrame getFrame() {
+	@Override
+	JFrame getFrame() {
 		return frame;
 	}
 

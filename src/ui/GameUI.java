@@ -16,6 +16,7 @@ public interface GameUI {
 	final String SHIP_PROMPT = "What ship would you like to captain?";
 	final String SHIP_HEADER = "Playable ships:";
 	
+	final String REPAIR_MAX = "Ship already at max health.";
 	final String REPAIR_SUCCESS = "Ship repaired.";
 	final String REPAIR_FAIL = "Ship not repaired - insufficient gold.";
 	
