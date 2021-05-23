@@ -170,10 +170,12 @@ public class DisplayIslandInfoScreen extends Screen{
 		String[] columns = {"Name", "Price", "Size", "Description"};
 		Object[][] data = makeItemTable(island.getStore().getBuys());
 		tableBought = new JTable(data, columns);
+		tableBought.setEnabled(false);
 		scrollPane_1.setViewportView(tableBought);
 		
 		data = makeItemTable(island.getStore().getSells());
 		tableSold = new JTable(data, columns);
+		tableSold.setEnabled(false);
 		scrollPane.setViewportView(tableSold);
 		
 		ArrayList<Route> routes = island.getRoutes();
