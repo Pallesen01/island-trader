@@ -249,9 +249,9 @@ public class TextUI implements GameUI{
 				break;
 			} else {
 				if (game.buyItem(items.get(choice-1))) {
-					System.out.println("Item bought.");
+					System.out.println(BOUGHT);
 				} else {
-					System.out.println("Failed to buy item - insufficient gold or cargo space.");
+					System.out.println(BUY_FAIL);
 				}
 			}
 		}
@@ -269,13 +269,12 @@ public class TextUI implements GameUI{
 				break;
 			} else {
 				if (game.sellItem(items.get(choice-1))) {
-					System.out.println("Item sold.\n");
+					System.out.println(SOLD);
 				} else {
-					System.out.println("Failed to sell item - not found in cargo.\n");
+					System.out.println(SELL_FAIL);
 				}
 			}
 		}
-		
 	}
 	
 	private void printItems(ArrayList<Item> items) {

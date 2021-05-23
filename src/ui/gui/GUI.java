@@ -44,8 +44,9 @@ public class GUI implements GameUI {
 
 	@Override
 	public void store() {
-		// TODO Auto-generated method stub
-
+		screen.quit();
+		screen = new StoreScreen(game, this);
+		screen.show();
 	}
 
 	@Override

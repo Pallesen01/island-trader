@@ -20,6 +20,11 @@ public interface GameUI {
 	final String REPAIR_SUCCESS = "Ship repaired.";
 	final String REPAIR_FAIL = "Ship not repaired - insufficient gold.";
 	
+	final String BOUGHT = "Item bought.";
+	final String SOLD = "Item sold.";
+	final String BUY_FAIL = "Failed to buy item - insufficient gold or cargo space.";
+	final String SELL_FAIL = "Failed to sell item - not found in cargo.";
+	
 	enum MenuOption {
 		SHIP_INFO("View ship information"),
 		GOODS("View goods"),
