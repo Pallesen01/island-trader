@@ -1,7 +1,5 @@
 package ui.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import core.GameEnvironment;
@@ -24,7 +22,6 @@ import javax.swing.ListSelectionModel;
 
 public class TravelScreen extends Screen {
 
-	private GameUI ui;
 	private JFrame frame;
 	private JTable routeTable;
 	private JLabel errorLbl;
@@ -32,10 +29,9 @@ public class TravelScreen extends Screen {
 	/**
 	 * Create the application.
 	 */
-	public TravelScreen(GameEnvironment game, GameUI ui) {
+	public TravelScreen(GameEnvironment game) {
 		super(game);
 		frame = new JFrame();
-		this.ui = ui;
 		initialiseFrame();
 		configureFrame();
 	}
@@ -56,7 +52,7 @@ public class TravelScreen extends Screen {
 				errorLbl.setText(GameUI.TRAVEL_GOLD_ERROR);
 			} else {
 				getGame().travelRoute(route);
-				ui.menu();
+				getGame().getUI().menu();
 			}
 		}
 	}
@@ -69,7 +65,7 @@ public class TravelScreen extends Screen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(e -> ui.menu());
+		backBtn.addActionListener(e -> getGame().getUI().menu());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);

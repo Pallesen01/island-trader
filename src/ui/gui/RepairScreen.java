@@ -16,7 +16,6 @@ import javax.swing.SwingConstants;
 
 public class RepairScreen extends Screen {
 
-	private GameUI ui;
 	private JFrame frame;
 	private JLabel goldLbl;
 	private JLabel healthLbl;
@@ -26,10 +25,9 @@ public class RepairScreen extends Screen {
 	/**
 	 * Create the application.
 	 */
-	public RepairScreen(GameEnvironment game, GameUI ui) {
+	public RepairScreen(GameEnvironment game) {
 		super(game);
 		frame = new JFrame();
-		this.ui = ui;
 		initialiseFrame();
 		configureFrame();
 	}
@@ -61,7 +59,7 @@ public class RepairScreen extends Screen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(e -> ui.menu());
+		backBtn.addActionListener(e -> getGame().getUI().menu());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);

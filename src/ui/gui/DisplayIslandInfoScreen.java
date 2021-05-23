@@ -6,8 +6,6 @@ import core.GameEnvironment;
 import core.Island;
 import core.Item;
 import core.Route;
-import core.Ship;
-import ui.GameUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -22,9 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class DisplayIslandInfoScreen extends Screen{
-	private GameUI ui;
+	
 	private JFrame frame;
-	private GameEnvironment game;
 	private Island island;
 	private JTable tableRoutes;
 	private JTable tableSold;
@@ -32,11 +29,9 @@ public class DisplayIslandInfoScreen extends Screen{
 	/**
 	 * Create the application.
 	 */
-	protected DisplayIslandInfoScreen(GameEnvironment game, GameUI ui, Island island) {
+	protected DisplayIslandInfoScreen(GameEnvironment game, Island island) {
 		super(game);
 		frame = new JFrame();		
-		this.game = game;
-		this.ui = ui;
 		this.island = island;
 		initialiseFrame();
 		configureFrame();	
@@ -73,13 +68,13 @@ public class DisplayIslandInfoScreen extends Screen{
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(e -> ui.islandInfo());
+		backBtn.addActionListener(e -> getGame().getUI().islandInfo());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
 		
 		JButton btnMenu = new JButton("Menu");
-		btnMenu.addActionListener(e -> ui.menu());
+		btnMenu.addActionListener(e -> getGame().getUI().menu());
 		btnMenu.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnMenu.setFocusable(false);
 		btnMenu.setBackground(Color.LIGHT_GRAY);
@@ -189,7 +184,7 @@ public class DisplayIslandInfoScreen extends Screen{
 			} else {
 				islandName = route.getIslands()[0].getName();
 			}
-			Object routeInfo[] = {islandName,route.getDays(game.getShip().getSpeed()),route.getPirateDanger(),route.getWeatherDanger(),route.getSailorsOdds()};
+			Object routeInfo[] = {islandName,route.getDays(getGame().getShip().getSpeed()),route.getPirateDanger(),route.getWeatherDanger(),route.getSailorsOdds()};
 			routesInfo[i] = routeInfo;
 			i++;
 		}

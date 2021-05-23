@@ -23,20 +23,17 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class IslandInfoScreen extends Screen {
-	private GameUI ui;
+
 	private JFrame frame;
-	private GameEnvironment game;
 	private JComboBox comboBoxIslands;
 	private ArrayList<Island> islands = getGame().getIslands();
 
 	/**
 	 * Create the application.
 	 */
-	protected IslandInfoScreen(GameEnvironment game, GameUI ui) {
+	protected IslandInfoScreen(GameEnvironment game) {
 		super(game);
 		frame = new JFrame();
-		this.game = game;
-		this.ui = ui;
 		initialiseFrame();
 		configureFrame();	
 		
@@ -46,7 +43,7 @@ public class IslandInfoScreen extends Screen {
 		String islandName = comboBoxIslands.getSelectedItem().toString();
 		for (Island island: islands) {
 			if (island.getName() == islandName || (island.getName() + " (Current Island)").equals(islandName)) {
-				ui.displayIslandInfo(island);
+				getGame().getUI().displayIslandInfo(island);
 				break;
 			}		
 		}
@@ -75,7 +72,7 @@ public class IslandInfoScreen extends Screen {
 		
 		
 		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(e -> ui.menu());
+		backBtn.addActionListener(e -> getGame().getUI().menu());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
@@ -84,7 +81,7 @@ public class IslandInfoScreen extends Screen {
 		String[] islandNames = new String[islands.size()];
 		int i = 0;
 		for (Island island : islands) {
-			if (island.getName() == game.getIsland().getName()) {
+			if (island.getName() == getGame().getIsland().getName()) {
 				islandNames[i] = island.getName() + " (Current Island)";
 			}
 			else {

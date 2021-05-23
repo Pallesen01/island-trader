@@ -60,7 +60,7 @@ public interface GameUI {
 	
 	void islandInfo();
 	
-	void displayIslandInfo(Island island);	
+	void displayIslandInfo(Island island);
 	
 	void store();
 	

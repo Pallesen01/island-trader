@@ -12,25 +12,18 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
 
 import core.GameEnvironment;
-import ui.GameUI;
 import javax.swing.JProgressBar;
 
 public class MenuScreen extends Screen{
 	
-	private final String title = "Island Trader";
-	
-	private GameUI ui;
 	private JFrame frame;
-	private GameEnvironment game;
 
 	/**
 	 * Create the application.
 	 */
-	protected MenuScreen(GameEnvironment game, GameUI ui) {	
+	protected MenuScreen(GameEnvironment game) {	
 		super(game);
 		frame = new JFrame();
-		this.ui = ui;
-		this.game = game;
 		initialiseFrame();
 		configureFrame();
 	}
@@ -44,7 +37,6 @@ public class MenuScreen extends Screen{
 	 * Initialize the contents of the frame.
 	 */
 	void initialiseFrame() {
-		frame.setTitle(title);
 		frame.setBounds(100, 100, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -55,37 +47,37 @@ public class MenuScreen extends Screen{
 		goldLbl.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JButton shipInfoBtn = new JButton("View Ship Info");
-		shipInfoBtn.addActionListener(e -> ui.shipInfo());
+		shipInfoBtn.addActionListener(e -> getGame().getUI().shipInfo());
 		shipInfoBtn.setFont(new Font("Tahoma", Font.BOLD, 15));
 		shipInfoBtn.setFocusable(false);
 		shipInfoBtn.setBackground(Color.LIGHT_GRAY);
 		
 		JButton visitStoreBtn = new JButton("Visit Store");
-		visitStoreBtn.addActionListener(e -> ui.store());
+		visitStoreBtn.addActionListener(e -> getGame().getUI().store());
 		visitStoreBtn.setFont(new Font("Tahoma", Font.BOLD, 15));
 		visitStoreBtn.setFocusable(false);
 		visitStoreBtn.setBackground(Color.LIGHT_GRAY);
 		
 		JButton repairShipBtn = new JButton("Repair Ship");
-		repairShipBtn.addActionListener(e -> ui.repair());
+		repairShipBtn.addActionListener(e -> getGame().getUI().repair());
 		repairShipBtn.setFont(new Font("Tahoma", Font.BOLD, 15));
 		repairShipBtn.setFocusable(false);
 		repairShipBtn.setBackground(Color.LIGHT_GRAY);
 		
 		JButton viewGoodsbtn = new JButton("View Goods");
-		viewGoodsbtn.addActionListener(e -> ui.goods());
+		viewGoodsbtn.addActionListener(e -> getGame().getUI().goods());
 		viewGoodsbtn.setFont(new Font("Tahoma", Font.BOLD, 15));
 		viewGoodsbtn.setFocusable(false);
 		viewGoodsbtn.setBackground(Color.LIGHT_GRAY);
 		
 		JButton viewIslandInfoBtn = new JButton("View Island Info");
-		viewIslandInfoBtn.addActionListener(e -> ui.islandInfo());
+		viewIslandInfoBtn.addActionListener(e -> getGame().getUI().islandInfo());
 		viewIslandInfoBtn.setFont(new Font("Tahoma", Font.BOLD, 15));
 		viewIslandInfoBtn.setFocusable(false);
 		viewIslandInfoBtn.setBackground(Color.LIGHT_GRAY);
 		
 		JButton travelBtn = new JButton("Travel");
-		travelBtn.addActionListener(e -> ui.travel());
+		travelBtn.addActionListener(e -> getGame().getUI().travel());
 		travelBtn.setFont(new Font("Tahoma", Font.BOLD, 15));
 		travelBtn.setFocusable(false);
 		travelBtn.setBackground(Color.LIGHT_GRAY);
@@ -97,8 +89,8 @@ public class MenuScreen extends Screen{
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setPreferredSize(new Dimension(10, 11));
 		progressBar.setMaximumSize(new Dimension(10, 11));
-		progressBar.setMaximum(game.getStartDays());
-		progressBar.setValue(game.getDays());
+		progressBar.setMaximum(getGame().getStartDays());
+		progressBar.setValue(getGame().getDays());
 		
 		JLabel islandLbl = new JLabel("Current Island: " + getGame().getIsland().getName());
 		islandLbl.setFont(new Font("Tahoma", Font.BOLD, 15));

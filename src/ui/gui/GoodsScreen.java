@@ -3,7 +3,6 @@ package ui.gui;
 import javax.swing.JFrame;
 
 import core.GameEnvironment;
-import ui.GameUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -18,17 +17,15 @@ import java.awt.Color;
 
 public class GoodsScreen extends Screen {
 	
-	private GameUI ui;
 	private JFrame frame;
 	private JTable goodsTable;
 
 	/**
 	 * Create the application.
 	 */
-	public GoodsScreen(GameEnvironment game, GameUI ui) {
+	public GoodsScreen(GameEnvironment game) {
 		super(game);
 		frame = new JFrame();
-		this.ui = ui;
 		initialiseFrame();
 		configureFrame();
 	}
@@ -53,7 +50,7 @@ public class GoodsScreen extends Screen {
 		goodsLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(e -> ui.menu());
+		backBtn.addActionListener(e -> getGame().getUI().menu());
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);

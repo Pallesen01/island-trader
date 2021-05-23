@@ -41,6 +41,10 @@ public class GameEnvironment {
 		ui.menu();
 	}
 	
+	public GameUI getUI() {
+		return ui;
+	}
+	
 	
 	public ArrayList<Ship> getShips() {
 		return ships;
