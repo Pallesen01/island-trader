@@ -16,7 +16,6 @@ public class TextUI implements GameUI{
 	
 	private final Scanner input;
 	private GameEnvironment game;
-	private Random randomGenerator = new Random();
 	
 	enum StoreOption {
 		LEAVE("Leave"),
@@ -304,100 +303,32 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void pirateEncounter(Route route) {
-		final String VICTORY_MESSAGE = "Pirates defeated";
-		final int CARGO_THRESHOLD = 100;
-		System.out.println("Pirates Encountered!\n");
-		
-		// Generate enemy ship
-		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
-		int shipInt = randomGenerator.nextInt(ships.size());
-		Ship pirateShip = ships.get(shipInt);
-		Ship playerShip = game.getShip();
-		
-		// Player and pirate take turns rolling dice
-		while (playerShip.getHealth() > 0 && pirateShip.getHealth() > 0) {
-			// Print Health
-			System.out.println("Your Health - " + playerShip.getHealth());
-			System.out.println("Pirate Health - " + pirateShip.getHealth());
-			// Player Turn
-			System.out.println("Your Turn:");
-			for (Item item : playerShip.getWeapons()) {
-				Weapon weapon = (Weapon) item; 
-				System.out.println("\tFiring " + weapon.getName()+'!');
-				for (int i = 0; i < weapon.shots(); i++) {
-					int damage = randomGenerator.nextInt(weapon.damage());
-					if (damage == 0) {
-						System.out.println("Missed pirate ship");
-					}
-					else {
-						System.out.println("\t"+damage+" damage dealt to pirate ship");
-						int resisted = randomGenerator.nextInt(pirateShip.getEndurance());
-						resisted = Math.min(resisted, damage);
-						System.out.println("\t"+resisted+" damage resisted by pirate ship");
-						pirateShip.setHealth(pirateShip.getHealth() - damage + resisted);
-					}
-					
-					
-				}				
+		System.out.println(PIRATE_ENCOUNTER);
+		int damage = game.pirateEvent();
+		if (game.getShip().getHealth() > 0) {
+			System.out.println("But you defeated them!\nYour ship has taken " + damage + " damage.");
+		} else {
+			// Lose the game if the goods value is below the threshold
+			if (!game.pirateLossOutcome()) {
+				game.loseGold();
+				System.out.println(PIRATE_UNSATISFIED);
+				game.endGame();
 			}
-			if (pirateShip.getHealth() <= 0){
-				System.out.println(VICTORY_MESSAGE);
-				return;
-			}
-			// Pirate Turn
-			System.out.println("Pirate's Turn:");
-			for (Item item : pirateShip.getWeapons()) {
-				Weapon weapon = (Weapon) item; 
-				System.out.println("\tFiring " + weapon.getName()+'!');
-				for (int i = 0; i < weapon.shots(); i++) {
-					int damage = randomGenerator.nextInt(weapon.damage());
-					if (damage == 0) {
-						System.out.println("Missed your ship");
-					}
-					else {
-						System.out.println("\t"+damage+" damage dealt to your ship");
-						int resisted = randomGenerator.nextInt(playerShip.getEndurance());
-						resisted = Math.min(resisted, damage);
-						System.out.println("\t"+resisted+" damage resisted by your ship");
-						playerShip.setHealth(playerShip.getHealth() - damage + resisted);
-					}
-				}				
+			else {
+				System.out.println(PIRATE_SATISFIED);
 			}
 		}
-		
-		// If loss pirates steal all goods
-		int totalValue = 0;
-		for (Item item : playerShip.getCargo()) {
-			totalValue += item.getBasePrice();
-		}
-		playerShip.emptyCargo();
-		// If good value below threshold lose game
-		if (totalValue < CARGO_THRESHOLD) {
-			game.loseGold();
-			System.out.println("The pirates are NOT satisfied with the value of your cargo\nYou are forced to walk the plank");
-			game.endGame();
-		}
-		else {
-			System.out.println("The pirates are satisfied with the value of your cargo");
-		}
-		
-		
 	}
 
 	@Override
 	public void weatherEncounter(Route route) {
-		final int MIN_DAMAGE = 10;
-		final int MAX_DAMAGE = 40;
 		Ship playerShip = game.getShip();
-		System.out.println("Your ship has been struck by unfortunate weather.");
-		
-		// Deal random damage between a range
-		int damage = randomGenerator.nextInt(MAX_DAMAGE - MIN_DAMAGE) + MIN_DAMAGE;
-		System.out.println("Your ship has taken "+damage+" damage");
-		playerShip.setHealth(playerShip.getHealth() - damage);
+		int damage = game.weatherEvent();
+		System.out.println(WEATHER_ENCOUNTER);
+		System.out.println("Your ship has taken " + damage + " damage.");
 		// end game if ship is destroyed
 		if (playerShip.getHealth() <= 0) {
-			System.out.println("Your ship has been destroyed in the storm");
+			System.out.println("Your ship has been destroyed in the storm.");
 			playerShip.emptyCargo();
 			game.loseGold();
 			game.endGame();
@@ -406,14 +337,10 @@ public class TextUI implements GameUI{
 	}
 
 	@Override
-	public void sailorsEncounter(Route route) {
-		final int MIN_REWARD = 20;
-		final int MAX_REWARD = 60;
-		System.out.println("Your ship has come across lost sailors");		
-		// Give monetary reward between a range
-		int reward = randomGenerator.nextInt(MAX_REWARD - MIN_REWARD) + MIN_REWARD;
-		System.out.println("The sailors give you "+reward+" gold as a reward for rescuing them");
-		game.setGold(game.getGold() + reward);
+	public void sailorEncounter(Route route) {
+		int reward = game.sailorEvent();
+		System.out.println(SAILOR_ENCOUNTER);		
+		System.out.println("The sailors give you " + reward + " gold as a reward for rescuing them.");
 	}
 
 	@Override

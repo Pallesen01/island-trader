@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import core.GameEnvironment;
 import core.Route;
+import ui.GameUI;
 import ui.gui.GUI.RandomEvent;
 
 import javax.swing.GroupLayout;
@@ -14,19 +15,24 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 
 public class RandomEventScreen extends Screen {
 	
 	private JFrame frame;
 	private Route route;
+	private int resultValue;
 	private RandomEvent event;
 
 	/**
 	 * Create the application.
 	 */
-	public RandomEventScreen(GameEnvironment game, Route route, RandomEvent event) {
+	public RandomEventScreen(GameEnvironment game, Route route, int resultValue, RandomEvent event) {
 		super(game);
 		this.route = route;
+		this.resultValue = resultValue;
 		this.event = event;
 		frame = new JFrame();
 		initialiseFrame();
@@ -35,23 +41,42 @@ public class RandomEventScreen extends Screen {
 	
 	private void setTitleText(JLabel titleLbl) {
 		switch (event) {
-			case PIRATES: titleLbl.setText("You've encountered a pirate ship!");
+			case PIRATES: titleLbl.setText(GameUI.PIRATE_ENCOUNTER);
 						  break;
-			case WEATHER: titleLbl.setText("You've encountered a storm!");
+			case WEATHER: titleLbl.setText(GameUI.WEATHER_ENCOUNTER);
 						  break;
-			case SAILORS: titleLbl.setText("You've encountered lost sailors!");
+			case SAILORS: titleLbl.setText(GameUI.SAILOR_ENCOUNTER);
 						  break;
 		}
 	}
 	
-	private void setMessageText(JLabel messageLbl) {
+	private void setMessageText(JTextPane messageTextPane) {
 		switch (event) {
-			case PIRATES: messageLbl.setText("You've encountered a pirate ship!");
-						  break;
-			case WEATHER: messageLbl.setText("You've encountered a storm!");
-						  break;
-			case SAILORS: messageLbl.setText("You've encountered lost sailors!");
-						  break;
+			case PIRATES:
+				if (getGame().getShip().getHealth() > 0) {
+					messageTextPane.setText("But you defeated them! Your ship has taken " + resultValue + " damage.");
+				} else {
+					if (!getGame().pirateLossOutcome()) {
+						getGame().loseGold();
+						messageTextPane.setText(GameUI.PIRATE_UNSATISFIED);
+						getGame().endGame();
+					}
+					else {
+						System.out.println(GameUI.PIRATE_SATISFIED);
+					}
+					getGame().endGame();
+				}
+				break;
+			case WEATHER: 
+				if (getGame().getShip().getHealth() > 0) {
+					messageTextPane.setText("Your ship has taken " + resultValue + " damage.");
+				} else {
+					messageTextPane.setText("Your ship has been destroyed in the storm.");
+				}
+				break;
+			case SAILORS: 
+				messageTextPane.setText("The sailors give you " + resultValue + " gold as a reward for rescuing them.");
+				break;
 		}
 	}
 	
@@ -64,7 +89,7 @@ public class RandomEventScreen extends Screen {
 				}
 			case WEATHER: 
 				if (route.encounterLostSailors()) {
-					getGame().getUI().sailorsEncounter(route);
+					getGame().getUI().sailorEncounter(route);
 					break;
 				}
 			case SAILORS: 
@@ -90,24 +115,25 @@ public class RandomEventScreen extends Screen {
 		titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLbl.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JLabel messageLbl = new JLabel();
-		setMessageText(messageLbl);
-		messageLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		
 		JButton continueBtn = new JButton("Continue");
 		continueBtn.addActionListener(e -> continueGame());
 		continueBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		continueBtn.setFocusable(false);
 		continueBtn.setBackground(Color.LIGHT_GRAY);
+		
+		JTextPane outcomeTextPane = new JTextPane();
+		outcomeTextPane.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		setMessageText(outcomeTextPane);
+		outcomeTextPane.setBackground(UIManager.getColor("menu"));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(messageLbl, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
 						.addComponent(titleLbl, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-						.addComponent(continueBtn, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
+						.addComponent(continueBtn, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+						.addComponent(outcomeTextPane, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -116,8 +142,8 @@ public class RandomEventScreen extends Screen {
 					.addContainerGap()
 					.addComponent(titleLbl)
 					.addGap(18)
-					.addComponent(messageLbl)
-					.addPreferredGap(ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+					.addComponent(outcomeTextPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
 					.addComponent(continueBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);

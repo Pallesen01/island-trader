@@ -46,10 +46,10 @@ public class TravelScreen extends Screen {
 			errorLbl.setText("You must select a route.");
 		} else {
 			Route route = getGame().getIsland().getRoutes().get(routeTable.getSelectedRow());
-			if (getGame().getShip().getHealth() != getGame().getShip().getMaxHealth()) {
-				errorLbl.setText(GameUI.TRAVEL_SHIP_ERROR);
-			} else if (!getGame().isTimeForRoute(route)) {
+			if (!getGame().isTimeForRoute(route)) {
 				errorLbl.setText(GameUI.TRAVEL_DAYS_ERROR);
+			} else if (getGame().getShip().getHealth() != getGame().getShip().getMaxHealth()) {
+				errorLbl.setText(GameUI.TRAVEL_SHIP_ERROR);
 			} else if (!getGame().canAffordRoute(route)) {
 				errorLbl.setText(GameUI.TRAVEL_GOLD_ERROR);
 			} else {
@@ -59,7 +59,7 @@ public class TravelScreen extends Screen {
 				} else if (route.encounterWeatherEvent()) {
 					getGame().getUI().weatherEncounter(route);
 				} else if (route.encounterLostSailors()) {
-					getGame().getUI().sailorsEncounter(route);
+					getGame().getUI().sailorEncounter(route);
 				} else {
 					getGame().getUI().menu();
 				}
