@@ -102,7 +102,7 @@ public class Route {
 	 * Returns true if the player encounters pirates
 	 * @return if pirates encountered
 	 */
-	public boolean encouterPirates() {
+	public boolean encounterPirates() {
 		return (randomGenerator.nextInt(100) < pirateDanger);
 	}
 	
@@ -110,7 +110,7 @@ public class Route {
 	 * Returns true if the player encounters dangerous weather
 	 * @return if dangerous weather encountered
 	 */
-	public boolean encouterWeatherEvent() {
+	public boolean encounterWeatherEvent() {
 		return (randomGenerator.nextInt(100) < weatherDanger);
 	}
 	
@@ -118,7 +118,7 @@ public class Route {
 	 * Returns true if the player encounters lost sailors
 	 * @return if lost sailors encountered
 	 */
-	public boolean encouterLostSailors() {
+	public boolean encounterLostSailors() {
 		return (randomGenerator.nextInt(100) < sailorsOdds);
 	}
 }

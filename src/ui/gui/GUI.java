@@ -2,12 +2,19 @@ package ui.gui;
 
 import core.GameEnvironment;
 import core.Island;
+import core.Route;
 import ui.GameUI;
 
 public class GUI implements GameUI {
 
 	private GameEnvironment game;
     private Screen screen;
+    
+	enum RandomEvent {
+		PIRATES,
+		WEATHER,
+		SAILORS;
+	}
 	
 	@Override
 	public void start(GameEnvironment game) {
@@ -74,26 +81,22 @@ public class GUI implements GameUI {
 		screen.show();
 	}
 
-	@Override
-	public void pirateEncounter() {
+	public void pirateEncounter(Route route) {
 		screen.quit();
-		screen = new RandomEventScreen(game);
+		screen = new RandomEventScreen(game, route, RandomEvent.PIRATES);
+		screen.show();
+	}
+
+	public void weatherEncounter(Route route) {
+		screen.quit();
+		screen = new RandomEventScreen(game, route, RandomEvent.WEATHER);
 		screen.show();
 
 	}
 
-	@Override
-	public void weatherEncounter() {
+	public void sailorsEncounter(Route route) {
 		screen.quit();
-		screen = new RandomEventScreen(game);
-		screen.show();
-
-	}
-
-	@Override
-	public void sailorsEncounter() {
-		screen.quit();
-		screen = new RandomEventScreen(game);
+		screen = new RandomEventScreen(game, route, RandomEvent.SAILORS);
 		screen.show();
 	}
 

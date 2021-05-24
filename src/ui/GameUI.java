@@ -2,6 +2,7 @@ package ui;
 
 import core.GameEnvironment;
 import core.Island;
+import core.Route;
 
 public interface GameUI {
 	
@@ -71,13 +72,13 @@ public interface GameUI {
 	
 	
 	void travel();
+
+
+	void pirateEncounter(Route route);
 	
 	
-	void pirateEncounter();
+	void weatherEncounter(Route route);
 	
 	
-	void weatherEncounter();
-	
-	
-	void sailorsEncounter();
+	void sailorsEncounter(Route route);
 }

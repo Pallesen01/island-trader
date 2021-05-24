@@ -54,7 +54,15 @@ public class TravelScreen extends Screen {
 				errorLbl.setText(GameUI.TRAVEL_GOLD_ERROR);
 			} else {
 				getGame().travelRoute(route);
-				getGame().getUI().menu();
+				if (route.encounterPirates()) {
+					getGame().getUI().pirateEncounter(route);
+				} else if (route.encounterWeatherEvent()) {
+					getGame().getUI().weatherEncounter(route);
+				} else if (route.encounterLostSailors()) {
+					getGame().getUI().sailorsEncounter(route);
+				} else {
+					getGame().getUI().menu();
+				}
 			}
 		}
 	}

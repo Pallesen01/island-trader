@@ -2,6 +2,7 @@ package core;
 import java.util.ArrayList;
 
 import ui.GameUI;
+import ui.TextUI;
 
 /**
  * This class handles the man logic of the game and runs it.
@@ -195,14 +196,16 @@ public class GameEnvironment {
 	 * @param route the route to travel on
 	 */
 	public void travelRoute(Route route) {
-		if (route.encouterPirates()) {
-			ui.pirateEncounter();
-		}
-		if (route.encouterWeatherEvent()) {
-			ui.weatherEncounter();
-		}
-		if (route.encouterLostSailors()) {
-			ui.sailorsEncounter();
+		if (ui instanceof TextUI) {
+			if (route.encounterPirates()) {
+				ui.pirateEncounter(route);
+			}
+			if (route.encounterWeatherEvent()) {
+				ui.weatherEncounter(route);
+			}
+			if (route.encounterLostSailors()) {
+				ui.sailorsEncounter(route);
+			}
 		}
 		int daysTaken = route.getDays(ship.getSpeed());
 		this.days -= daysTaken;

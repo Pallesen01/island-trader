@@ -303,7 +303,7 @@ public class TextUI implements GameUI{
 	}
 
 	@Override
-	public void pirateEncounter() {
+	public void pirateEncounter(Route route) {
 		final String VICTORY_MESSAGE = "Pirates defeated";
 		final int CARGO_THRESHOLD = 100;
 		System.out.println("Pirates Encountered!\n");
@@ -385,7 +385,7 @@ public class TextUI implements GameUI{
 	}
 
 	@Override
-	public void weatherEncounter() {
+	public void weatherEncounter(Route route) {
 		final int MIN_DAMAGE = 10;
 		final int MAX_DAMAGE = 40;
 		Ship playerShip = game.getShip();
@@ -406,7 +406,7 @@ public class TextUI implements GameUI{
 	}
 
 	@Override
-	public void sailorsEncounter() {
+	public void sailorsEncounter(Route route) {
 		final int MIN_REWARD = 20;
 		final int MAX_REWARD = 60;
 		System.out.println("Your ship has come across lost sailors");		
