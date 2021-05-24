@@ -14,6 +14,7 @@ public class Ship {
 	private String name;
 	private int crew;
 	private int space;
+	private int maxSpace;
 	private int health;
 	private int maxHealth;
 	private int speed;
@@ -34,6 +35,7 @@ public class Ship {
 		this.name = name;
 		this.crew = crew;
 		this.space = space;
+		this.maxSpace = space;
 		this.health = health;
 		this.maxHealth = health;
 		this.speed = speed;
@@ -109,6 +111,14 @@ public class Ship {
 	 */
 	public int getSpace() {
 		return space;
+	}
+	
+	/**
+	 * Returns the max amount of free space on the ship.
+	 * @return max amount of space
+	 */
+	public int getMaxSpace() {
+		return maxSpace;
 	}
 	
 	/**

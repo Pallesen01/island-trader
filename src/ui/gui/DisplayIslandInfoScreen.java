@@ -167,11 +167,15 @@ public class DisplayIslandInfoScreen extends Screen{
 		String[] columns = {"Name", "Price", "Size", "Description"};
 		Object[][] data = makeItemTable(island.getStore().getBuys());
 		tableBought = new JTable(data, columns);
+		tableBought.setFillsViewportHeight(true);
+		tableBought.setShowGrid(false);
 		tableBought.setEnabled(false);
 		scrollPane_1.setViewportView(tableBought);
 		
 		data = makeItemTable(island.getStore().getSells());
 		tableSold = new JTable(data, columns);
+		tableSold.setFillsViewportHeight(true);
+		tableSold.setShowGrid(false);
 		tableSold.setEnabled(false);
 		scrollPane.setViewportView(tableSold);
 		
@@ -191,6 +195,8 @@ public class DisplayIslandInfoScreen extends Screen{
 			i++;
 		}
 		tableRoutes = new JTable(routesInfo, columnNames);
+		tableRoutes.setFillsViewportHeight(true);
+		tableRoutes.setShowGrid(false);
 		tableRoutes.setEnabled(false);
 		tableRoutes.setRowSelectionAllowed(false);
 		tableScrollPane.setViewportView(tableRoutes);
