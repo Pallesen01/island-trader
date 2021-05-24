@@ -1,5 +1,6 @@
 package core;
 import java.util.ArrayList;
+import java.util.Random;
 
 import ui.GameUI;
 import ui.TextUI;
@@ -18,6 +19,11 @@ public class GameEnvironment {
 	private final ArrayList<Route> routes = ObjectsListGenerator.generateRoute(islands);
 	
 	private final double WAGE_MODIFIER = 0.5;
+	private final int MIN_REWARD = 20;
+	private final int MAX_REWARD = 60;
+	private final int MIN_WEATHER_DAMAGE = 10;
+	private final int MAX_WEATHER_DAMAGE = 40;
+	private final int PIRATE_CARGO_THRESHOLD = 100;
 	
 	private GameUI ui;
 	private Island island;
@@ -204,7 +210,7 @@ public class GameEnvironment {
 				ui.weatherEncounter(route);
 			}
 			if (route.encounterLostSailors()) {
-				ui.sailorsEncounter(route);
+				ui.sailorEncounter(route);
 			}
 		}
 		int daysTaken = route.getDays(ship.getSpeed());
@@ -216,5 +222,77 @@ public class GameEnvironment {
 		} else {
 			island = islands[1];
 		}
+	}
+	
+	/**
+	 * Empties the player's cargo and returns true if they are satisfied with the loot, otherwise false.
+	 * @return true if pirate's are satisfied, otherwise false.
+	 */
+	public boolean pirateLossOutcome() {
+		int totalValue = 0;
+		for (Item item : ship.getCargo()) {
+			totalValue += item.getBasePrice();
+		}
+		ship.emptyCargo(); // Pirates steal all goods
+		return totalValue > PIRATE_CARGO_THRESHOLD;
+	}
+	
+	public int pirateEvent() {
+		Random randomGenerator = new Random();
+		// Generate enemy ship
+		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
+		int shipInt = randomGenerator.nextInt(ships.size());
+		Ship pirateShip = ships.get(shipInt);
+		Ship playerShip = ship;
+		int totalDamage = 0;
+		
+		// Player and pirate take turns rolling dice
+		while (playerShip.getHealth() > 0 && pirateShip.getHealth() > 0) {
+			// Player Turn
+			for (Item item : playerShip.getWeapons()) {
+				Weapon weapon = (Weapon) item; 
+				for (int i = 0; i < weapon.shots(); i++) {
+					int damage = randomGenerator.nextInt(weapon.damage());
+					if (damage > 0) {
+						int resisted = randomGenerator.nextInt(pirateShip.getEndurance());
+						resisted = Math.min(resisted, damage);
+						pirateShip.setHealth(pirateShip.getHealth() - damage + resisted);
+					}
+				}				
+			}
+			if (pirateShip.getHealth() <= 0){
+				break;
+			}
+			// Pirate Turn
+			for (Item item : pirateShip.getWeapons()) {
+				Weapon weapon = (Weapon) item; 
+				for (int i = 0; i < weapon.shots(); i++) {
+					int damage = randomGenerator.nextInt(weapon.damage());
+					totalDamage += damage;
+					if (damage > 0) {
+						int resisted = randomGenerator.nextInt(playerShip.getEndurance());
+						resisted = Math.min(resisted, damage);
+						playerShip.setHealth(playerShip.getHealth() - damage + resisted);
+					}
+				}				
+			}
+		}
+		return totalDamage;
+	}
+	
+	public int weatherEvent() {
+		Random randomGenerator = new Random();
+		// Deal random damage between a range
+		int damage = randomGenerator.nextInt(MAX_WEATHER_DAMAGE - MIN_WEATHER_DAMAGE) + MIN_WEATHER_DAMAGE;
+		ship.setHealth(ship.getHealth() - damage);
+		return damage;
+	}
+	
+	public int sailorEvent() {
+		Random randomGenerator = new Random();
+		// Give monetary reward between a range
+		int reward = randomGenerator.nextInt(MAX_REWARD - MIN_REWARD) + MIN_REWARD;
+		setGold(gold + reward);
+		return reward;
 	}
 }

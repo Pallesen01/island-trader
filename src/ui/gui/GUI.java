@@ -83,20 +83,23 @@ public class GUI implements GameUI {
 
 	public void pirateEncounter(Route route) {
 		screen.quit();
-		screen = new RandomEventScreen(game, route, RandomEvent.PIRATES);
+		int damage = game.pirateEvent();
+		screen = new RandomEventScreen(game, route, damage, RandomEvent.PIRATES);
 		screen.show();
 	}
 
 	public void weatherEncounter(Route route) {
 		screen.quit();
-		screen = new RandomEventScreen(game, route, RandomEvent.WEATHER);
+		int damage = game.weatherEvent();
+		screen = new RandomEventScreen(game, route, damage, RandomEvent.WEATHER);
 		screen.show();
 
 	}
 
-	public void sailorsEncounter(Route route) {
+	public void sailorEncounter(Route route) {
 		screen.quit();
-		screen = new RandomEventScreen(game, route, RandomEvent.SAILORS);
+		int reward = game.sailorEvent();
+		screen = new RandomEventScreen(game, route, reward, RandomEvent.SAILORS);
 		screen.show();
 	}
 
