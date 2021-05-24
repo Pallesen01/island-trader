@@ -17,7 +17,7 @@ public class Store {
 	private ArrayList<Item> sells = new ArrayList<>();
 	
 	/**
-	 * Constructs hash maps of item and price pairs for each item the store buys and sells.
+	 * Constructs an array list of items sold by the store and items bought by the store
 	 */
 	public Store() {
 		this.generateBuys();
@@ -94,6 +94,15 @@ public class Store {
 			int price = randomizePrice(newItem);
 			newItem.setPrice(price);
 			newSells.add(newItem);
+		}
+		for (Item item1 : newSells) {
+			for (Item item2: this.buys) {
+				if (item1.getName().equals(item2.getName())){
+					if (item2.getPrice() < item1.getPrice()) {
+						item1.setPrice(item2.getPrice());
+					}
+				}
+			}
 		}
 		sells = newSells;
 		

@@ -85,7 +85,7 @@ public class DisplayIslandInfoScreen extends Screen{
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Items Sold");
+		JLabel lblNewLabel_1_1 = new JLabel("Items available for purchase");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
@@ -95,7 +95,7 @@ public class DisplayIslandInfoScreen extends Screen{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Items Bought");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Items available to sell");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		

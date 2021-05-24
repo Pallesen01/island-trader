@@ -103,7 +103,7 @@ public class StoreScreen extends Screen {
 		
 		JScrollPane buyScrollPane = new JScrollPane();
 		
-		JLabel buyLbl = new JLabel("Item's available for purchase:");
+		JLabel buyLbl = new JLabel("Items available for purchase:");
 		buyLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JLabel sellLbl = new JLabel("Items available to sell:");
