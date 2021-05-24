@@ -87,6 +87,7 @@ public class MenuScreen extends Screen{
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBorderPainted(false);
 		progressBar.setPreferredSize(new Dimension(10, 11));
 		progressBar.setMaximumSize(new Dimension(10, 11));
 		progressBar.setMaximum(getGame().getStartDays());

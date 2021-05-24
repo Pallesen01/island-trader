@@ -23,6 +23,9 @@ import javax.swing.JTable;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import java.awt.Component;
+import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
 
 public class ShipInfoScreen extends Screen {
 
@@ -114,7 +117,20 @@ public class ShipInfoScreen extends Screen {
 		lblEndurance.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setForeground(new Color(128, 0, 0));		
+		progressBar.setBorderPainted(false);
+		progressBar.setBorder(UIManager.getBorder("ProgressBar.border"));
+		progressBar.setForeground(new Color(0, 128, 0));
+		progressBar.setBackground(UIManager.getColor("Button.background"));
+		if (ship.getHealth() < ship.getMaxHealth()/4) {
+			progressBar.setForeground(new Color(128, 0, 0)); // Red
+		}
+		else if (ship.getHealth() < ship.getMaxHealth()/2) {
+			progressBar.setForeground(new Color(255, 140, 0)); // Orange
+		}
+		else {
+			progressBar.setForeground(new Color(0, 210, 0)); // Green
+		}
+		
 		progressBar.setMaximum(ship.getMaxHealth());
 		progressBar.setValue(ship.getHealth());
 		
