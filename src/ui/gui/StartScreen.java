@@ -125,7 +125,7 @@ public class StartScreen extends Screen {
 		Object shipsTable[][] = new Object[ships.size()][];
 		int i = 0;
 		for (Ship ship : ships) {
-			Object shipRow[] = {ship.getName(), ship.getCrew(), ship.getSpace(), ship.getHealth(), ship.getSpeed(), ship.getEndurance()};
+			Object shipRow[] = {ship.getName(), ship.getCrew(), ship.getMaxSpace(), ship.getMaxHealth(), ship.getSpeed(), ship.getEndurance()};
 			shipsTable[i] = shipRow;
 			i++;
 		}

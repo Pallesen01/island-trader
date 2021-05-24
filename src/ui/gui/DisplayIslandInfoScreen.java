@@ -102,7 +102,7 @@ public class DisplayIslandInfoScreen extends Screen{
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
@@ -116,28 +116,28 @@ public class DisplayIslandInfoScreen extends Screen{
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
+					.addComponent(tableScrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+					.addGap(20))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(20, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(tableScrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(20, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-					.addGap(20))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(20, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -149,15 +149,15 @@ public class DisplayIslandInfoScreen extends Screen{
 					.addComponent(tableScrollPane, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(lblNewLabel_2)
-					.addGap(34)
-					.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnMenu, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
@@ -165,14 +165,14 @@ public class DisplayIslandInfoScreen extends Screen{
 		);
 		
 		String[] columns = {"Name", "Price", "Size", "Description"};
-		Object[][] data = makeItemTable(island.getStore().getBuys());
+		Object[][] data = makeItemTable(island.getStore().getSells());
 		tableBought = new JTable(data, columns);
 		tableBought.setFillsViewportHeight(true);
 		tableBought.setShowGrid(false);
 		tableBought.setEnabled(false);
 		scrollPane_1.setViewportView(tableBought);
 		
-		data = makeItemTable(island.getStore().getSells());
+		data = makeItemTable(island.getStore().getBuys());
 		tableSold = new JTable(data, columns);
 		tableSold.setFillsViewportHeight(true);
 		tableSold.setShowGrid(false);
