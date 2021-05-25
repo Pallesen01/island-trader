@@ -8,20 +8,45 @@ import java.util.ArrayList;
  */
 public class Ship {
 	
+	/**
+	 * Minimum health the ship can have.
+	 */
 	private final int MIN_HEALTH = 0;
+	
+	/**
+	 * Modifies the cost to repair the ship.
+	 */
 	private final double REPAIR_MODIFIER = 0.5;
 	
+	// Name of the ship
 	private String name;
+	
+	// Number of crew members the ship has
 	private int crew;
-	private int space;
+	
+	// Space left in the ship's cargo
+	private int spaceLeft;
+	
+	// Maximum amount of space in the ship's cargo
 	private int maxSpace;
+	
+	// Ship's current health
 	private int health;
+	
+	// Maximum health the ship can have
 	private int maxHealth;
+	
+	// Speed of the ship
 	private int speed;
+	
+	// Endurance of the ship (affects how much damage it takes in a pirate battle)
 	private int endurance;
-	private ArrayList<Item> cargo = new ArrayList<Item>();
-	private ArrayList<Item> weapons = new ArrayList<Item>();
-	private String title; // name given by player
+	
+	// All the items in the ship's cargo
+	private ArrayList<Item> cargo;
+	
+	// All the weapons in the ship's cargo
+	private ArrayList<Item> weapons;
 	
 	/**
 	 * Creates a ship at full health with the given parameter values.
@@ -30,17 +55,21 @@ public class Ship {
 	 * @param space amount of space the ship has for cargo
 	 * @param health amount of health the ship has
 	 * @param speed ship's speed
+	 * @param endurance ship's endurance
 	 */
 	public Ship(String name, int crew, int space, int health, int speed, int endurance) {
 		this.name = name;
 		this.crew = crew;
-		this.space = space;
+		this.spaceLeft = space;
 		this.maxSpace = space;
 		this.health = health;
 		this.maxHealth = health;
 		this.speed = speed;
 		this.endurance = endurance;
-		this.addCargo(ObjectsListGenerator.generateWeapon().get(0)); // Add basic cannon to ship
+		
+		cargo = new ArrayList<Item>();
+		weapons = new ArrayList<Item>();
+		addCargo(ObjectsListGenerator.generateWeapon().get(0)); // Add basic cannon to ship
 	}
 	
 	/**
@@ -50,7 +79,7 @@ public class Ship {
 	public String toString() {
 		String string = name + ":";
 		string += "\n\tCrew Members: " + crew;
-		string += "\n\tCargo Space: " + space;
+		string += "\n\tCargo Space: " + spaceLeft;
 		string += "\n\tMax Health: " + maxHealth;
 		string += "\n\tSpeed: " + speed;
 		string += "\n\tEndurance: " + endurance;
@@ -73,24 +102,8 @@ public class Ship {
 		this.name = name;
 	}
 	
-	/** 
-	 * Returns the ship's title. 
-	 * @return ship's title
-	 */
-	public String getTitle() {
-		return title;
-	}
-	
-	/** 
-	 * Sets the ship's title.
-	 * @param name new title for the ship
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
 	/**
-	 * Returns the number of crew members.
+	 * Returns the number of crew members on the ship.
 	 * @return number of crew members
 	 */
 	public int getCrew() {
@@ -98,7 +111,7 @@ public class Ship {
 	}
 	
 	/**
-	 * Sets the number of crew members.
+	 * Sets the number of crew members on the ship.
 	 * @param crew new number of crew members
 	 */
 	public void setCrew(int crew) {
@@ -109,8 +122,8 @@ public class Ship {
 	 * Returns the amount of free space on the ship.
 	 * @return amount of space
 	 */
-	public int getSpace() {
-		return space;
+	public int getSpaceLeft() {
+		return spaceLeft;
 	}
 	
 	/**
@@ -130,7 +143,7 @@ public class Ship {
 	}
 	
 	/**
-	 * Sets the ship's health value and constrains it between a minimum and maximum value.
+	 * Sets the ship's health value and constrains it between the ship's minimum and maximum health values.
 	 * @param health new health value for the ship
 	 */
 	public void setHealth(int health) {
@@ -139,7 +152,7 @@ public class Ship {
 	
 	/**
 	 * Returns the ship's maximum health.
-	 * @return ship's maxhealth
+	 * @return ship's max health
 	 */
 	public int getMaxHealth() {
 		return maxHealth;
@@ -211,7 +224,7 @@ public class Ship {
 	 * Prints the items in the ship's cargo.
 	 */
 	public void printCargo() {
-		System.out.println(title + "'s cargo:");
+		System.out.println(name + "'s cargo:");
 		if (cargo.size() == 0) {
 			System.out.println("\tEmpty");
 		}
@@ -222,53 +235,52 @@ public class Ship {
 	}
 	
 	/**
-	 * Adds an item to the ship's cargo if there is enough space.
+	 * Adds an item to the ship's cargo if there is enough space. Also adds to weapons if it's a weapon
+	 * Returns true if item successfully added, otherwise false.
 	 * @param item item to be added
 	 * @return true if successful, otherwise false
 	 */
 	public boolean addCargo(Item item) {
 		boolean added = false;
-		if (space > item.getSize()) {
+		if (spaceLeft > item.getSize()) {
 			cargo.add(item);
 			if (item.isWeapon()) {
 				weapons.add(item);
 			}
-			space -= item.getSize();
+			spaceLeft -= item.getSize();
 			added = true;
 		}
 		return added;
 	}
 	
 	/**
-	 * Removes an item from the ship's cargo if the ship's cargo contains the item.
+	 * Removes an item from the ship's cargo if the ship's cargo contains the item. Also removes from weapons if it's a weapon
+	 * Returns true if item successfully removed, otherwise false.
 	 * @param item item to be removed
 	 * @return true if successful, otherwise false
 	 */
 	public boolean removeCargo(Item item) {
 		boolean removed = false;
 		for (Item cargoItem : cargo) {
+			// Check if the item's name is equal to the one in cargo since they could be different objects
 			if (cargoItem.getName().equals(item.getName())) {
 				cargo.remove(cargoItem);
 				if (cargoItem.isWeapon()){
 					weapons.remove(cargoItem);
 				}
-				space += item.getSize();
+				spaceLeft += item.getSize();
 				removed = true;
-				break;
+				break; // stop checking items if removed
 			}
 		}
 		return removed;
 	}
 	
 	/**
-	 * Empties player's cargo
+	 * Empties player's cargo.
 	 */
 	public void emptyCargo() {
 		cargo =  new ArrayList<Item>();
 		weapons = new ArrayList<Item>();
-	}
-	
-	public void printUpgrades() {
-		// TODO implement
 	}
 }
