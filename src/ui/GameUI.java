@@ -89,4 +89,6 @@ public interface GameUI {
 	
 	
 	void sailorEncounter(Route route);
+	
+	void endGame(String reason);
 }

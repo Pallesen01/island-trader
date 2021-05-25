@@ -19,6 +19,7 @@ public class GameEnvironment {
 	private final int MIN_WEATHER_DAMAGE = 10;
 	private final int MAX_WEATHER_DAMAGE = 40;
 	private final int PIRATE_CARGO_THRESHOLD = 50;
+	private final double CARGO_VALUE_MODIFIER = 0.7;
 
 	// Ships available in the game
 	private ArrayList<Ship> ships;
@@ -153,10 +154,10 @@ public class GameEnvironment {
 	}
 	
 	/** 
-	 * Sets the remaining number of days left to 0, thus ending the game.
+	 * Ends the game
 	 */
-	public void endGame() {
-		daysLeft = 0;
+	public void endGame(String reason) {
+		ui.endGame(reason);
 	}
 	
 	/**
@@ -326,6 +327,12 @@ public class GameEnvironment {
 		}
 	}
 	
+	public double getTravelCost(Route route) {
+		int daysTaken = route.getDays(ship.getSpeed());
+		return daysTaken * ship.getCrew() * WAGE_MODIFIER;
+		
+	}
+	
 	/**
 	 * Empties the player's cargo and returns true if they are satisfied with the loot, otherwise false.
 	 * @return true if pirate's are satisfied, otherwise false.
@@ -403,5 +410,12 @@ public class GameEnvironment {
 		int reward = randomGenerator.nextInt(MAX_SAILOR_REWARD - MIN_SAILOR_REWARD) + MIN_SAILOR_REWARD;
 		setGold(gold + reward);
 		return reward;
+	}
+	/**
+	 * Calculates the players score based on final gold, current goods and ship health.
+	 * @return score
+	 */
+	public int calcScore() {
+		return (int) (this.gold + Math.round(ship.getCargoValue()*CARGO_VALUE_MODIFIER) - ship.getRepairCost());
 	}
 }

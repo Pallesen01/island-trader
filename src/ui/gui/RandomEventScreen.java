@@ -58,12 +58,12 @@ public class RandomEventScreen extends Screen {
 					if (!getGame().pirateLossOutcome()) {
 						getGame().loseGold();
 						messageTextPane.setText(GameUI.PIRATE_UNSATISFIED);
-						getGame().endGame();
+						getGame().endGame("Killed by Pirates");
 					}
 					else {
 						messageTextPane.setText(GameUI.PIRATE_SATISFIED);
 					}
-					getGame().endGame();
+					// getGame().endGame("Killed by Pirates"); Not needed?
 				}
 				break;
 			case WEATHER: 

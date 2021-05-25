@@ -24,7 +24,7 @@ public abstract class Screen {
             @Override
             public void windowClosing(WindowEvent e) {
             	System.out.println("HIIIIIII DANIIIIEEEEELLLLL!!");
-                game.endGame();
+                game.endGame("Game Closed");
             }
         });
         //frame.pack();

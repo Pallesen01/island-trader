@@ -312,7 +312,7 @@ public class TextUI implements GameUI{
 			if (!game.pirateLossOutcome()) {
 				game.loseGold();
 				System.out.println(PIRATE_UNSATISFIED);
-				game.endGame();
+				game.endGame("Killed by Pirates");
 			}
 			else {
 				System.out.println(PIRATE_SATISFIED);
@@ -331,7 +331,7 @@ public class TextUI implements GameUI{
 			System.out.println("Your ship has been destroyed in the storm.");
 			playerShip.emptyCargo();
 			game.loseGold();
-			game.endGame();
+			game.endGame("Killed in Storm");
 		}
 		
 	}
@@ -345,6 +345,12 @@ public class TextUI implements GameUI{
 
 	@Override
 	public void displayIslandInfo(Island island) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void endGame(String reason) {
 		// TODO Auto-generated method stub
 		
 	}

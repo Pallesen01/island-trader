@@ -192,7 +192,13 @@ public class Ship {
 	public ArrayList<Item> getCargo() {
 		return cargo;
 	}
-	
+	public int getCargoValue() {
+		int cargoValue = 0;
+		for (Item item: this.getCargo()) {
+			cargoValue += item.getBasePrice();
+		}
+		return cargoValue;
+	}
 	/**
 	 * Returns an ArrayList of the ship's weapons.
 	 * @return ArrayList of ship's weapons
@@ -259,6 +265,7 @@ public class Ship {
 	 */
 	public void emptyCargo() {
 		cargo =  new ArrayList<Item>();
+		weapons = new ArrayList<Item>();
 	}
 	
 	public void printUpgrades() {
