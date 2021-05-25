@@ -40,7 +40,7 @@ public class MenuScreen extends Screen{
 		frame.setBounds(100, 100, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel daysLbl = new JLabel(getGame().getDays() + " Days Remaining");
+		JLabel daysLbl = new JLabel(getGame().getDaysLeft() + " Days Remaining");
 		daysLbl.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JLabel goldLbl = new JLabel("Gold: " + getGame().getGold());
@@ -89,8 +89,8 @@ public class MenuScreen extends Screen{
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setPreferredSize(new Dimension(10, 11));
 		progressBar.setMaximumSize(new Dimension(10, 11));
-		progressBar.setMaximum(getGame().getStartDays());
-		progressBar.setValue(getGame().getDays());
+		progressBar.setMaximum(getGame().getTotalDays());
+		progressBar.setValue(getGame().getDaysLeft());
 		
 		JLabel islandLbl = new JLabel("Current Island: " + getGame().getIsland().getName());
 		islandLbl.setFont(new Font("Tahoma", Font.BOLD, 15));

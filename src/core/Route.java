@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class Route {
 
-	private Random randomGenerator = new Random();
+	private Random randomGenerator;
 	private Island island1;
 	private Island island2;
 	private int days;
@@ -32,6 +32,7 @@ public class Route {
 		this.pirateDanger = pirateDanger;
 		this.weatherDanger = weatherDanger;
 		this.sailorsOdds = sailorsOdds;
+		randomGenerator = new Random();
 	}
 	
 	/**

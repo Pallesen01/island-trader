@@ -48,7 +48,7 @@ public class TextUI implements GameUI{
 	public void menu() {
 		final MenuOption options[] = MenuOption.values();
 		
-		while (game.getDays() > 0) {
+		while (game.getDaysLeft() > 0) {
 			printGameState();
 			printMenuOptions();
 			int choice = getValidInt(1, options.length, "\nSelect Action to Perform:", INT_ERROR);
@@ -214,7 +214,7 @@ public class TextUI implements GameUI{
 	}
 	
 	private void printGameState() {
-		System.out.println("\n" + game.getDays()+" Days Remaining");
+		System.out.println("\n" + game.getDaysLeft()+" Days Remaining");
 		System.out.println("Current Island: " + game.getIsland().getName());
 	}
 	

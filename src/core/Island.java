@@ -8,8 +8,13 @@ import java.util.ArrayList;
  */
 public class Island {
 	
+	// Name of the island
 	private String name;
+	
+	// Island's store
 	private Store store;
+	
+	// Routes from the island to others
 	private ArrayList<Route> routes;
 	
 	/**

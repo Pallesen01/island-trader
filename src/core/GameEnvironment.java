@@ -20,20 +20,39 @@ public class GameEnvironment {
 	private final int MAX_WEATHER_DAMAGE = 40;
 	private final int PIRATE_CARGO_THRESHOLD = 50;
 
-	
+	// Ships available in the game
 	private ArrayList<Ship> ships;
-	private ArrayList<Item> items;
-	private ArrayList<Item> weapons;
+	
+	// Islands in the game
 	private ArrayList<Island> islands;
-	private ArrayList<Route> routes;
+	
+	// All goods purchased by the player during the game
 	private ArrayList<Item> goods;
 	
+	// TODO Unused so perhaps delete?
+	private ArrayList<Item> items;
+	private ArrayList<Item> weapons;
+	private ArrayList<Route> routes;
+	
+	// User interface used by the game
 	private GameUI ui;
+	
+	// Current island the player is on
 	private Island island;
+	
+	// Amount of gold the player currently has
 	private int gold;
+	
+	// Player's name
 	private String name;
-	private int days;
-	private int startDays;
+	
+	// Days left in the game
+	private int daysLeft;
+	
+	// Total number of days the game will take place over
+	private int totalDays;
+	
+	// Player's ship
 	private Ship ship;
 	
 	/**
@@ -71,8 +90,8 @@ public class GameEnvironment {
 	 */
 	public void finishSetup(String name, int days, Ship ship) {
 		this.name = name;
-		this.startDays = days;
-		this.days = days;
+		this.totalDays = days;
+		this.daysLeft = days;
 		this.ship = ship;
 		ui.menu();
 	}
@@ -121,23 +140,23 @@ public class GameEnvironment {
 	 * Returns the number of days left.
 	 * @return number of days left
 	 */
-	public int getDays() {
-		return days;
+	public int getDaysLeft() {
+		return daysLeft;
 	}
 	
 	/** 
-	 * Returns the number of days started with.
-	 * @return number of days started with
+	 * Returns the total number days for the whole game.
+	 * @return total number of days
 	 */
-	public int getStartDays() {
-		return startDays;
+	public int getTotalDays() {
+		return totalDays;
 	}
 	
 	/** 
 	 * Sets the remaining number of days left to 0, thus ending the game.
 	 */
 	public void endGame() {
-		days = 0;
+		daysLeft = 0;
 	}
 	
 	/**
@@ -270,7 +289,7 @@ public class GameEnvironment {
 	public boolean isTimeForRoute(Route route) {
 		boolean isTime = false;
 		int daysTaken = route.getDays(ship.getSpeed());
-		if (days >= daysTaken) {
+		if (daysLeft >= daysTaken) {
 			isTime = true;
 		}
 		return isTime;
@@ -295,7 +314,7 @@ public class GameEnvironment {
 			}
 		}
 		int daysTaken = route.getDays(ship.getSpeed());
-		this.days -= daysTaken;
+		this.daysLeft -= daysTaken;
 		this.gold -= daysTaken * ship.getCrew() * WAGE_MODIFIER; // Charges crew wages
 		
 		Island[] islands = route.getIslands();	
