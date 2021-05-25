@@ -56,6 +56,9 @@ public class GameEnvironment {
 	// Player's ship
 	private Ship ship;
 	
+	// Boolean to check if game is over
+	private boolean gameOver = false;
+	
 	/**
 	 * Instantiates the game with the given user interface, starting island, and starting gold amount.
 	 * @param ui user interface the game will use
@@ -417,5 +420,20 @@ public class GameEnvironment {
 	 */
 	public int calcScore() {
 		return (int) (this.gold + Math.round(ship.getCargoValue()*CARGO_VALUE_MODIFIER) - ship.getRepairCost());
+	}
+	
+	/**
+	 * Returns true is the game is over
+	 * @return gameOver
+	 */
+	public boolean isGameOver() {
+		return this.gameOver;
+	}
+	
+	/**
+	 * Sets the game over variable to true
+	 */
+	public void setGameOver() {
+		this.gameOver = true;
 	}
 }

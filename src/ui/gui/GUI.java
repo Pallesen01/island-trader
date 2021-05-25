@@ -27,26 +27,29 @@ public class GUI implements GameUI {
 
 	@Override
 	public void menu() {
-		screen.quit();
-		// Check that it is possible to travel at least one route
-		ArrayList<Route> routes = game.getIsland().getRoutes();
-		int goldAfterRepair = game.getGold() - game.getShip().getRepairCost();
-		boolean canTravel = false;
-		for (Route route: routes) {
-			int days = route.getDays(game.getShip().getSpeed());
-			if (days <= game.getDaysLeft() && game.getTravelCost(route) <= goldAfterRepair ) {
-				canTravel = true;
-				break;
+		if (!game.isGameOver()) {
+			screen.quit();
+			// Check that it is possible to travel at least one route
+			ArrayList<Route> routes = game.getIsland().getRoutes();
+			int goldAfterRepair = game.getGold() - game.getShip().getRepairCost();
+			boolean canTravel = false;
+			for (Route route: routes) {
+				int days = route.getDays(game.getShip().getSpeed());
+				if (days <= game.getDaysLeft() && game.getTravelCost(route) <= goldAfterRepair ) {
+					canTravel = true;
+					break;
+				}
 			}
-		}
-		if (canTravel) {
-		screen = new MenuScreen(game);
-		screen.show();
-		}
-		else {
-			endGame("No More Routes Can Be Travelled");
-		}
+			if (canTravel) {
+			screen = new MenuScreen(game);
+			screen.show();
+			}
+			else {
+				endGame("No More Routes Can Be Travelled");
+			}
+			}
 	}
+	
 
 	@Override
 	public void shipInfo() {
@@ -123,6 +126,7 @@ public class GUI implements GameUI {
 
 	@Override
 	public void endGame(String reason) {
+		game.setGameOver();
 		screen.quit();
 		screen = new endGameScreen(game, reason);
 		screen.show();
