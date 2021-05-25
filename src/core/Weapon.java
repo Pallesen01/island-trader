@@ -13,7 +13,7 @@ public class Weapon extends Item {
 	private int damage;
 
 	/**
-	 * Creates a weapon with the given parameters.
+	 * Creates a weapon with the given parameters values.
 	 * @param name weapon's name
 	 * @param desc weapon's description
 	 * @param size weapon's size

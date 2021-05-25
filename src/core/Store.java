@@ -8,6 +8,7 @@ import java.util.Random;
  * @version 25 May 2021
  */
 public class Store {
+	
 	/**
 	 * Modifier that's applied to the maximum and minimum price of an item by multiplication.
 	 */

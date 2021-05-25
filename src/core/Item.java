@@ -1,19 +1,34 @@
 package core;
 
 /**
- * This class models a game-like item with a name, description, and size.
+ * This class models a game-like item with a name, description, size, price. It also stores how where it's been sold and for how much.
  * @author Dillon Pike, Daniel Pallesen
  * @version 21 April 2021
  */
 public class Item {
 	
+	// Name of the item
 	private String name;
+	
+	// Item's description
 	private String desc;
+	
+	// Size of the item
 	private int size;
+	
+	// Base price of the item (used by to store to determine a price)
 	private int basePrice;
+	
+	// Price the item is being bought or sold for
 	private int price;
+	
+	// Whether or not the item is a weapon
 	private boolean isWeapon;
+	
+	// Where the item has been sold
 	private String soldAt;
+	
+	// How much the item was sold for
 	private int soldFor;
 	
 	/**
@@ -31,6 +46,8 @@ public class Item {
 		this.basePrice = basePrice;
 		this.price = basePrice;
 		this.isWeapon = isWeapon;
+		
+		// Set to null values until they've been sold
 		this.soldAt = null;
 		this.soldFor = -1;
 	}
@@ -61,7 +78,7 @@ public class Item {
 	
 	/**
 	 * Returns the item's base price.
-	 * @return item's basePrice
+	 * @return item's base price
 	 */
 	public int getBasePrice() {
 		return basePrice;
@@ -77,10 +94,10 @@ public class Item {
 	
 	/**
 	 * Sets a new price for the item.
-	 * @param newPrice for the item
+	 * @param new price for the item
 	 */
-	public void setPrice(int newPrice) {
-		this.price = newPrice;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	/**
