@@ -23,9 +23,7 @@ public class DisplayIslandInfoScreen extends Screen{
 	
 	private JFrame frame;
 	private Island island;
-	private JTable tableRoutes;
-	private JTable tableSold;
-	private JTable tableBought;
+	
 	/**
 	 * Create the application.
 	 */
@@ -39,19 +37,41 @@ public class DisplayIslandInfoScreen extends Screen{
 	}
 	
 	/**
-	 * Returns 2D array from items where each row has a name, price, size, and description.
+	 * Returns 2D array of items where each row has a name, price, size, and description.
 	 * @param items an ArrayList of items
 	 * @return 2D array of item info
 	 */
-	private Object[][] makeItemTable(ArrayList<Item> items) {
-		Object itemTable[][] = new Object[items.size()][];
+	private Object[][] makeItemArray(ArrayList<Item> items) {
+		Object itemArray[][] = new Object[items.size()][];
 		int i = 0;
 		for (Item item : items) {
 			Object itemRow[] = {item.getName(), item.getPrice(), item.getSize(), item.getDesc()};
-			itemTable[i] = itemRow;
+			itemArray[i] = itemRow;
 			i++;
 		}
-		return itemTable;
+		return itemArray;
+	}
+	
+	/**
+	 * Returns 2D array of routes where each row has the island it travels to, days the route takes, and random event chance.
+	 * @param routes an ArrayList of routes
+	 * @return 2D array of route info
+	 */
+	private Object[][] makeRouteArray(ArrayList<Route> routes) {
+		Object routeArray[][] = new Object[routes.size()][];
+		int i = 0;
+		String islandName;
+		for (Route route : routes) {
+			if (route.getIslands()[0].getName() == island.getName()) {
+				islandName = route.getIslands()[1].getName();
+			} else {
+				islandName = route.getIslands()[0].getName();
+			}
+			Object routeInfo[] = {islandName,route.getDays(getGame().getShip().getSpeed()),route.getPirateDanger(),route.getWeatherDanger(),route.getSailorsOdds()};
+			routeArray[i] = routeInfo;
+			i++;
+		}
+		return routeArray;
 	}
 
 	@Override
@@ -63,9 +83,9 @@ public class DisplayIslandInfoScreen extends Screen{
 		frame.setBounds(100, 100, 620, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblNewLabel = new JLabel("Island Info - " + island.getName());
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel titleLbl = new JLabel("Island Info - " + island.getName());
+		titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLbl.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JButton backBtn = new JButton("Back");
 		backBtn.addActionListener(e -> getGame().getUI().islandInfo());
@@ -73,133 +93,120 @@ public class DisplayIslandInfoScreen extends Screen{
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
 		
-		JButton btnMenu = new JButton("Menu");
-		btnMenu.addActionListener(e -> getGame().getUI().menu());
-		btnMenu.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnMenu.setFocusable(false);
-		btnMenu.setBackground(Color.LIGHT_GRAY);
+		JButton menuBtn = new JButton("Menu");
+		menuBtn.addActionListener(e -> getGame().getUI().menu());
+		menuBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		menuBtn.setFocusable(false);
+		menuBtn.setBackground(Color.LIGHT_GRAY);
 		
-		JScrollPane tableScrollPane = new JScrollPane();
+		JScrollPane routeScrollPane = new JScrollPane();
 		
-		JLabel lblNewLabel_1 = new JLabel("Routes");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel routeLbl = new JLabel("Routes");
+		routeLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
+		routeLbl.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Items available for purchase");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JLabel buyLbl = new JLabel("Items available for purchase");
+		buyLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		buyLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		JLabel lblNewLabel_2 = new JLabel(island.getName() + " Store");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel storeLbl = new JLabel(island.getName() + " Store");
+		storeLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		storeLbl.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane buyScrollPane = new JScrollPane();
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Items available to sell");
-		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JLabel sellLbl = new JLabel("Items available to sell");
+		sellLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		sellLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		JScrollPane sellScrollPane = new JScrollPane();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+				.addComponent(titleLbl, GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
-					.addComponent(btnMenu, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+					.addComponent(menuBtn, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+					.addComponent(storeLbl, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(tableScrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+					.addComponent(routeScrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+					.addComponent(routeLbl, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
 					.addGap(20))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
+					.addComponent(buyLbl, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(20, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+					.addComponent(sellScrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
+					.addComponent(sellLbl, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(20, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+					.addComponent(buyScrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lblNewLabel)
+					.addComponent(titleLbl)
 					.addGap(16)
-					.addComponent(lblNewLabel_1)
+					.addComponent(routeLbl)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tableScrollPane, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addComponent(routeScrollPane, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(lblNewLabel_2)
+					.addComponent(storeLbl)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+					.addComponent(buyLbl, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+					.addComponent(buyScrollPane, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
 					.addGap(18)
-					.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+					.addComponent(sellLbl, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+					.addComponent(sellScrollPane, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
 					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnMenu, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addComponent(menuBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		
-		String[] columns = {"Name", "Price", "Size", "Description"};
-		Object[][] data = makeItemTable(island.getStore().getSells());
-		tableBought = new JTable(data, columns);
-		tableBought.setFillsViewportHeight(true);
-		tableBought.setShowGrid(false);
-		tableBought.setEnabled(false);
-		scrollPane_1.setViewportView(tableBought);
+		String[] itemColumnText = {"Name", "Price", "Size", "Description"};
+		Object[][] sellArray = makeItemArray(island.getStore().getSells());
+		JTable sellTable = new JTable(sellArray, itemColumnText);
+		sellTable.setFillsViewportHeight(true);
+		sellTable.setShowGrid(false);
+		sellTable.setEnabled(false);
+		sellScrollPane.setViewportView(sellTable);
 		
-		data = makeItemTable(island.getStore().getBuys());
-		tableSold = new JTable(data, columns);
-		tableSold.setFillsViewportHeight(true);
-		tableSold.setShowGrid(false);
-		tableSold.setEnabled(false);
-		scrollPane.setViewportView(tableSold);
-		
-		ArrayList<Route> routes = island.getRoutes();
-		String[] columnNames = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
-		Object routesInfo[][] = new Object[routes.size()][];
-		int i = 0;
-		String islandName;
-		for (Route route : routes) {
-			if (route.getIslands()[0].getName() == island.getName()) {
-				islandName = route.getIslands()[1].getName();
-			} else {
-				islandName = route.getIslands()[0].getName();
-			}
-			Object routeInfo[] = {islandName,route.getDays(getGame().getShip().getSpeed()),route.getPirateDanger(),route.getWeatherDanger(),route.getSailorsOdds()};
-			routesInfo[i] = routeInfo;
-			i++;
-		}
-		tableRoutes = new JTable(routesInfo, columnNames);
-		tableRoutes.setFillsViewportHeight(true);
-		tableRoutes.setShowGrid(false);
-		tableRoutes.setEnabled(false);
-		tableRoutes.setRowSelectionAllowed(false);
-		tableScrollPane.setViewportView(tableRoutes);
+		Object[][] buyArray = makeItemArray(island.getStore().getBuys());
+		JTable buyTable = new JTable(buyArray, itemColumnText);
+		buyTable.setFillsViewportHeight(true);
+		buyTable.setShowGrid(false);
+		buyTable.setEnabled(false);
+		buyScrollPane.setViewportView(buyTable);
+
+		String[] routeColumnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
+		Object[][] routeArray = makeRouteArray(island.getRoutes());
+		JTable routeTable = new JTable(routeArray, routeColumnText);
+		routeTable.setFillsViewportHeight(true);
+		routeTable.setShowGrid(false);
+		routeTable.setEnabled(false);
+		routeTable.setRowSelectionAllowed(false);
+		routeScrollPane.setViewportView(routeTable);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }

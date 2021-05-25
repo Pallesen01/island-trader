@@ -22,6 +22,8 @@ import javax.swing.ListSelectionModel;
 
 public class TravelScreen extends Screen {
 
+	private final String[] columnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
+	
 	private JFrame frame;
 	private JTable routeTable;
 	private JLabel errorLbl;
@@ -135,7 +137,6 @@ public class TravelScreen extends Screen {
 		routeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		ArrayList<Route> routes = getGame().getIsland().getRoutes();
-		String[] columnNames = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
 		Object routesTable[][] = new Object[routes.size()][];
 		int i = 0;
 		String islandName;
@@ -149,7 +150,7 @@ public class TravelScreen extends Screen {
 			routesTable[i] = routeRow;
 			i++;
 		}
-		routeTable.setModel(new DefaultTableModel(routesTable, columnNames) {
+		routeTable.setModel(new DefaultTableModel(routesTable, columnText) {
 			private static final long serialVersionUID = -156423262431076534L;
 
 			public boolean isCellEditable(int row, int column) {

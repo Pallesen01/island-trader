@@ -83,6 +83,22 @@ public class StartScreen extends Screen {
 	JFrame getFrame() {
 		return frame;
 	}
+	
+	/**
+	 * Returns 2D array of ships where each row has the ship's name, crew, space, max health, speed, and endurance.
+	 * @param ships an ArrayList of ships
+	 * @return 2D array of ship info
+	 */
+	private Object[][] makeShipArray(ArrayList<Ship> ships) {
+		Object shipArray[][] = new Object[ships.size()][];
+		int i = 0;
+		for (Ship ship : ships) {
+			Object shipRow[] = {ship.getName(), ship.getCrew(), ship.getMaxSpace(), ship.getMaxHealth(), ship.getSpeed(), ship.getEndurance()};
+			shipArray[i] = shipRow;
+			i++;
+		}
+		return shipArray;
+	}
 
 	/**
 	 * Initialise the contents of the frame.
@@ -121,16 +137,9 @@ public class StartScreen extends Screen {
 		tableScrollPane.setViewportView(shipTable);
 		shipTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		ArrayList<Ship> ships = getGame().getShips();
-		Object shipsTable[][] = new Object[ships.size()][];
-		int i = 0;
-		for (Ship ship : ships) {
-			Object shipRow[] = {ship.getName(), ship.getCrew(), ship.getMaxSpace(), ship.getMaxHealth(), ship.getSpeed(), ship.getEndurance()};
-			shipsTable[i] = shipRow;
-			i++;
-		}
-		
-		shipTable.setModel(new DefaultTableModel(shipsTable, new String[] {"Name", "Crew Members", "Cargo Space", "Health", "Speed", "Endurance"}) {
+		String[] columnText = {"Name", "Crew Members", "Cargo Space", "Health", "Speed", "Endurance"};
+		Object[][] shipArray = makeShipArray(getGame().getShips());
+		shipTable.setModel(new DefaultTableModel(shipArray, columnText) {
 			private static final long serialVersionUID = 5594750025154585643L;
 
 			public boolean isCellEditable(int row, int column) {

@@ -35,7 +35,7 @@ public interface GameUI {
 	final String WEATHER_ENCOUNTER = "A storm is brewing!";
 	final String SAILOR_ENCOUNTER = "What's that? There are some sailors in the water!";
 	
-	final String PIRATE_LOSS = "Unfortunately, you were utterly defeated and the pirates also took all of your cargo.\n";
+	final String PIRATE_LOSS = "Unfortunately, you were utterly defeated and the pirates took all of your cargo.\n";
 	final String PIRATE_UNSATISFIED = PIRATE_LOSS + "They were severely disappointed with the loot.\nYou are forced to walk the plank.";
 	final String PIRATE_SATISFIED = PIRATE_LOSS + "On the bright side, they were thrilled with the loot and decided to spare your crew's lives.";
 	

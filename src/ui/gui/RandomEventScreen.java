@@ -61,7 +61,7 @@ public class RandomEventScreen extends Screen {
 						getGame().endGame();
 					}
 					else {
-						System.out.println(GameUI.PIRATE_SATISFIED);
+						messageTextPane.setText(GameUI.PIRATE_SATISFIED);
 					}
 					getGame().endGame();
 				}

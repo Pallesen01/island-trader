@@ -283,7 +283,7 @@ public class GameEnvironment {
 		int shipInt = randomGenerator.nextInt(ships.size());
 		Ship pirateShip = ships.get(shipInt);
 		Ship playerShip = ship;
-		int totalDamage = 0;
+		int initialHealth = playerShip.getHealth();
 		
 		// Player and pirate take turns rolling dice
 		while (playerShip.getHealth() > 0 && pirateShip.getHealth() > 0) {
@@ -307,7 +307,6 @@ public class GameEnvironment {
 				Weapon weapon = (Weapon) item; 
 				for (int i = 0; i < weapon.shots(); i++) {
 					int damage = randomGenerator.nextInt(weapon.damage());
-					totalDamage += damage;
 					if (damage > 0) {
 						int resisted = randomGenerator.nextInt(playerShip.getEndurance());
 						resisted = Math.min(resisted, damage);
@@ -316,7 +315,7 @@ public class GameEnvironment {
 				}				
 			}
 		}
-		return totalDamage;
+		return initialHealth - playerShip.getHealth();
 	}
 	
 	public int weatherEvent() {

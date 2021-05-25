@@ -103,8 +103,16 @@ public class GoodsScreen extends Screen {
 		
 		goodsTable = new JTable();
 		goodsTable.setRowSelectionAllowed(false);
-		goodsTable.setModel(new DefaultTableModel(makeGoodArray(getGame().getGoods()), new String[] {"Name", "Bought for", "Sold for", "Sold at"}
-		));
+		
+		String[] columnText = {"Name", "Bought for", "Sold for", "Sold at"};
+		Object[][] goodArray = makeGoodArray(getGame().getGoods());
+		goodsTable.setModel(new DefaultTableModel(goodArray, columnText) {
+			private static final long serialVersionUID = -156423262431076534L;
+
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		});
 		goodsScrollPane.setViewportView(goodsTable);
 		frame.getContentPane().setLayout(groupLayout);
 	}

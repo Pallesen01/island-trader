@@ -17,15 +17,10 @@ import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.JTable;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import java.awt.Component;
-import javax.swing.border.LineBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.MatteBorder;
 
 public class ShipInfoScreen extends Screen {
 
@@ -55,15 +50,15 @@ public class ShipInfoScreen extends Screen {
 	 * @param items an ArrayList of items
 	 * @return 2D array of item info
 	 */
-	private Object[][] makeItemTable(ArrayList<Item> items) {
-		Object itemTable[][] = new Object[items.size()][];
+	private Object[][] makeItemArray(ArrayList<Item> items) {
+		Object itemArray[][] = new Object[items.size()][];
 		int i = 0;
 		for (Item item : items) {
 			Object itemRow[] = {item.getName(), item.getPrice(), item.getSize(), item.getDesc()};
-			itemTable[i] = itemRow;
+			itemArray[i] = itemRow;
 			i++;
 		}
-		return itemTable;
+		return itemArray;
 	}
 	
 	/**
@@ -71,16 +66,16 @@ public class ShipInfoScreen extends Screen {
 	 * @param items an ArrayList of items
 	 * @return 2D array of item info
 	 */
-	private Object[][] makeWeaponTable(ArrayList<Item> weapons) {
-		Object itemTable[][] = new Object[weapons.size()][];
+	private Object[][] makeWeaponArray(ArrayList<Item> weapons) {
+		Object itemArray[][] = new Object[weapons.size()][];
 		int i = 0;
 		for (Item item : weapons) {
 			Weapon weapon = (Weapon) item;
 			Object itemRow[] = {weapon.getName(), weapon.getPrice(), weapon.getSize(), weapon.shots(), weapon.damage(), weapon.getDesc()};
-			itemTable[i] = itemRow;
+			itemArray[i] = itemRow;
 			i++;
 		}
-		return itemTable;
+		return itemArray;
 	}
 	
 
@@ -214,17 +209,15 @@ public class ShipInfoScreen extends Screen {
 		);
 		
 		
-		String[] columns = {"Name", "Price", "Size", "Shots","Damage", "Description"};
-		Object[][] data = makeWeaponTable(ship.getWeapons());
-		weaponTable = new JTable(data, columns);
+		String[] weaponColumnText = {"Name", "Price", "Size", "Shots","Damage", "Description"};
+		weaponTable = new JTable(makeWeaponArray(ship.getWeapons()), weaponColumnText);
 		weaponTable.setEnabled(false);
 		weaponTable.setFillsViewportHeight(true);
 		weaponTable.setShowGrid(false);
 		scrollPane_1.setViewportView(weaponTable);
 		
-		String[] columnNames = {"Name", "Price", "Size", "Description"};
-		data = makeItemTable(ship.getCargo());
-		cargoTable = new JTable(data, columnNames);
+		String[] cargoColumnText = {"Name", "Price", "Size", "Description"};
+		cargoTable = new JTable(makeItemArray(ship.getCargo()), cargoColumnText);
 		cargoTable.setEnabled(false);
 		cargoTable.setFillsViewportHeight(true);
 		cargoTable.setShowGrid(false);

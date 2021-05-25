@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 
 import core.GameEnvironment;
 import core.Island;
-import core.Ship;
-import ui.GameUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -14,9 +12,6 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;

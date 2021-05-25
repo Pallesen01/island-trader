@@ -22,7 +22,6 @@ import java.awt.Color;
 
 public class StoreScreen extends Screen {
 	
-	private final String[] columnNames = {"Name", "Price", "Size", "Description"};
 	private final String NOT_SELECTED = "You must select an item";
 
 	private JFrame frame;
@@ -182,7 +181,10 @@ public class StoreScreen extends Screen {
 			
 		sellTable = new JTable();
 		sellTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		sellTable.setModel(new DefaultTableModel(makeItemArray(getGame().getStore().getSells()), columnNames) {
+		
+		String[] columnText = {"Name", "Price", "Size", "Description"};
+		Object[][] sellArray = makeItemArray(getGame().getStore().getSells());
+		sellTable.setModel(new DefaultTableModel(sellArray, columnText) {
 			private static final long serialVersionUID = -2398083386409854464L;
 
 			public boolean isCellEditable(int row, int column) {
@@ -194,7 +196,9 @@ public class StoreScreen extends Screen {
 		
 		buyTable = new JTable();
 		buyTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		buyTable.setModel(new DefaultTableModel(makeItemArray(getGame().getStore().getBuys()), columnNames) {
+		
+		Object[][] buyArray = makeItemArray(getGame().getStore().getBuys());
+		buyTable.setModel(new DefaultTableModel(buyArray, columnText) {
 			private static final long serialVersionUID = -2398083386409854464L;
 
 			public boolean isCellEditable(int row, int column) {
