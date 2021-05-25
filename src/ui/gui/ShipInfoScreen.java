@@ -102,7 +102,7 @@ public class ShipInfoScreen extends Screen {
 		JLabel lblHealth = new JLabel("Current Health: " + ship.getHealth() + "/" + ship.getMaxHealth());
 		lblHealth.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
-		JLabel lblCargoSpace = new JLabel("Cargo Space: " + ship.getSpace() + "/" + ship.getMaxSpace());
+		JLabel lblCargoSpace = new JLabel("Cargo Space: " + ship.getSpaceLeft() + "/" + ship.getMaxSpace());
 		lblCargoSpace.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		JLabel lblSpeed = new JLabel("Speed: " + ship.getSpeed());
