@@ -3,26 +3,41 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * This class models a store.
+ * This class models a store with a list of items that can be bought from and sold to the store.
  * @author Dillon Pike, Daniel Pallesen
- * @version 21 April 2021
+ * @version 25 May 2021
  */
 public class Store {
-	
-	final private double BUY_MODIFIER = 0.75;
-	final private double VARIATION_MODIFIER = 0.4;
-	final private int SELL_DIFFERENCE = 5; 
-	
-	private Random randomGenerator = new Random();
-	private ArrayList<Item> buys = new ArrayList<>();
-	private ArrayList<Item> sells = new ArrayList<>();
+	/**
+	 * Modifier that's applied to the maximum and minimum price of an item by multiplication.
+	 */
+	private final double PRICE_MODIFIER = 0.75;
 	
 	/**
-	 * Constructs an array list of items sold by the store and items bought by the store
+	 * Applied to an item's base price to find its maximum and minimum price before modified by PRICE_MODIFIER.
+	 * Increases/decreases an item's base price by the percentage of the modifier.
+	 */
+	private final double VARIATION_MODIFIER = 0.4;
+	
+	/**
+	 * TODO Daniel
+	 */
+	private final int SELL_DIFFERENCE = 5; 
+	
+	private Random randomGenerator;
+	private ArrayList<Item> buys;
+	private ArrayList<Item> sells;
+	
+	/**
+	 * Creates a store with a random number generator and ArrayLists of items that can be bought from and sold to the store,
+	 * then populates the lists with items.
 	 */
 	public Store() {
-		this.generateBuys();
-		this.generateSells();
+		randomGenerator = new Random();
+		buys = new ArrayList<>();
+		sells = new ArrayList<>();
+		generateBuys();
+		generateSells();
 	}
 	
 	/**
@@ -32,29 +47,31 @@ public class Store {
 	 */
 	private int randomizePrice(Item item) {
 		int basePrice = item.getBasePrice();
-		double minPrice = (basePrice + basePrice * VARIATION_MODIFIER) * BUY_MODIFIER;
-		double maxPrice = (basePrice - basePrice * VARIATION_MODIFIER) * BUY_MODIFIER;
+		double minPrice = (basePrice + basePrice * VARIATION_MODIFIER) * PRICE_MODIFIER;
+		double maxPrice = (basePrice - basePrice * VARIATION_MODIFIER) * PRICE_MODIFIER;
 		int price = (int) ((Math.random() * (maxPrice - minPrice)) + minPrice);
 		return price;
 	}
 	
 	/**
-	 * Returns hash map of item and price pairs for each item the store buys.
-	 * @return 
+	 * Returns the items that can be bought from the store.
+	 * @return items that can be bought
 	 */
 	public ArrayList<Item> getBuys() {
 		return buys;
 	}
+	
 	/**
-	 * Returns hash map of item and price pairs for each item the store sells.
-	 * @return 
+	 * Returns the items that can be sold to the store.
+	 * @return items that can be sold
 	 */
 	public ArrayList<Item> getSells() {
 		return sells;
 	}
 	
 	/**
-	 * Generates a random list of items bought by the store
+	 * Generates a random list of items that can be bought from the store.
+	 * TODO give method inside comments
 	 */
 	public void generateBuys() {
 		ArrayList<Item> newBuys = new ArrayList<>();
@@ -74,10 +91,11 @@ public class Store {
 			newBuys.add(newItem);
 		}
 		buys = newBuys;
-		
 	}
+	
 	/**
-	 * Generates a random list of items sold by the store
+	 * Generates a random list of items that can be sold to the store.
+	 * TODO give method inside comments
 	 */
 	public void generateSells() {
 		ArrayList<Item> newSells = new ArrayList<>();
@@ -110,6 +128,5 @@ public class Store {
 			}
 		}
 		sells = newSells;
-		
 	}
 }

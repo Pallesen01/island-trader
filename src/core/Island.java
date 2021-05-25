@@ -2,48 +2,54 @@ package core;
 import java.util.ArrayList;
 
 /**
- * This class models an island.
+ * This class models an island that has a store and a list of routes to other islands.
  * @author Dillon Pike, Daniel Pallesen
- * @version 21 April 2021
+ * @version 25 May 2021
  */
 public class Island {
 	
 	private String name;
 	private Store store;
-	private ArrayList<Route> routes = new ArrayList<Route>();
+	private ArrayList<Route> routes;
 	
+	/**
+	 * Creates an island with the given name, gives it a store, 
+	 * and gives it an empty ArrayList of routes from the island.
+	 * @param name island's name
+	 */
 	public Island(String name) {
 		this.name = name;
 		this.store = new Store();
+		this.routes = new ArrayList<Route>();
 	}
 	
 	/**
-	 * returns the name of the island
-	 * @return island name
+	 * Returns the island's name.
+	 * @return island's name
 	 */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * returns the store on the island
-	 * @return island store
+	 * Returns the island's store.
+	 * @return island's store
 	 */
 	public Store getStore() {
 		return store;
 	}
 	
 	/**
-	 * returns the routes to and from the island
-	 * @return an ArrayList of route objects
+	 * Returns the routes to and from the island.
+	 * @return routes to and from the island.
 	 */
 	public ArrayList<Route> getRoutes() {
 		return routes;
 	}
 	
 	/**
-	 * Adds a route to or from the island
-	 * @param The Route object to be added
+	 * Adds a route from the island to another one.
+	 * @param route to be added.
 	 */
 	public void addRoute(Route route) {
 		routes.add(route);
