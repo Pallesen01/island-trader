@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 public class ObjectsListGenerator {
 
 	/** 
-	 * Returns an ArrayList of in-game items 
+	 * Returns an ArrayList of in-game items.
 	 * @return ArrrayList of Item objects
 	 */
 	public static ArrayList<Item> generateItem() {
@@ -47,7 +47,7 @@ public class ObjectsListGenerator {
 	}
 	
 	/** 
-	 * Returns an ArrayList of in-game weapons 
+	 * Returns an ArrayList of in-game weapons.
 	 * @return ArrrayList of Item objects
 	 */
 	public static ArrayList<Item> generateWeapon() {
@@ -84,7 +84,7 @@ public class ObjectsListGenerator {
 	}
 	
 	/** 
-	 * Returns an ArrayList of in-game ships 
+	 * Returns an ArrayList of in-game ships.
 	 * @return ArrrayList of Ship objects
 	 */
 	public static ArrayList<Ship> generateShip() {
@@ -121,7 +121,7 @@ public class ObjectsListGenerator {
 	}
 	
 	/** 
-	 * Returns an ArrayList of in-game islands
+	 * Returns an ArrayList of in-game islands.
 	 * @return ArrrayList of Island objects
 	 */
 	public static ArrayList<Island> generateIsland() {
@@ -155,7 +155,7 @@ public class ObjectsListGenerator {
 	}
 	
 	/** 
-	 * Returns an ArrayList of in-game routes
+	 * Returns an ArrayList of in-game routes.
 	 * @return ArrrayList of Route objects
 	 */
 	public static ArrayList<Route> generateRoute(ArrayList<Island> Islands) {
