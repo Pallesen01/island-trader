@@ -117,8 +117,6 @@ public class ShipInfoScreen extends Screen {
 		lblEndurance.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBorderPainted(false);
-		progressBar.setBorder(UIManager.getBorder("ProgressBar.border"));
 		progressBar.setForeground(new Color(0, 128, 0));
 		progressBar.setBackground(UIManager.getColor("Button.background"));
 		if (ship.getHealth() < ship.getMaxHealth()/4) {
