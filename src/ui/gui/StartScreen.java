@@ -134,6 +134,7 @@ public class StartScreen extends Screen {
 		JScrollPane tableScrollPane = new JScrollPane();
 		
 		shipTable = new JTable();
+		shipTable.setShowGrid(false);
 		tableScrollPane.setViewportView(shipTable);
 		shipTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		

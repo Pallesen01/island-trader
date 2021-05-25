@@ -134,6 +134,7 @@ public class TravelScreen extends Screen {
 		);
 		
 		routeTable = new JTable();
+		routeTable.setShowGrid(false);
 		routeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		ArrayList<Route> routes = getGame().getIsland().getRoutes();

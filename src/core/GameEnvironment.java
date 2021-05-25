@@ -70,6 +70,7 @@ public class GameEnvironment {
 		this.ui = ui;
 		this.island = islands.get(islandIndex);
 		this.gold = gold;
+		this.ship = ships.get(0);
 		ui.start(this);
 	}
 	

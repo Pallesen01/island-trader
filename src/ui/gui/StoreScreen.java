@@ -180,6 +180,7 @@ public class StoreScreen extends Screen {
 		);
 			
 		sellTable = new JTable();
+		sellTable.setShowGrid(false);
 		sellTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		String[] columnText = {"Name", "Price", "Size", "Description"};
@@ -195,6 +196,7 @@ public class StoreScreen extends Screen {
 		sellScrollPane.setViewportView(sellTable);
 		
 		buyTable = new JTable();
+		buyTable.setShowGrid(false);
 		buyTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		Object[][] buyArray = makeItemArray(getGame().getStore().getBuys());
