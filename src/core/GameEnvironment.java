@@ -6,24 +6,27 @@ import ui.GameUI;
 import ui.TextUI;
 
 /**
- * This class handles the man logic of the game and runs it.
+ * This class handles the main game logic and keeps track of the state.
  * @author Dillon Pike, Daniel Pallesen
- * @version 6 May 2021
+ * @version 25 May 2021
  */
 public class GameEnvironment {
 	
-	private final ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
-	private final ArrayList<Item> items = ObjectsListGenerator.generateItem();
-	private final ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
-	private final ArrayList<Island> islands = ObjectsListGenerator.generateIsland();
-	private final ArrayList<Route> routes = ObjectsListGenerator.generateRoute(islands);
-	
+	// Constants for the game
 	private final double WAGE_MODIFIER = 0.5;
 	private final int MIN_REWARD = 20;
 	private final int MAX_REWARD = 60;
 	private final int MIN_WEATHER_DAMAGE = 10;
 	private final int MAX_WEATHER_DAMAGE = 40;
-	private final int PIRATE_CARGO_THRESHOLD = 100;
+	private final int PIRATE_CARGO_THRESHOLD = 50;
+
+	
+	private ArrayList<Ship> ships;
+	private ArrayList<Item> items;
+	private ArrayList<Item> weapons;
+	private ArrayList<Island> islands;
+	private ArrayList<Route> routes;
+	private ArrayList<Item> goods;
 	
 	private GameUI ui;
 	private Island island;
@@ -34,10 +37,23 @@ public class GameEnvironment {
 	private Ship ship;
 	
 	public GameEnvironment(GameUI ui, int islandIndex, int gold) {
+		initArrayLists();
 		this.ui = ui;
 		this.island = islands.get(islandIndex);
 		this.gold = gold;
 		ui.start(this);
+	}
+	
+	/**
+	 * Initialises all the ArrayLists needed for the game.
+	 */
+	private void initArrayLists() {
+		ships = ObjectsListGenerator.generateShip();
+		items = ObjectsListGenerator.generateItem();
+		weapons = ObjectsListGenerator.generateWeapon();
+		islands = ObjectsListGenerator.generateIsland();
+		routes = ObjectsListGenerator.generateRoute(islands);
+		goods = new ArrayList<Item>();
 	}
 	
 	public void finishSetup(String name, int days, Ship ship) {
@@ -135,20 +151,43 @@ public class GameEnvironment {
 		this.gold = gold;
 	}
 	
+	/**
+	 * Returns all the goods the player has bought during the game.
+	 * @return goods the player has bought
+	 */
+	public ArrayList<Item> getGoods() {
+		return goods;
+	}
+	
 	public boolean buyItem(Item item) {
 		boolean bought = false;
 		if (gold >= item.getPrice() && ship.addCargo(item)) {
-			gold -= item.getPrice();
 			bought = true;
+			gold -= item.getPrice();
+			
+			// Adds a copy of item to goods with the necessary constructor variables
+			// Note: price is passed in as basePrice since basePrice not needed
+			goods.add(new Item(item.getName(), item.getDesc(), item.getSize(), item.getPrice(), item.isWeapon()));
 		}
 		return bought;
 	}
-	
+
 	public boolean sellItem(Item item) {
 		boolean sold = false;
 		if (ship.removeCargo(item)) {
-			gold += item.getPrice();
 			sold = true;
+			gold += item.getPrice();
+			for (Item goodsItem : goods) {
+				
+				// Sets the first unsold occurrence of this item in goods to sold and stores the
+				// sell price and location
+				if (goodsItem.getName().equals(item.getName()) && goodsItem.getIsSold() == false) {
+					goodsItem.setIsSold(true);
+					goodsItem.setSoldAt(island.getName());
+					goodsItem.setSoldFor(item.getPrice());
+					break;
+				}
+			}
 		}
 		return sold;
 	}

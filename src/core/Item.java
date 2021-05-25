@@ -14,13 +14,16 @@ public class Item {
 	private int price;
 	private boolean isWeapon;
 	private boolean isSold;
+	private String soldAt;
+	private int soldFor;
 	
 	/**
 	 * Creates an item with the given parameter values.
 	 * @param name item's name
 	 * @param desc item's description
-	 * @param basePrice item's base price
 	 * @param size item's size
+	 * @param basePrice item's base price
+	 * @param isWeapon true if item is weapon, otherwise false
 	 */
 	public Item(String name, String desc, int size, int basePrice, boolean isWeapon) {
 		this.name = name;
@@ -30,6 +33,8 @@ public class Item {
 		this.price = basePrice;
 		this.isWeapon = isWeapon;
 		this.isSold = false;
+		this.soldAt = null;
+		this.soldFor = -1;
 	}
 	
 	/** 
@@ -73,13 +78,66 @@ public class Item {
 	}
 	
 	/**
-	 *  Sets a new price for the item
+	 * Sets a new price for the item.
 	 * @param newPrice for the item
 	 */
 	public void setPrice(int newPrice) {
 		this.price = newPrice;
 	}
+	
+	/**
+	 * Returns true if the item is classified as a weapon, otherwise false.
+	 * @return true if weapon, otherwise false 
+	 */
 	public boolean isWeapon() {
 		return isWeapon;
+	}
+	
+	/**
+	 * Returns true if the item has been sold, otherwise false.
+	 * @return true if sold, otherwise false
+	 */
+	public boolean getIsSold() {
+		return isSold;
+	}
+	
+	/**
+	 * Sets the value of isSold to true or false.
+	 * @param isSold new value of item's isSold attribute
+	 */
+	public void setIsSold(boolean isSold) {
+		this.isSold = isSold;
+	}
+	
+	/**
+	 * Returns the name of the island where the item was sold at.
+	 * @return name of island where item was sold
+	 */
+	public String getSoldAt() {
+		return soldAt;
+	}
+	
+	/**
+	 * Sets the name of the island where the item was sold at.
+	 * @param islandName name of island where item was sold
+	 */
+	public void setSoldAt(String islandName) {
+		soldAt = islandName;
+	}
+	
+	/**
+	 * Returns the price that the item was sold for.
+	 * @return price item was sold for
+	 */
+	public int getSoldFor() {
+		return soldFor;
+	}
+	
+	/**
+	 * Sets the price that the item was sold for.
+	 * @param price price item was sold for
+	 */
+	public void setSoldFor(int price) {
+		soldFor = price;
 	}
 }

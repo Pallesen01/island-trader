@@ -3,12 +3,16 @@ package ui.gui;
 import javax.swing.JFrame;
 
 import core.GameEnvironment;
+import core.Item;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +37,26 @@ public class GoodsScreen extends Screen {
 	@Override
 	JFrame getFrame() {
 		return frame;
+	}
+	
+	/**
+	 * Returns 2D array from items where each row has a name, price, size, and description.
+	 * @param goods 
+	 * @return 2D array of item info
+	 */
+	private Object[][] makeGoodArray(ArrayList<Item> goods) {
+		Object goodArray[][] = new Object[goods.size()][];
+		int i = 0;
+		for (Item good : goods) {
+			Object goodRow[] = {good.getName(), good.getPrice(), good.getSoldFor(), good.getSoldAt()};
+			// Sets sold price to null if not sold
+			if (!good.getIsSold()) {
+				goodRow[2] = null;
+			}
+			goodArray[i] = goodRow;
+			i++;
+		}
+		return goodArray;
 	}
 
 	/**
@@ -79,12 +103,7 @@ public class GoodsScreen extends Screen {
 		
 		goodsTable = new JTable();
 		goodsTable.setRowSelectionAllowed(false);
-		goodsTable.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Name", "Size", "Bought for", "Sold for", "Sold at"
-			}
+		goodsTable.setModel(new DefaultTableModel(makeGoodArray(getGame().getGoods()), new String[] {"Name", "Bought for", "Sold for", "Sold at"}
 		));
 		goodsScrollPane.setViewportView(goodsTable);
 		frame.getContentPane().setLayout(groupLayout);

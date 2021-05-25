@@ -79,15 +79,15 @@ public class StoreScreen extends Screen {
 	 * @param items an ArrayList of items
 	 * @return 2D array of item info
 	 */
-	private Object[][] makeItemTable(ArrayList<Item> items) {
-		Object itemTable[][] = new Object[items.size()][];
+	private Object[][] makeItemArray(ArrayList<Item> items) {
+		Object itemArray[][] = new Object[items.size()][];
 		int i = 0;
 		for (Item item : items) {
 			Object itemRow[] = {item.getName(), item.getPrice(), item.getSize(), item.getDesc()};
-			itemTable[i] = itemRow;
+			itemArray[i] = itemRow;
 			i++;
 		}
-		return itemTable;
+		return itemArray;
 	}
 	
 	/**
@@ -182,7 +182,7 @@ public class StoreScreen extends Screen {
 			
 		sellTable = new JTable();
 		sellTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		sellTable.setModel(new DefaultTableModel(makeItemTable(getGame().getStore().getSells()), columnNames) {
+		sellTable.setModel(new DefaultTableModel(makeItemArray(getGame().getStore().getSells()), columnNames) {
 			private static final long serialVersionUID = -2398083386409854464L;
 
 			public boolean isCellEditable(int row, int column) {
@@ -194,7 +194,7 @@ public class StoreScreen extends Screen {
 		
 		buyTable = new JTable();
 		buyTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		buyTable.setModel(new DefaultTableModel(makeItemTable(getGame().getStore().getBuys()), columnNames) {
+		buyTable.setModel(new DefaultTableModel(makeItemArray(getGame().getStore().getBuys()), columnNames) {
 			private static final long serialVersionUID = -2398083386409854464L;
 
 			public boolean isCellEditable(int row, int column) {

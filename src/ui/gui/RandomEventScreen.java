@@ -15,7 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 
