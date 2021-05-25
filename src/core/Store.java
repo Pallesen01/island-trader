@@ -11,6 +11,7 @@ public class Store {
 	
 	final private double BUY_MODIFIER = 0.75;
 	final private double VARIATION_MODIFIER = 0.4;
+	final private int SELL_DIFFERENCE = 5; 
 	
 	private Random randomGenerator = new Random();
 	private ArrayList<Item> buys = new ArrayList<>();
@@ -99,7 +100,11 @@ public class Store {
 			for (Item item2: this.buys) {
 				if (item1.getName().equals(item2.getName())){
 					if (item2.getPrice() < item1.getPrice()) {
-						item1.setPrice(item2.getPrice());
+						int newPrice = item2.getPrice()-(1+randomGenerator.nextInt(SELL_DIFFERENCE-1));
+						if (newPrice < 1) {
+							newPrice = 1;
+						}
+						item1.setPrice(newPrice);
 					}
 				}
 			}
