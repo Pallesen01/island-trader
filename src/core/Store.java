@@ -21,7 +21,8 @@ public class Store {
 	private final double VARIATION_MODIFIER = 0.4;
 	
 	/**
-	 * TODO Daniel
+	 * Used when a store would buy and item for more than it sells it. This is the maximum value less than the buy
+	 *  value that the sell value will be.
 	 */
 	private final int SELL_DIFFERENCE = 5; 
 	
@@ -77,21 +78,25 @@ public class Store {
 	
 	/**
 	 * Generates a random list of items that can be bought from the store.
-	 * TODO give method inside comments
 	 */
 	public void generateBuys() {
 		ArrayList<Item> newBuys = new ArrayList<>();
+		// Get list of all possible items to sell.
 		ArrayList<Item> allItems = ObjectsListGenerator.generateItem();
 		ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
+		// Add weapons to all possible items list.
 		allItems.addAll(weapons);
+		// Create array to keep track of which items have already been added to store.
 		ArrayList<Integer> prevInts = new ArrayList<>();
 		for (int i=0;i<10; i++) {
+			// Generate a random index in all items list and add item at that index if it's not already in the list.
 			int nextInt = randomGenerator.nextInt(allItems.size());
 			while (prevInts.contains(nextInt)) {
 				nextInt = randomGenerator.nextInt(allItems.size());
 			}
 			prevInts.add(nextInt);
 			Item newItem = allItems.get(nextInt);
+			// Randomise price of item within range
 			int price = randomizePrice(newItem);
 			newItem.setPrice(price);
 			newBuys.add(newItem);
@@ -101,25 +106,30 @@ public class Store {
 	
 	/**
 	 * Generates a random list of items that can be sold to the store.
-	 * TODO give method inside comments
 	 */
 	public void generateSells() {
+		// Get list of all possible items to sell.
 		ArrayList<Item> newSells = new ArrayList<>();
 		ArrayList<Item> allItems = ObjectsListGenerator.generateItem();
 		ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
+		// Add weapons to all possible items list.
 		allItems.addAll(weapons);
+		// Create array to keep track of which items have already been added to store.
 		ArrayList<Integer> prevInts = new ArrayList<>();
 		for (int i=0;i<10; i++) {
+			// Generate a random index in all items list and add item at that index if it's not already in the list.
 			int nextInt = randomGenerator.nextInt(allItems.size());
 			while (prevInts.contains(nextInt)) {
 				nextInt = randomGenerator.nextInt(allItems.size());
 			}
 			prevInts.add(nextInt);
 			Item newItem = allItems.get(nextInt);
+			// Randomise price of item within range
 			int price = randomizePrice(newItem);
 			newItem.setPrice(price);
 			newSells.add(newItem);
 		}
+		// For each item in sells list check if it is in the buys list and if so make sure that the price is lower in this list
 		for (Item item1 : newSells) {
 			for (Item item2: this.buys) {
 				if (item1.getName().equals(item2.getName())){
