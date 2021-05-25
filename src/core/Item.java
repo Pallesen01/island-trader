@@ -13,7 +13,6 @@ public class Item {
 	private int basePrice;
 	private int price;
 	private boolean isWeapon;
-	private boolean isSold;
 	private String soldAt;
 	private int soldFor;
 	
@@ -32,7 +31,6 @@ public class Item {
 		this.basePrice = basePrice;
 		this.price = basePrice;
 		this.isWeapon = isWeapon;
-		this.isSold = false;
 		this.soldAt = null;
 		this.soldFor = -1;
 	}
@@ -91,22 +89,6 @@ public class Item {
 	 */
 	public boolean isWeapon() {
 		return isWeapon;
-	}
-	
-	/**
-	 * Returns true if the item has been sold, otherwise false.
-	 * @return true if sold, otherwise false
-	 */
-	public boolean getIsSold() {
-		return isSold;
-	}
-	
-	/**
-	 * Sets the value of isSold to true or false.
-	 * @param isSold new value of item's isSold attribute
-	 */
-	public void setIsSold(boolean isSold) {
-		this.isSold = isSold;
 	}
 	
 	/**

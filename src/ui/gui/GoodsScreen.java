@@ -50,7 +50,7 @@ public class GoodsScreen extends Screen {
 		for (Item good : goods) {
 			Object goodRow[] = {good.getName(), good.getPrice(), good.getSoldFor(), good.getSoldAt()};
 			// Sets sold price to null if not sold
-			if (!good.getIsSold()) {
+			if (good.getSoldFor() == -1) {
 				goodRow[2] = null;
 			}
 			goodArray[i] = goodRow;

@@ -14,8 +14,8 @@ public class GameEnvironment {
 	
 	// Constants for the game
 	private final double WAGE_MODIFIER = 0.5;
-	private final int MIN_REWARD = 20;
-	private final int MAX_REWARD = 60;
+	private final int MIN_SAILOR_REWARD = 20;
+	private final int MAX_SAILOR_REWARD = 60;
 	private final int MIN_WEATHER_DAMAGE = 10;
 	private final int MAX_WEATHER_DAMAGE = 40;
 	private final int PIRATE_CARGO_THRESHOLD = 50;
@@ -36,6 +36,12 @@ public class GameEnvironment {
 	private int startDays;
 	private Ship ship;
 	
+	/**
+	 * Instantiates the game with the given user interface, starting island, and starting gold amount.
+	 * @param ui user interface the game will use
+	 * @param islandIndex ArrayList index of the starting island
+	 * @param gold starting gold amount
+	 */
 	public GameEnvironment(GameUI ui, int islandIndex, int gold) {
 		initArrayLists();
 		this.ui = ui;
@@ -56,6 +62,13 @@ public class GameEnvironment {
 		goods = new ArrayList<Item>();
 	}
 	
+	/**
+	 * Finished the setup by assigning the player's name, ship, and the number of days the game will last.
+	 * Afterwards, the game menu is launched.
+	 * @param name player's name
+	 * @param days number of days the game will last
+	 * @param ship player's ship
+	 */
 	public void finishSetup(String name, int days, Ship ship) {
 		this.name = name;
 		this.startDays = days;
@@ -64,11 +77,18 @@ public class GameEnvironment {
 		ui.menu();
 	}
 	
+	/**
+	 * Return the game's user interface.
+	 * @return game's user interface
+	 */
 	public GameUI getUI() {
 		return ui;
 	}
 	
-	
+	/**
+	 * Returns all the ships available in the game.
+	 * @return available ships
+	 */
 	public ArrayList<Ship> getShips() {
 		return ships;
 	}
@@ -81,10 +101,18 @@ public class GameEnvironment {
 		return islands;
 	}
 	
+	/**
+	 * Returns the player's chosen ship.
+	 * @return player's ship
+	 */
 	public Ship getShip() {
 		return ship;
 	}
 	
+	/**
+	 * Returns the player's name.
+	 * @return player's name
+	 */
 	public String getName() {
 		return name;
 	}
@@ -106,7 +134,7 @@ public class GameEnvironment {
 	}
 	
 	/** 
-	 * Sets the remaining number of days left to 0 ending the game.
+	 * Sets the remaining number of days left to 0, thus ending the game.
 	 */
 	public void endGame() {
 		days = 0;
@@ -144,8 +172,8 @@ public class GameEnvironment {
 	}
 	
 	/**
-	 * Sets the players gold
-	 * @param gold
+	 * Sets the players gold to the given value.
+	 * @param new gold value
 	 */
 	public void setGold(int gold) {
 		this.gold = gold;
@@ -159,6 +187,13 @@ public class GameEnvironment {
 		return goods;
 	}
 	
+	/**
+	 * If the player has enough gold and space for the item, the player is charged and it's added to the ship's cargo.
+	 * A copy is also added to the goods ArrayList.
+	 * If successfully bought, true is returned, otherwise false.
+	 * @param item item to buy
+	 * @return true if successful, otherwise false
+	 */
 	public boolean buyItem(Item item) {
 		boolean bought = false;
 		if (gold >= item.getPrice() && ship.addCargo(item)) {
@@ -171,7 +206,14 @@ public class GameEnvironment {
 		}
 		return bought;
 	}
-
+	
+	/**
+	 * If the player's ship's cargo contains the item, the player is paid and the item is removed from their ship's cargo.
+	 * The first copy found in the goods ArrayList is also updated with its sell price and location.
+	 * If successfully sold, true is returned, otherwise false.
+	 * @param item item to sell
+	 * @return true if successful, otherwise false
+	 */
 	public boolean sellItem(Item item) {
 		boolean sold = false;
 		if (ship.removeCargo(item)) {
@@ -181,8 +223,7 @@ public class GameEnvironment {
 				
 				// Sets the first unsold occurrence of this item in goods to sold and stores the
 				// sell price and location
-				if (goodsItem.getName().equals(item.getName()) && goodsItem.getIsSold() == false) {
-					goodsItem.setIsSold(true);
+				if (goodsItem.getName().equals(item.getName()) && goodsItem.getSoldAt() == null) {
 					goodsItem.setSoldAt(island.getName());
 					goodsItem.setSoldFor(item.getPrice());
 					break;
@@ -237,7 +278,8 @@ public class GameEnvironment {
 
 	/** 
 	 * Decreases the number of days by the days of the route, decreases gold by the crew's wages,
-	 * possibly encounters random events, and changes island to the destination of the route.
+	 * possibly encounters random events if the user interface is text based, 
+	 * and changes island to the destination of the route.
 	 * @param route the route to travel on
 	 */
 	public void travelRoute(Route route) {
@@ -254,8 +296,10 @@ public class GameEnvironment {
 		}
 		int daysTaken = route.getDays(ship.getSpeed());
 		this.days -= daysTaken;
-		this.gold -= daysTaken * ship.getCrew() * WAGE_MODIFIER;
-		Island[] islands = route.getIslands();
+		this.gold -= daysTaken * ship.getCrew() * WAGE_MODIFIER; // Charges crew wages
+		
+		Island[] islands = route.getIslands();	
+		// Sets the game's current island to the other island in the route
 		if (islands[0] != island) {
 			island = islands[0];
 		} else {
@@ -318,6 +362,10 @@ public class GameEnvironment {
 		return initialHealth - playerShip.getHealth();
 	}
 	
+	/**
+	 * Generates a random amount of damage between a constant maximum and minimum, then subtracts it from the ship's health.
+	 * @return amount of damage
+	 */
 	public int weatherEvent() {
 		Random randomGenerator = new Random();
 		// Deal random damage between a range
@@ -326,10 +374,14 @@ public class GameEnvironment {
 		return damage;
 	}
 	
+	/**
+	 * Generates a random reward amount between a constant maximum and minimum, then adds it to the player's gold.
+	 * @return reward amount
+	 */
 	public int sailorEvent() {
 		Random randomGenerator = new Random();
 		// Give monetary reward between a range
-		int reward = randomGenerator.nextInt(MAX_REWARD - MIN_REWARD) + MIN_REWARD;
+		int reward = randomGenerator.nextInt(MAX_SAILOR_REWARD - MIN_SAILOR_REWARD) + MIN_SAILOR_REWARD;
 		setGold(gold + reward);
 		return reward;
 	}
