@@ -19,21 +19,35 @@ import javax.swing.DefaultComboBoxModel;
 
 public class IslandInfoScreen extends Screen {
 
-	private JFrame frame;
-	private JComboBox comboBoxIslands;
-	private ArrayList<Island> islands = getGame().getIslands();
-
 	/**
-	 * Create the application.
+	 * Frame that holds all GUI elements.
+	 */
+	private JFrame frame;
+	
+	/**
+	 * Combo box with all the game's islands.
+	 */
+	private JComboBox comboBoxIslands;
+	
+	/**
+	 * ArrayList of all the game's islands.
+	 */
+	private ArrayList<Island> islands = getGame().getIslands();
+	
+	/**
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	protected IslandInfoScreen(GameEnvironment game) {
 		super(game);
 		frame = new JFrame();
 		initialiseFrame();
-		configureFrame();	
-		
+		configureFrame();
 	}
 	
+	/**
+	 * Gets the chosen island from the combo box and displays the island's info on another screen.
+	 */
 	private void confirm() {
 		String islandName = comboBoxIslands.getSelectedItem().toString();
 		for (Island island: islands) {
@@ -50,7 +64,7 @@ public class IslandInfoScreen extends Screen {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 530, 295);

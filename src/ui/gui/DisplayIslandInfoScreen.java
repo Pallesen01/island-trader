@@ -19,21 +19,29 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class DisplayIslandInfoScreen extends Screen{
+public class DisplayIslandInfoScreen extends Screen {
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Island the player is currently on.
+	 */
 	private Island island;
 	
 	/**
-	 * Create the application.
+	 * Stores the game instance and island to show info of then creates and sets up the frame.
+	 * @param game game instance
+	 * @param island island to show info of
 	 */
 	protected DisplayIslandInfoScreen(GameEnvironment game, Island island) {
 		super(game);
-		frame = new JFrame();		
 		this.island = island;
+		frame = new JFrame();		
 		initialiseFrame();
 		configureFrame();	
-		
 	}
 	
 	/**
@@ -79,6 +87,9 @@ public class DisplayIslandInfoScreen extends Screen{
 		return frame;
 	}
 	
+	/**
+	 * Initialise the contents of the frame.
+	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 620, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,6 +131,31 @@ public class DisplayIslandInfoScreen extends Screen{
 		sellLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JScrollPane sellScrollPane = new JScrollPane();
+
+		String[] itemColumnText = {"Name", "Price", "Size", "Description"};
+		Object[][] sellArray = makeItemArray(island.getStore().getSells());
+		JTable sellTable = new JTable(sellArray, itemColumnText);
+		sellTable.setFillsViewportHeight(true);
+		sellTable.setShowGrid(false);
+		sellTable.setEnabled(false);
+		sellScrollPane.setViewportView(sellTable);
+		
+		Object[][] buyArray = makeItemArray(island.getStore().getBuys());
+		JTable buyTable = new JTable(buyArray, itemColumnText);
+		buyTable.setFillsViewportHeight(true);
+		buyTable.setShowGrid(false);
+		buyTable.setEnabled(false);
+		buyScrollPane.setViewportView(buyTable);
+
+		String[] routeColumnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
+		Object[][] routeArray = makeRouteArray(island.getRoutes());
+		JTable routeTable = new JTable(routeArray, routeColumnText);
+		routeTable.setFillsViewportHeight(true);
+		routeTable.setShowGrid(false);
+		routeTable.setEnabled(false);
+		routeTable.setRowSelectionAllowed(false);
+		routeScrollPane.setViewportView(routeTable);
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -183,30 +219,6 @@ public class DisplayIslandInfoScreen extends Screen{
 						.addComponent(menuBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
-		
-		String[] itemColumnText = {"Name", "Price", "Size", "Description"};
-		Object[][] sellArray = makeItemArray(island.getStore().getSells());
-		JTable sellTable = new JTable(sellArray, itemColumnText);
-		sellTable.setFillsViewportHeight(true);
-		sellTable.setShowGrid(false);
-		sellTable.setEnabled(false);
-		sellScrollPane.setViewportView(sellTable);
-		
-		Object[][] buyArray = makeItemArray(island.getStore().getBuys());
-		JTable buyTable = new JTable(buyArray, itemColumnText);
-		buyTable.setFillsViewportHeight(true);
-		buyTable.setShowGrid(false);
-		buyTable.setEnabled(false);
-		buyScrollPane.setViewportView(buyTable);
-
-		String[] routeColumnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
-		Object[][] routeArray = makeRouteArray(island.getRoutes());
-		JTable routeTable = new JTable(routeArray, routeColumnText);
-		routeTable.setFillsViewportHeight(true);
-		routeTable.setShowGrid(false);
-		routeTable.setEnabled(false);
-		routeTable.setRowSelectionAllowed(false);
-		routeScrollPane.setViewportView(routeTable);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }

@@ -20,14 +20,38 @@ import javax.swing.UIManager;
 
 public class RandomEventScreen extends Screen {
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Current route being traveled along.
+	 */
 	private Route route;
+	
+	/**
+	 * Result value of the random event. E.g. the amount of damage taken during the weather event.
+	 */
 	private int resultValue;
+	
+	/**
+	 * The type of random event occurring.
+	 */
 	private RandomEvent event;
+	
+	/**
+	 * Whether or not the pirates are satisfied with the player's goods.
+	 */
 	private boolean piratesUnsatisfied;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance, current route being traveled along, the result value of the event, and the type of event occurring,
+	 * then creates and sets up the frame.
+	 * @param game game instance
+	 * @param route route being traveled along
+	 * @param resultValue result value of the event
+	 * @param event random event occurring
 	 */
 	public RandomEventScreen(GameEnvironment game, Route route, int resultValue, RandomEvent event) {
 		super(game);
@@ -39,6 +63,10 @@ public class RandomEventScreen extends Screen {
 		configureFrame();
 	}
 	
+	/**
+	 * Sets the given label's text to the specific random event's title.
+	 * @param titleLbl label to set the text of
+	 */
 	private void setTitleText(JLabel titleLbl) {
 		switch (event) {
 			case PIRATES: titleLbl.setText(GameUI.PIRATE_ENCOUNTER);
@@ -50,6 +78,10 @@ public class RandomEventScreen extends Screen {
 		}
 	}
 	
+	/**
+	 * Sets the given text pane's text to the specific random event's message.
+	 * @param messageTextPane text pane to set the text of
+	 */
 	private void setMessageText(JTextPane messageTextPane) {
 		switch (event) {
 			case PIRATES:
@@ -80,6 +112,10 @@ public class RandomEventScreen extends Screen {
 		}
 	}
 	
+	/**
+	 * Continues the game by ending the game if the player lost to pirates, 
+	 * allowing any subsequent random events to occur, or opening the menu screen.
+	 */
 	private void continueGame() {
 		switch (event) {
 			case PIRATES:
@@ -107,7 +143,7 @@ public class RandomEventScreen extends Screen {
 	}
 		
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 450, 300);

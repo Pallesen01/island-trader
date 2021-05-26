@@ -20,6 +20,9 @@ public class GUI implements GameUI {
 	 */
     private Screen screen;
     
+    /**
+     * Each type of random event.
+     */
 	enum RandomEvent {
 		PIRATES,
 		WEATHER,

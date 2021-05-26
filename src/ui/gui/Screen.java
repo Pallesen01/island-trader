@@ -33,14 +33,14 @@ public abstract class Screen {
     protected void configureFrame() {
         JFrame frame = getFrame();
         frame.setTitle(title);
+        // Centre the frame
+        frame.setLocationRelativeTo(null);
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 game.endGame("Game Closed");
             }
         });
-        // Centre the frame
-        frame.setLocationRelativeTo(null);
     }
     
     /**

@@ -21,15 +21,26 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
 public class TravelScreen extends Screen {
-
-	private final String[] columnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Table of all the routes the player can take from the current island.
+	 */
 	private JTable routeTable;
+	
+	/**
+	 * Displays an error message if an error occurs. 
+	 * E.g. if there aren't enough days yet to take the chosen route.
+	 */
 	private JLabel errorLbl;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	public TravelScreen(GameEnvironment game) {
 		super(game);
@@ -43,6 +54,9 @@ public class TravelScreen extends Screen {
 		return frame;
 	}
 	
+	/**
+	 * 
+	 */
 	private void travel() {
 		if (routeTable.getSelectedRowCount() == 0) {
 			errorLbl.setText("You must select a route.");
@@ -70,7 +84,7 @@ public class TravelScreen extends Screen {
 	}
 	
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 620, 350);
@@ -151,6 +165,7 @@ public class TravelScreen extends Screen {
 			routesTable[i] = routeRow;
 			i++;
 		}
+		String[] columnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
 		routeTable.setModel(new DefaultTableModel(routesTable, columnText) {
 			private static final long serialVersionUID = -156423262431076534L;
 

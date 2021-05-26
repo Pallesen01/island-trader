@@ -30,37 +30,38 @@ import ui.GameUI;
 public class StartScreen extends Screen {
 	
 	/**
-	 * Frame that holds all GUI elements
+	 * Frame that holds all GUI elements.
 	 */
     private JFrame frame;
     
     /**
-     * Field for the player to enter their name
+     * Field for the player to enter their name.
      */
 	private JTextField nameField;
 	
 	/**
-	 * Slider for the player to choose the number of days 
+	 * Slider for the player to choose the number of days .
 	 */
 	private JSlider daysSlider;
 	
 	/**
-	 * Table of available ships
+	 * Table of available ships.
 	 */
 	private JTable shipTable;
 	
 	/**
-	 * Displays message if the player's name doesn't meet requirements
+	 * Displays message if the player's name doesn't meet requirements.
 	 */
 	private JLabel nameErrorLbl;
 	
 	/**
-	 * Displays message if player hasn't selected a ship
+	 * Displays message if player hasn't selected a ship.
 	 */
 	private JLabel shipErrorLbl;
 	
 	/**
 	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	protected StartScreen(GameEnvironment game) {
 		super(game);

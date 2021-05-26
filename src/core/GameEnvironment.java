@@ -49,17 +49,17 @@ public class GameEnvironment {
 	private final double CARGO_VALUE_MODIFIER = 0.7;
 
 	/**
-	 * Ships available in the game
+	 * Ships available in the game.
 	 */
 	private ArrayList<Ship> ships;
 	
 	/**
-	 * Islands in the game
+	 * Islands in the game.
 	 */
 	private ArrayList<Island> islands;
 	
 	/**
-	 * All goods purchased by the player during the game
+	 * All goods purchased by the player during the game.
 	 */
 	private ArrayList<Item> goods;
 	
@@ -69,27 +69,27 @@ public class GameEnvironment {
 	private ArrayList<Route> routes;
 	
 	/**
-	 * User interface used by the game
+	 * User interface used by the game.
 	 */
 	private GameUI ui;
 	
 	/**
-	 * Current island the player is on
+	 * Current island the player is on.
 	 */
 	private Island island;
 	
 	/**
-	 * Amount of gold the player currently has
+	 * Amount of gold the player currently has.
 	 */
 	private int gold;
 	
 	/**
-	 * Player's name
+	 * Player's name.
 	 */
 	private String name;
 	
 	/**
-	 * Days left in the game
+	 * Days left in the game.
 	 */
 	private int daysLeft;
 	
@@ -135,6 +135,7 @@ public class GameEnvironment {
 		goods = new ArrayList<Item>();
 	}
 	
+
 	/**
 	 * Finished the setup by assigning the player's name, ship, and the number of days the game will last.
 	 * Afterwards, the game menu is launched.

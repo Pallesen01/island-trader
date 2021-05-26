@@ -16,10 +16,14 @@ import javax.swing.JProgressBar;
 
 public class MenuScreen extends Screen{
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	protected MenuScreen(GameEnvironment game) {	
 		super(game);
@@ -34,7 +38,7 @@ public class MenuScreen extends Screen{
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	void initialiseFrame() {
 		frame.setBounds(100, 100, 700, 500);

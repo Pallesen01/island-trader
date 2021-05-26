@@ -21,11 +21,19 @@ import java.awt.Color;
 
 public class GoodsScreen extends Screen {
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Table with all the goods the user has purchased.
+	 */
 	private JTable goodsTable;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	public GoodsScreen(GameEnvironment game) {
 		super(game);
@@ -60,7 +68,7 @@ public class GoodsScreen extends Screen {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 700, 500);
