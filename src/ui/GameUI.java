@@ -184,19 +184,19 @@ public interface GameUI {
 	void travel();
 
 	/**
-	 * 
+	 * Tells the player they've encountered a pirate ship and simulates a battle.
 	 * @param route route currently being traveled along
 	 */
 	void pirateEncounter(Route route);
 	
 	/**
-	 * 
+	 * Tells the player they've encountered bad weather and that their ship has taken damage.
 	 * @param route route currently being traveled along
 	 */
 	void weatherEncounter(Route route);
 	
 	/**
-	 * 
+	 * Tells the player they encountered lost sailors and have been given a reward.
 	 * @param route route currently being traveled along
 	 */
 	void sailorEncounter(Route route);

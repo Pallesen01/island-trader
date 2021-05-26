@@ -19,7 +19,7 @@ import javax.swing.JTextPane;
 import javax.swing.UIManager;
 
 /**
- * 
+ * Screen that displays a random event to the player.
  * @author Dillon Pike, Daniel Pallesen
  * @version 25 May 2021
  */
