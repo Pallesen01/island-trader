@@ -9,8 +9,15 @@ import core.Route;
 import ui.GameUI;
 
 public class GUI implements GameUI {
-
+	
+	/**
+	 * Instance of the game.
+	 */
 	private GameEnvironment game;
+	
+	/**
+	 * Current screen of the GUI.
+	 */
     private Screen screen;
     
 	enum RandomEvent {

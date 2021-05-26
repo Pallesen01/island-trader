@@ -27,6 +27,10 @@ public class Main {
 	 */
 	private static final int STARTING_GOLD = 250;
 	
+	/**
+	 * Creates an instance of the game with a command line UI or GUI.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		if (TEXT_MODE) {
 			GameUI ui = new TextUI();

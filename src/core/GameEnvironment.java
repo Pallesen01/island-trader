@@ -48,13 +48,19 @@ public class GameEnvironment {
 	 */
 	private final double CARGO_VALUE_MODIFIER = 0.7;
 
-	// Ships available in the game
+	/**
+	 * Ships available in the game
+	 */
 	private ArrayList<Ship> ships;
 	
-	// Islands in the game
+	/**
+	 * Islands in the game
+	 */
 	private ArrayList<Island> islands;
 	
-	// All goods purchased by the player during the game
+	/**
+	 * All goods purchased by the player during the game
+	 */
 	private ArrayList<Item> goods;
 	
 	// TODO Unused so perhaps delete?
@@ -62,28 +68,44 @@ public class GameEnvironment {
 	private ArrayList<Item> weapons;
 	private ArrayList<Route> routes;
 	
-	// User interface used by the game
+	/**
+	 * User interface used by the game
+	 */
 	private GameUI ui;
 	
-	// Current island the player is on
+	/**
+	 * Current island the player is on
+	 */
 	private Island island;
 	
-	// Amount of gold the player currently has
+	/**
+	 * Amount of gold the player currently has
+	 */
 	private int gold;
 	
-	// Player's name
+	/**
+	 * Player's name
+	 */
 	private String name;
 	
-	// Days left in the game
+	/**
+	 * Days left in the game
+	 */
 	private int daysLeft;
 	
-	// Total number of days the game will take place over
+	/**
+	 * Total number of days the game will take place over
+	 */
 	private int totalDays;
 	
-	// Player's ship
+	/**
+	 * Player's ship
+	 */
 	private Ship ship;
 	
-	// Boolean to check if game is over
+	/**
+	 * Boolean to check if game is over
+	 */
 	private boolean gameOver = false;
 	
 	/**

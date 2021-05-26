@@ -6,10 +6,14 @@ package core;
  */
 public class Weapon extends Item {
 	
-	// Number of shots the weapon can fire at once
+	/**
+	 * Number of shots the weapon can fire at once
+	 */
 	private int shots;
 	
-	// Amount of damage one shot of the weapon does
+	/**
+	 * Amount of damage one shot of the weapon does
+	 */
 	private int damage;
 
 	/**

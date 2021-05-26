@@ -7,28 +7,44 @@ package core;
  */
 public class Item {
 	
-	// Name of the item
+	/**
+	 * Name of the item
+	 */
 	private String name;
 	
-	// Item's description
+	/**
+	 * Item's description
+	 */
 	private String desc;
 	
-	// Size of the item
+	/**
+	 * Size of the item
+	 */
 	private int size;
 	
-	// Base price of the item (used by to store to determine a price)
+	/**
+	 * Base price of the item (used by to store to determine a price)
+	 */
 	private int basePrice;
 	
-	// Price the item is being bought or sold for
+	/**
+	 * Price the item is being bought or sold for
+	 */
 	private int price;
 	
-	// Whether or not the item is a weapon
+	/**
+	 * Whether or not the item is a weapon
+	 */
 	private boolean isWeapon;
 	
-	// Where the item has been sold
+	/**
+	 * Where the item has been sold
+	 */
 	private String soldAt;
 	
-	// How much the item was sold for
+	/**
+	 * How much the item was sold for
+	 */
 	private int soldFor;
 	
 	/**
