@@ -109,6 +109,9 @@ public class RandomEventScreen extends Screen {
 					messageTextPane.setText("Your ship has taken " + resultValue + " damage.");
 				} else {
 					messageTextPane.setText("Your ship has been destroyed in the storm.");
+					getGame().loseGold();
+					getGame().getShip().emptyCargo();
+					getGame().endGame("Ship destroyed in storm");
 				}
 				break;
 			case SAILORS: 
