@@ -54,7 +54,7 @@ public class RandomEventScreen extends Screen {
 		switch (event) {
 			case PIRATES:
 				if (getGame().getShip().getHealth() > 0) {
-					messageTextPane.setText("But you defeated them! Your ship has taken " + resultValue + " damage.");
+					messageTextPane.setText("You defeated them! Your ship has taken " + resultValue + " damage.");
 				} else {
 					if (!getGame().pirateLossOutcome()) {
 						piratesUnsatisfied = true;

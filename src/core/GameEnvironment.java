@@ -377,6 +377,74 @@ public class GameEnvironment {
 		return totalValue > PIRATE_CARGO_THRESHOLD;
 	}
 	
+	/**
+	 * Simulates player turn in a battle.
+	 * @param pirateShip
+	 * @return
+	 */
+	public String playerTurn(Ship pirateShip) {
+		Ship playerShip = this.getShip();
+		String battleText = "";
+		Random randomGenerator = new Random();
+		// Player Turn
+		battleText += "Your Turn:\n";
+					
+		for (Item item : playerShip.getWeapons()) {
+			Weapon weapon = (Weapon) item; 
+			battleText += "\tFiring " + weapon.getName()+"!\n";
+			for (int i = 0; i < weapon.shots(); i++) {
+			int damage = randomGenerator.nextInt(weapon.damage());
+			if (damage > 0) {
+				int resisted = randomGenerator.nextInt(pirateShip.getEndurance());
+				resisted = Math.min(resisted, damage);
+				battleText += "\t"+resisted+" damage resisted by pirate ship\n";
+				battleText += "\t"+(damage-resisted)+" damage dealt to pirate ship\n";
+				pirateShip.setHealth(pirateShip.getHealth() - damage + resisted);
+			}
+			else {
+				battleText += "Missed pirate ship\n";
+			}
+			}	
+		
+		}
+		return battleText;
+	}
+	
+	/**
+	 * Simulates pirate turn in a battle.
+	 * @param pirateShip
+	 * @return
+	 */
+	public String pirateTurn(Ship pirateShip) {
+		Ship playerShip = this.getShip();
+		String battleText = "";
+		Random randomGenerator = new Random();
+		// Pirate Turn
+		battleText += "Pirate Turn:\n";
+		for (Item item : pirateShip.getWeapons()) {
+			Weapon weapon = (Weapon) item; 
+			battleText += "\tFiring " + weapon.getName()+"!\n";
+			for (int i = 0; i < weapon.shots(); i++) {
+				int damage = randomGenerator.nextInt(weapon.damage());
+				if (damage > 0) {
+					int resisted = randomGenerator.nextInt(playerShip.getEndurance());
+					resisted = Math.min(resisted, damage);
+					battleText += "\t"+resisted+" damage resisted by your ship\n";
+					battleText += "\t"+(damage-resisted)+" damage dealt to your ship\n";
+					playerShip.setHealth(playerShip.getHealth() - damage + resisted);
+				}
+				else {
+					battleText += "Missed your ship\n";
+				}
+			}			
+		}
+		return battleText;
+	}
+	
+	/**
+	 * Simulates a battle between the player and the pirate's ship.
+	 * @return damage done to the player's ship
+	 */
 	public int pirateEvent() {
 		Random randomGenerator = new Random();
 		// Generate enemy ship
@@ -418,6 +486,7 @@ public class GameEnvironment {
 		}
 		return initialHealth - playerShip.getHealth();
 	}
+
 	
 	/**
 	 * Generates a random amount of damage between a constant maximum and minimum, then subtracts it from the ship's health.

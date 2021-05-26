@@ -1,8 +1,8 @@
 name;description;size;value;shots;damage;
-cannon;standard ship cannon;20;70;1;12;
-demi-cannon;standard cannon with lighter construction;15;65;1;10;
-paixhans cannon;large cannon, fires explosive shells;25;100;1;20;
+cannon;standard ship cannon;20;70;1;24;
+demi-cannon;standard cannon with lighter construction;15;65;1;20;
+paixhans cannon;large cannon, fires explosive shells;25;100;1;40;
 carronade;small cannon, primarily used as an anti-crew weapon;10;50;1;8;
-canister shot;fires cans filled with dozens of musket balls;15;75;8;2;
-chain-shot;fires two iron balls held together with a chain;18;80;2;8;
-long nine;long barrelled 9-pounder cannon;20;80;1;14;
+canister shot;fires cans filled with dozens of musket balls;15;75;8;4;
+chain-shot;fires two iron balls held together with a chain;18;80;2;16;
+long nine;long barrelled 9-pounder cannon;20;80;1;28;

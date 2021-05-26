@@ -6,6 +6,7 @@ import core.GameEnvironment;
 import core.Island;
 import core.Item;
 import core.Route;
+import core.Ship;
 import ui.GameUI;
 
 public class GUI implements GameUI {
@@ -114,12 +115,19 @@ public class GUI implements GameUI {
 		screen = new TravelScreen(game);
 		screen.show();
 	}
-
+	
+	
 	public void pirateEncounter(Route route) {
 		screen.quit();
-		int damage = game.pirateEvent();
+		screen = new PirateBattleScreen(this ,game, route);
+		screen.show();
+	}
+	
+	public void pirateResolutionScreen(Route route, int damage) {
+		screen.quit();
 		screen = new RandomEventScreen(game, route, damage, RandomEvent.PIRATES);
 		screen.show();
+
 	}
 
 	public void weatherEncounter(Route route) {

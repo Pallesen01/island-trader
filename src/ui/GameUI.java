@@ -3,6 +3,7 @@ package ui;
 import core.GameEnvironment;
 import core.Island;
 import core.Route;
+import core.Ship;
 
 public interface GameUI {
 	
@@ -31,7 +32,7 @@ public interface GameUI {
 	final String TRAVEL_GOLD_ERROR = "Cannot travel along this route - insufficient gold to pay wages.";
 	final String TRAVEL_DAYS_ERROR = "There are not enough days left to travel along this route.";
 	
-	final String PIRATE_ENCOUNTER = "Uh oh! There's a pirate ship in the distance!";
+	final String PIRATE_ENCOUNTER = "The battle has come to its conclusion";
 	final String WEATHER_ENCOUNTER = "A storm is brewing!";
 	final String SAILOR_ENCOUNTER = "What's that? There are some sailors in the water!";
 	
@@ -91,4 +92,5 @@ public interface GameUI {
 	void sailorEncounter(Route route);
 	
 	void endGame(String reason);
+	
 }
