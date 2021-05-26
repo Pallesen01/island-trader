@@ -23,22 +23,32 @@ import core.Ship;
 import ui.GameUI;
 
 /**
- * 
+ * This class creates the starting screen for the game.
  * @author Dillon Pike, Daniel Pallesen
- * @version 18 May 2021
+ * @version 25 May 2021
  */
 public class StartScreen extends Screen {
 	
+	// Frame that holds all GUI elements
     private JFrame frame;
+    
+    // Field for the player to enter their name
 	private JTextField nameField;
-	private JLabel daysLbl;
+	
+	// Slider for the player to choose the number of days 
 	private JSlider daysSlider;
-	private JLabel shipLbl;
+	
+	// Table of available ships
 	private JTable shipTable;
+	
+	// Displays message if the player's name doesn't meet requirements
 	private JLabel nameErrorLbl;
+	
+	// Displays message if player hasn't selected a ship
 	private JLabel shipErrorLbl;
 	
 	/**
+	 * Stores the game instance then creates and sets up the frame.
 	 */
 	protected StartScreen(GameEnvironment game) {
 		super(game);
@@ -48,7 +58,7 @@ public class StartScreen extends Screen {
 	}
 	
 	/**
-	 * 
+	 * If the user's input is valid, the GUI passes the input to the game.
 	 */
 	private void finish() {
 		if (checkInput()) {
@@ -79,6 +89,10 @@ public class StartScreen extends Screen {
 		return valid;
 	}
 	
+    /**
+     * Returns the screen's frame.
+     * @return screen's frame
+     */
 	@Override
 	JFrame getFrame() {
 		return frame;
@@ -104,7 +118,6 @@ public class StartScreen extends Screen {
 	 * Initialise the contents of the frame.
 	 */
 	void initialiseFrame() {
-		frame.setTitle(title);
 		frame.setBounds(100, 100, 620, 380);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -117,7 +130,7 @@ public class StartScreen extends Screen {
 		nameField = new JTextField();
 		nameField.setColumns(10);
 		
-		daysLbl = new JLabel("How many days you would like to play for?");
+		JLabel daysLbl = new JLabel("How many days you would like to play for?");
 		
 		daysSlider = new JSlider();
 		daysSlider.setMinorTickSpacing(1);
@@ -129,7 +142,7 @@ public class StartScreen extends Screen {
 		daysSlider.setMaximum(50);
 		daysSlider.setMinimum(20);
 		
-		shipLbl = new JLabel("What ship would you like to captain?");
+		JLabel shipLbl = new JLabel("What ship would you like to captain?");
 		
 		JScrollPane tableScrollPane = new JScrollPane();
 		

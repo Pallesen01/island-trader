@@ -9,14 +9,27 @@ import core.GameEnvironment;
 
 public abstract class Screen {
 	
-	final String title = "Island Trader";
+	/**
+	 * Title for the screen's title bar
+	 */
+	private final String title = "Island Trader";
 	
+	/**
+	 * Instance of the game.
+	 */
     private final GameEnvironment game;
     
+    /**
+     * Stores the game instance.
+     * @param game game instance
+     */
     protected Screen(GameEnvironment game) {
         this.game = game;
     }
     
+    /**
+     * Configures the frame with attributes common to every screen.
+     */
     protected void configureFrame() {
         JFrame frame = getFrame();
         frame.setTitle(title);
@@ -26,28 +39,37 @@ public abstract class Screen {
                 game.endGame("Game Closed");
             }
         });
-        //frame.pack();
-        // Put frame in centre of screen
+        // Centre the frame
         frame.setLocationRelativeTo(null);
     }
     
-    
+    /**
+     * Sets the frame to be visible.
+     */
     protected void show() {
     	JFrame frame = getFrame();
         frame.setVisible(true);
     }
     
+    /**
+     * Returns the game instance.
+     * @return game instance
+     */
     protected GameEnvironment getGame() {
     	return game;
     }
     
     /**
-     * Quits this screen. This should dispose of the screen as necessary.
+     * Closes the screen.
      */
     void quit() {
     	JFrame frame = getFrame();
         frame.dispose();
     }
     
+    /**
+     * Returns the screen's frame.
+     * @return screen's frame
+     */
     abstract JFrame getFrame();
 }

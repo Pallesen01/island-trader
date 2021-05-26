@@ -4,35 +4,48 @@ import java.util.Random;
 /**
  * This class models a route between islands.
  * @author Dillon Pike, Daniel Pallesen
- * @version 1 May 2021
+ * @version 25 May 2021
  */
 public class Route {
-
+	
+	// Random number generator
 	private Random randomGenerator;
+	
+	// One island in the route
 	private Island island1;
+	
+	// Other island in the route
 	private Island island2;
+	
+	// Base number of days it takes to travel along the route
 	private int days;
+	
+	// Probability (out of 100) of encountering pirates while traveling along the route
 	private int pirateDanger;
+	
+	// Probability (out of 100) of bad weather while traveling along the route
 	private int weatherDanger;
+	
+	// Probability (out of 100) of finding lost sailors while traveling along the route
 	private int sailorsOdds;
 	
 	/**
 	 * Creates a route with the given parameter values.
-	 * @param island1
-	 * @param island2
-	 * @param days
-	 * @param pirateDanger
-	 * @param weatherDanger
-	 * @param sailorsOdds
+	 * @param island1 one island in the route
+	 * @param island2 other island in the route
+	 * @param days base number of days it takes to travel this route
+	 * @param pirateDanger chance of encountering pirates (out of 100)
+	 * @param weatherDanger chance of bad weather (out of 100)
+	 * @param sailorsOdds change of finding lost sailors (out of 100)
 	 */
 	public Route(Island island1, Island island2, int days, int pirateDanger, int weatherDanger, int sailorsOdds) {
+		randomGenerator = new Random();
 		this.island1 = island1;
 		this.island2 = island2;
 		this.days = days;
 		this.pirateDanger = pirateDanger;
 		this.weatherDanger = weatherDanger;
 		this.sailorsOdds = sailorsOdds;
-		randomGenerator = new Random();
 	}
 	
 	/**
