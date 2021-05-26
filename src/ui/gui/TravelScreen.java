@@ -20,16 +20,32 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
+/**
+ * Displays the available routes on the current island and allows the player to choose one to take.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class TravelScreen extends Screen {
-
-	private final String[] columnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Table of all the routes the player can take from the current island.
+	 */
 	private JTable routeTable;
+	
+	/**
+	 * Displays an error message if an error occurs. 
+	 * E.g. if there aren't enough days yet to take the chosen route.
+	 */
 	private JLabel errorLbl;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	public TravelScreen(GameEnvironment game) {
 		super(game);
@@ -43,19 +59,28 @@ public class TravelScreen extends Screen {
 		return frame;
 	}
 	
+	/**
+	 * Travels to the island chosen in the island table if its possible. If not, an error message is displayed.
+	 * Has route-specific chance to trigger a random event.
+	 */
 	private void travel() {
 		if (routeTable.getSelectedRowCount() == 0) {
+			// Displays error message if player hasn't selected a route
 			errorLbl.setText("You must select a route.");
 		} else {
 			Route route = getGame().getIsland().getRoutes().get(routeTable.getSelectedRow());
 			if (!getGame().isTimeForRoute(route)) {
+				// Displays error message if there's not enough days left for the route
 				errorLbl.setText(GameUI.TRAVEL_DAYS_ERROR);
 			} else if (getGame().getShip().getHealth() != getGame().getShip().getMaxHealth()) {
+				// Displays error message if player's ship is not at max health
 				errorLbl.setText(GameUI.TRAVEL_SHIP_ERROR);
 			} else if (!getGame().canAffordRoute(route)) {
+				// Displays error message if player doesn't have enough gold to afford the route
 				errorLbl.setText(GameUI.TRAVEL_GOLD_ERROR);
 			} else {
 				getGame().travelRoute(route);
+				// Has a chance of calling random event screen
 				if (route.encounterPirates()) {
 					getGame().getUI().pirateEncounter(route);
 				} else if (route.encounterWeatherEvent()) {
@@ -70,7 +95,7 @@ public class TravelScreen extends Screen {
 	}
 	
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 620, 350);
@@ -151,6 +176,7 @@ public class TravelScreen extends Screen {
 			routesTable[i] = routeRow;
 			i++;
 		}
+		String[] columnText = {"Island", "Days", "Pirate Danger", "Weather Danger", "Lost Sailors Chance"};
 		routeTable.setModel(new DefaultTableModel(routesTable, columnText) {
 			private static final long serialVersionUID = -156423262431076534L;
 

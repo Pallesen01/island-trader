@@ -14,12 +14,21 @@ import java.awt.Dimension;
 import core.GameEnvironment;
 import javax.swing.JProgressBar;
 
+/**
+ * Menu screen where the player can choose an option out of all the ones available in the game.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class MenuScreen extends Screen{
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	protected MenuScreen(GameEnvironment game) {	
 		super(game);
@@ -34,7 +43,7 @@ public class MenuScreen extends Screen{
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	void initialiseFrame() {
 		frame.setBounds(100, 100, 700, 500);

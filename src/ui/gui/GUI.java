@@ -9,11 +9,26 @@ import core.Route;
 import core.Ship;
 import ui.GameUI;
 
+/**
+ * Implements the game's user interface with graphics.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class GUI implements GameUI {
-
+	
+	/**
+	 * Instance of the game.
+	 */
 	private GameEnvironment game;
+	
+	/**
+	 * Current screen of the GUI.
+	 */
     private Screen screen;
     
+    /**
+     * Each type of random event.
+     */
 	enum RandomEvent {
 		PIRATES,
 		WEATHER,
@@ -27,9 +42,6 @@ public class GUI implements GameUI {
         screen.show();
 	}
 
-	/**
-	 *  Opens the menu screen if it is possible for the player to travel, otherwise end game.
-	 */
 	@Override
 	public void menu() {
 		if (!game.isGameOver()) {
@@ -44,9 +56,6 @@ public class GUI implements GameUI {
 		}
 	}
 	
-	/**
-	 * Opens the ship info screen.
-	 */
 	@Override
 	public void shipInfo() {
 		screen.quit();
@@ -54,9 +63,6 @@ public class GUI implements GameUI {
 		screen.show();
 	}
 
-	/**
-	 * Opens the ship goods screen.
-	 */
 	@Override
 	public void goods() {
 		screen.quit();
@@ -64,9 +70,6 @@ public class GUI implements GameUI {
 		screen.show();
 	}
 
-	/**
-	 * Opens the selection window for island info.
-	 */
 	@Override
 	public void islandInfo() {
 		screen.quit();
@@ -75,9 +78,6 @@ public class GUI implements GameUI {
 
 	}
 	
-	/**
-	 * Displays island info screen for given island.
-	 */
 	@Override
 	public void displayIslandInfo(Island island) {
 		screen.quit();
@@ -86,9 +86,6 @@ public class GUI implements GameUI {
 
 	}
 
-	/**
-	 * Displays store screen for current island.
-	 */
 	@Override
 	public void store() {
 		screen.quit();
@@ -96,9 +93,6 @@ public class GUI implements GameUI {
 		screen.show();
 	}
 
-	/**
-	 * Displays ship repair screen.
-	 */
 	@Override
 	public void repair() {
 		screen.quit();
@@ -106,17 +100,13 @@ public class GUI implements GameUI {
 		screen.show();
 	}
 
-	/**
-	 * Displays travel screen.
-	 */
 	@Override
 	public void travel() {
 		screen.quit();
 		screen = new TravelScreen(game);
 		screen.show();
 	}
-	
-	
+
 	public void pirateEncounter(Route route) {
 		screen.quit();
 		screen = new PirateBattleScreen(this ,game, route);
@@ -130,6 +120,7 @@ public class GUI implements GameUI {
 
 	}
 
+	@Override
 	public void weatherEncounter(Route route) {
 		screen.quit();
 		int damage = game.weatherEvent();
@@ -137,7 +128,8 @@ public class GUI implements GameUI {
 		screen.show();
 
 	}
-
+	
+	@Override
 	public void sailorEncounter(Route route) {
 		screen.quit();
 		int reward = game.sailorEvent();

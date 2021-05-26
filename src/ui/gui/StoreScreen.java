@@ -20,18 +20,47 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.Color;
 
+/**
+ * Displays the player's gold and a list of items the player can choose to buy and sell.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class StoreScreen extends Screen {
 	
+	/**
+	 * First part of message to the user when they haven't selected
+	 * an item to buy/sell.
+	 */
 	private final String NOT_SELECTED = "You must select an item";
-
+	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Table that displays all the items the player can buy.
+	 */
 	private JTable buyTable;
+	
+	/**
+	 * Table that displays all the items the player can sell
+	 */
 	private JTable sellTable;
+	
+	/**
+	 * Label displaying the player's current gold.
+	 */
 	private JLabel goldLbl;
+	
+	/**
+	 * Label displaying the result of the player attempting to buy or sell an item.
+	 */
 	private JLabel resultLbl;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	public StoreScreen(GameEnvironment game) {
 		super(game);
@@ -45,6 +74,10 @@ public class StoreScreen extends Screen {
 		return frame;
 	}
 	
+	/**
+	 * Gets the item selected in the buy table and buys it if the player has enough gold.
+	 * Sets the result label's text depending on the outcome.
+	 */
 	private void buy() {
 		if (buyTable.getSelectedRowCount() == 0) {
 			resultLbl.setText(NOT_SELECTED + " to buy.");
@@ -59,6 +92,10 @@ public class StoreScreen extends Screen {
 		}
 	}
 	
+	/**
+	 * Gets the item selected in the buy table and sells it if its in the ship's cargo.
+	 * Sets the result label's text depending on the outcome.
+	 */
 	private void sell() {
 		if (sellTable.getSelectedRowCount() == 0) {
 			resultLbl.setText(NOT_SELECTED + " to sell.");
@@ -90,7 +127,7 @@ public class StoreScreen extends Screen {
 	}
 	
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 760, 585);

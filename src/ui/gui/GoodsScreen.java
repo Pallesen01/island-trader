@@ -19,13 +19,27 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.Color;
 
+/**
+ * Displays all the goods the user has ever bought, how much they were bought and sold for,
+ * and where they were sold.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class GoodsScreen extends Screen {
 	
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Table with all the goods the user has purchased.
+	 */
 	private JTable goodsTable;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	public GoodsScreen(GameEnvironment game) {
 		super(game);
@@ -60,7 +74,7 @@ public class GoodsScreen extends Screen {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 700, 500);

@@ -1,5 +1,5 @@
 island1;island2;days;pirateDanger;weatherDanger;sailorsOdds;
-Smugglers' Bay;Mermaid's Hideaway;5;100;8;15;
+Smugglers' Bay;Mermaid's Hideaway;5;5;8;15;
 Smugglers' Bay;Shipwreck Bay;3;5;30;20;
 Smugglers' Bay;Marauder's Arch;3;15;10;5;
 Shipwreck Bay;Marauder's Arch;2;8;25;15;

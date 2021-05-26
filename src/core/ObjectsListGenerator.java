@@ -156,9 +156,10 @@ public class ObjectsListGenerator {
 	
 	/** 
 	 * Returns an ArrayList of in-game routes.
+	 * @param islands ArrayList of islands in the game
 	 * @return ArrrayList of Route objects
 	 */
-	public static ArrayList<Route> generateRoute(ArrayList<Island> Islands) {
+	public static ArrayList<Route> generateRoute(ArrayList<Island> islands) {
 		ArrayList<Route> routeList = new ArrayList<Route>();
 		Scanner routeData = null;
 		
@@ -184,7 +185,7 @@ public class ObjectsListGenerator {
 			int sailorsOdds = routeData.nextInt();
 			Island island1 = null;
 			Island island2 = null;
-			for (Island island : Islands ) {
+			for (Island island : islands ) {
 				String islandName = island.getName();
 				if (islandName1.equals(islandName)) {
 					island1 = island;

@@ -1,21 +1,53 @@
 package ui;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 import core.GameEnvironment;
 import core.Island;
 import core.Item;
-import core.ObjectsListGenerator;
 import core.Route;
 import core.Ship;
-import core.Weapon;
 
-public class TextUI implements GameUI{
+/**
+ * Implements the game's user interface with text.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
+public class TextUI implements GameUI {
 	
+	/**
+	 * Scanner that reads the player's input.
+	 */
 	private final Scanner input;
+	
+	/**
+	 * Instance of the game.
+	 */
 	private GameEnvironment game;
+	
+	/**
+	 * Initialises the scanner that reads the player's input.
+	 */
+	public TextUI() {
+		this.input = new Scanner(System.in);
+		input.useDelimiter("\\s*\n\\s*");
+	}
+	
+	enum MenuOption {
+		SHIP_INFO("View ship information"),
+		GOODS("View goods"),
+		ISL_INFO("View island information"),
+		STORE("Visit the store"),
+		REPAIR("Repair your ship"),
+		TRAVEL("Travel to another island");
+		
+		public final String label;
+
+        MenuOption(String label) {
+            this.label = label;
+        }
+	}
 	
 	enum StoreOption {
 		LEAVE("Leave"),
@@ -28,11 +60,6 @@ public class TextUI implements GameUI{
         StoreOption(String label) {
             this.label = label;
         }
-	}
-	
-	public TextUI() {
-		this.input = new Scanner(System.in);
-		input.useDelimiter("\\s*\n\\s*");
 	}
 
 	@Override

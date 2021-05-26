@@ -14,16 +14,41 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
+/**
+ * Shows the players gold, ship's health, and ship's repair cost and allows the player to repair their ship.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class RepairScreen extends Screen {
 
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Label that displays the player's current gold.
+	 */
 	private JLabel goldLbl;
+	
+	/**
+	 * Label that displays the ship's health.
+	 */
 	private JLabel healthLbl;
+	
+	/**
+	 * Label that displays the cost to repair the player's ship.
+	 */
 	private JLabel costLbl;
+	
+	/**
+	 * Label that displays the result of clicking the repair button.
+	 */
 	private JLabel resultLbl;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	public RepairScreen(GameEnvironment game) {
 		super(game);
@@ -32,11 +57,16 @@ public class RepairScreen extends Screen {
 		configureFrame();
 	}
 	
+	/**
+	 * Repairs the ship if its below its maximum health and the player has enough gold.
+	 */
 	private void repair() {
 		Ship ship = getGame().getShip();
 		if (ship.getHealth() == ship.getMaxHealth()) {
+			// Don't repair ship if it's at max health
 			resultLbl.setText(GameUI.REPAIR_MAX);
 		} else if (getGame().repairShip()) {
+			// Update labels if repair is successful
 			goldLbl.setText("Gold: " + getGame().getGold());
 			costLbl.setText("Repair Cost: " + getGame().getShip().getRepairCost());
 			healthLbl.setText("Ship Health: " + getGame().getShip().getHealth());
@@ -52,7 +82,7 @@ public class RepairScreen extends Screen {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 500, 300);

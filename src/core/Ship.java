@@ -18,34 +18,54 @@ public class Ship {
 	 */
 	private final double REPAIR_MODIFIER = 0.5;
 	
-	// Name of the ship
+	/**
+	 * Name of the ship.
+	 */
 	private String name;
 	
-	// Number of crew members the ship has
+	/**
+	 * Number of crew members the ship has.
+	 */
 	private int crew;
 	
-	// Space left in the ship's cargo
+	/**
+	 * Space left in the ship's cargo.
+	 */
 	private int spaceLeft;
 	
-	// Maximum amount of space in the ship's cargo
+	/**
+	 * Maximum amount of space in the ship's cargo.
+	 */
 	private int maxSpace;
 	
-	// Ship's current health
+	/**
+	 * Ship's current health.
+	 */
 	private int health;
 	
-	// Maximum health the ship can have
+	/**
+	 * Maximum health the ship can have.
+	 */
 	private int maxHealth;
 	
-	// Speed of the ship
+	/**
+	 * Speed of the ship.
+	 */
 	private int speed;
 	
-	// Endurance of the ship (affects how much damage it takes in a pirate battle)
+	/**
+	 * Endurance of the ship (affects how much damage it takes in a pirate battle).
+	 */
 	private int endurance;
 	
-	// All the items in the ship's cargo
+	/**
+	 * All the items in the ship's cargo.
+	 */
 	private ArrayList<Item> cargo;
 	
-	// All the weapons in the ship's cargo
+	/**
+	 * All the weapons in the ship's cargo.
+	 */
 	private ArrayList<Item> weapons;
 	
 	/**
@@ -192,7 +212,7 @@ public class Ship {
 	
 	/**
 	 * Sets the ship's endurance.
-	 * @param speed new ship endurance
+	 * @param endurance new ship endurance
 	 */
 	public void setEndurance(int endurance) {
 		this.endurance = endurance;

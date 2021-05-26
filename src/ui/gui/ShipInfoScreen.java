@@ -22,19 +22,34 @@ import javax.swing.JTable;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
+/**
+ * Displays the properties of the player's ship, what's in the cargo, and which cargo items are weapons.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class ShipInfoScreen extends Screen {
 
+	/**
+	 * Frame that holds all GUI elements.
+	 */
 	private JFrame frame;
-	private GameEnvironment game;
+	
+	/**
+	 * Table to show the contents of the ship's cargo.
+	 */
 	private JTable cargoTable;
+	
+	/**
+	 * Table to show the player's weapons.
+	 */
 	private JTable weaponTable;
 
 	/**
-	 * Create the application.
+	 * Stores the game instance then creates and sets up the frame.
+	 * @param game game instance
 	 */
 	public ShipInfoScreen(GameEnvironment game) {
 		super(game);
-		this.game = game;
 		frame = new JFrame();
 		initialiseFrame();
 		configureFrame();
@@ -80,7 +95,7 @@ public class ShipInfoScreen extends Screen {
 	
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
 		frame.setBounds(100, 100, 700, 500);
@@ -95,7 +110,7 @@ public class ShipInfoScreen extends Screen {
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
 		
-		Ship ship = game.getShip();
+		Ship ship = getGame().getShip();
 		JLabel lblNewLabel = new JLabel("Ship Type: " + ship.getName());
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		

@@ -26,13 +26,19 @@ public class Store {
 	 */
 	private final int SELL_DIFFERENCE = 5; 
 	
-	// Random number generator for picking items and prices
+	/**
+	 * Random number generator for picking items and prices.
+	 */
 	private Random randomGenerator;
 	
-	// Items that can be bought at the store
+	/**
+	 * Items that can be bought at the store.
+	 */
 	private ArrayList<Item> buys;
 	
-	// Items that can be sold to the store
+	/**
+	 * Items that can be sold to the store.
+	 */
 	private ArrayList<Item> sells;
 	
 	/**
@@ -48,8 +54,8 @@ public class Store {
 	}
 	
 	/**
-	 * Generates random price for an item within a range
-	 * @param item
+	 * Generates random price for an item within a range.
+	 * @param item item to generate a price for
 	 * @return Returns price for item
 	 */
 	private int randomizePrice(Item item) {

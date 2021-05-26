@@ -8,25 +8,39 @@ import java.util.Random;
  */
 public class Route {
 	
-	// Random number generator
+	/**
+	 * Random number generator.
+	 */
 	private Random randomGenerator;
 	
-	// One island in the route
+	/**
+	 * One island in the route.
+	 */
 	private Island island1;
 	
-	// Other island in the route
+	/**
+	 * Other island in the route.
+	 */
 	private Island island2;
 	
-	// Base number of days it takes to travel along the route
+	/**
+	 * Base number of days it takes to travel along the route.
+	 */
 	private int days;
 	
-	// Probability (out of 100) of encountering pirates while traveling along the route
+	/**
+	 * Probability (out of 100) of encountering pirates while traveling along the route.
+	 */
 	private int pirateDanger;
 	
-	// Probability (out of 100) of bad weather while traveling along the route
+	/**
+	 * Probability (out of 100) of bad weather while traveling along the route.
+	 */
 	private int weatherDanger;
 	
-	// Probability (out of 100) of finding lost sailors while traveling along the route
+	/**
+	 * Probability (out of 100) of finding lost sailors while traveling along the route.
+	 */
 	private int sailorsOdds;
 	
 	/**
@@ -61,7 +75,7 @@ public class Route {
 	 * Returns string of what island the route will go to,
 	 * how many days it will take,
 	 * and the chances of encountering random events.
-	 * @param currentIsland island the player is currently on
+	 * @param island island the player is currently on
 	 * @param speed speed of the player's ship
 	 * @return string of information
 	 */
