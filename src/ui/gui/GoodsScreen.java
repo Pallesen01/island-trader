@@ -63,7 +63,6 @@ public class GoodsScreen extends Screen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialiseFrame() {
-		frame.setTitle(title);
 		frame.setBounds(100, 100, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JScrollPane goodsScrollPane = new JScrollPane();
