@@ -14,7 +14,8 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class endGameScreen extends Screen {
+public class EndGameScreen extends Screen {
+	
 	private JFrame frame;
 	private String reason;
 	private GameEnvironment game;
@@ -22,7 +23,7 @@ public class endGameScreen extends Screen {
 	/**
 	 * Create the application.
 	 */
-	public endGameScreen(GameEnvironment game, String reason) {
+	public EndGameScreen(GameEnvironment game, String reason) {
 		super(game);
 		frame = new JFrame();
 		this.game = game;

@@ -24,6 +24,7 @@ public class RandomEventScreen extends Screen {
 	private Route route;
 	private int resultValue;
 	private RandomEvent event;
+	private boolean piratesUnsatisfied;
 
 	/**
 	 * Create the application.
@@ -56,14 +57,14 @@ public class RandomEventScreen extends Screen {
 					messageTextPane.setText("But you defeated them! Your ship has taken " + resultValue + " damage.");
 				} else {
 					if (!getGame().pirateLossOutcome()) {
+						piratesUnsatisfied = true;
 						getGame().loseGold();
 						messageTextPane.setText(GameUI.PIRATE_UNSATISFIED);
-						getGame().endGame("Killed by Pirates");
+						
 					}
 					else {
 						messageTextPane.setText(GameUI.PIRATE_SATISFIED);
 					}
-					// getGame().endGame("Killed by Pirates"); Not needed?
 				}
 				break;
 			case WEATHER: 
@@ -81,8 +82,11 @@ public class RandomEventScreen extends Screen {
 	
 	private void continueGame() {
 		switch (event) {
-			case PIRATES: 
-				if (route.encounterWeatherEvent()) {
+			case PIRATES:
+				if (piratesUnsatisfied) {
+					getGame().endGame("Killed by Pirates");
+					break;
+				} else if (route.encounterWeatherEvent()) {
 					getGame().getUI().weatherEncounter(route);
 					break;
 				}

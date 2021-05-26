@@ -12,13 +12,40 @@ import ui.TextUI;
  */
 public class GameEnvironment {
 	
-	// Constants for the game
+	/**
+	 * Multiples the wage value by the modifier 
+	 */
 	private final double WAGE_MODIFIER = 0.5;
+	
+	/**
+	 * Minimum reward given by lost sailors.
+	 */
 	private final int MIN_SAILOR_REWARD = 20;
+	
+	/**
+	 * Maximum reward given by lost sailors.
+	 */
 	private final int MAX_SAILOR_REWARD = 60;
+	
+	/**
+	 * Minimum damage inflicted by weather.
+	 */
 	private final int MIN_WEATHER_DAMAGE = 10;
+	
+	/**
+	 * Maximum damage inflicted by weather.
+	 */
 	private final int MAX_WEATHER_DAMAGE = 40;
-	private final int PIRATE_CARGO_THRESHOLD = 50;
+	
+	/**
+	 * Minimum value of cargo needed for pirates to be satisfied.
+	 */
+	private final int PIRATE_CARGO_THRESHOLD = 100;
+	
+	/**
+	 * Multiplies the value of the player's cargo at the end of the game
+	 * with this modifier to get a new value.
+	 */
 	private final double CARGO_VALUE_MODIFIER = 0.7;
 
 	// Ships available in the game
@@ -278,12 +305,18 @@ public class GameEnvironment {
 	 * @return true if possible, otherwise false
 	 */
 	public boolean canAffordRoute(Route route) {
-		boolean can = false;
+		return gold >= getTravelCost(route);
+	}
+	
+	/**
+	 * Returns the cost it will take to travel along the given route.
+	 * @param route route to get the cost of
+	 * @return cost of traveling along route
+	 */
+	public double getTravelCost(Route route) {
 		int daysTaken = route.getDays(ship.getSpeed());
-		if (gold >= daysTaken * ship.getCrew() * WAGE_MODIFIER) {
-			can = true;
-		}
-		return can;
+		return daysTaken * ship.getCrew() * WAGE_MODIFIER;
+		
 	}
 	
 	/**
@@ -320,7 +353,7 @@ public class GameEnvironment {
 		}
 		int daysTaken = route.getDays(ship.getSpeed());
 		this.daysLeft -= daysTaken;
-		this.gold -= daysTaken * ship.getCrew() * WAGE_MODIFIER; // Charges crew wages
+		this.gold -= getTravelCost(route); // Charges crew wages
 		
 		Island[] islands = route.getIslands();	
 		// Sets the game's current island to the other island in the route
@@ -329,12 +362,6 @@ public class GameEnvironment {
 		} else {
 			island = islands[1];
 		}
-	}
-	
-	public double getTravelCost(Route route) {
-		int daysTaken = route.getDays(ship.getSpeed());
-		return daysTaken * ship.getCrew() * WAGE_MODIFIER;
-		
 	}
 	
 	/**

@@ -205,6 +205,11 @@ public class Ship {
 	public ArrayList<Item> getCargo() {
 		return cargo;
 	}
+	
+	/**
+	 * Returns the value of all items in the cargo.
+	 * @return value of items in cargo
+	 */
 	public int getCargoValue() {
 		int cargoValue = 0;
 		for (Item item: this.getCargo()) {

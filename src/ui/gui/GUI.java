@@ -41,8 +41,8 @@ public class GUI implements GameUI {
 				}
 			}
 			if (canTravel) {
-			screen = new MenuScreen(game);
-			screen.show();
+				screen = new MenuScreen(game);
+				screen.show();
 			}
 			else {
 				endGame("No More Routes Can Be Travelled");
@@ -128,7 +128,7 @@ public class GUI implements GameUI {
 	public void endGame(String reason) {
 		game.setGameOver();
 		screen.quit();
-		screen = new endGameScreen(game, reason);
+		screen = new EndGameScreen(game, reason);
 		screen.show();
 		
 	}
