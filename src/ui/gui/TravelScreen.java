@@ -55,21 +55,27 @@ public class TravelScreen extends Screen {
 	}
 	
 	/**
-	 * 
+	 * Travels to the island chosen in the island table if its possible. If not, an error message is displayed.
+	 * Has route-specific chance to trigger a random event.
 	 */
 	private void travel() {
 		if (routeTable.getSelectedRowCount() == 0) {
+			// Displays error message if player hasn't selected a route
 			errorLbl.setText("You must select a route.");
 		} else {
 			Route route = getGame().getIsland().getRoutes().get(routeTable.getSelectedRow());
 			if (!getGame().isTimeForRoute(route)) {
+				// Displays error message if there's not enough days left for the route
 				errorLbl.setText(GameUI.TRAVEL_DAYS_ERROR);
 			} else if (getGame().getShip().getHealth() != getGame().getShip().getMaxHealth()) {
+				// Displays error message if player's ship is not at max health
 				errorLbl.setText(GameUI.TRAVEL_SHIP_ERROR);
 			} else if (!getGame().canAffordRoute(route)) {
+				// Displays error message if player doesn't have enough gold to afford the route
 				errorLbl.setText(GameUI.TRAVEL_GOLD_ERROR);
 			} else {
 				getGame().travelRoute(route);
+				// Has a chance of calling random event screen
 				if (route.encounterPirates()) {
 					getGame().getUI().pirateEncounter(route);
 				} else if (route.encounterWeatherEvent()) {

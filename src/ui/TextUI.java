@@ -1,21 +1,33 @@
 package ui;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 import core.GameEnvironment;
 import core.Island;
 import core.Item;
-import core.ObjectsListGenerator;
 import core.Route;
 import core.Ship;
-import core.Weapon;
 
 public class TextUI implements GameUI{
 	
 	private final Scanner input;
 	private GameEnvironment game;
+	
+	enum MenuOption {
+		SHIP_INFO("View ship information"),
+		GOODS("View goods"),
+		ISL_INFO("View island information"),
+		STORE("Visit the store"),
+		REPAIR("Repair your ship"),
+		TRAVEL("Travel to another island");
+		
+		public final String label;
+
+        MenuOption(String label) {
+            this.label = label;
+        }
+	}
 	
 	enum StoreOption {
 		LEAVE("Leave"),
