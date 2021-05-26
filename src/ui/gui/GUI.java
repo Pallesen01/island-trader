@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import core.GameEnvironment;
 import core.Island;
+import core.Item;
 import core.Route;
 import ui.GameUI;
 
@@ -28,26 +29,15 @@ public class GUI implements GameUI {
 	@Override
 	public void menu() {
 		if (!game.isGameOver()) {
-			screen.quit();
-			// Check that it is possible to travel at least one route
-			ArrayList<Route> routes = game.getIsland().getRoutes();
-			int goldAfterRepair = game.getGold() - game.getShip().getRepairCost();
-			boolean canTravel = false;
-			for (Route route: routes) {
-				int days = route.getDays(game.getShip().getSpeed());
-				if (days <= game.getDaysLeft() && game.getTravelCost(route) <= goldAfterRepair ) {
-					canTravel = true;
-					break;
-				}
-			}
-			if (canTravel) {
+			screen.quit();		
+			if (checkCanTravel()) {
 				screen = new MenuScreen(game);
 				screen.show();
 			}
 			else {
 				endGame("No More Routes Can Be Travelled");
 			}
-			}
+		}
 	}
 	
 
@@ -131,6 +121,37 @@ public class GUI implements GameUI {
 		screen = new EndGameScreen(game, reason);
 		screen.show();
 		
+	}
+	
+	/**
+	 * Checks if it is possible for the ship to travel along any routes.
+	 * @return returns true if it is possible to travel, else false.
+	 */
+	private boolean checkCanTravel() {
+		
+		ArrayList<Route> routes = game.getIsland().getRoutes();
+		
+		// Calculate gold that can be made by selling cargo
+		ArrayList<Item> storeSell = game.getIsland().getStore().getSells();
+		int storeGold = 0;
+		for (Item item1: storeSell) {
+			for (Item item2: game.getShip().getCargo()) {
+				if (item1.getName().equals(item2.getName())){
+					storeGold += item1.getPrice();
+				}
+			}
+		}
+		// Check that it is possible to travel at least one route with max gold after selling items and repairing ship
+		int goldAfterAction = game.getGold() - game.getShip().getRepairCost() + storeGold;
+		boolean canTravel = false;
+		for (Route route: routes) {
+			int days = route.getDays(game.getShip().getSpeed());
+			if (days <= game.getDaysLeft() && game.getTravelCost(route) <= goldAfterAction ) {
+				canTravel = true;
+				break;	
+			}
+		}
+		return canTravel;
 	}
 
 }
