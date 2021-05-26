@@ -14,6 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
+/**
+ * Shows the players gold, ship's health, and ship's repair cost and allows the player to repair their ship.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class RepairScreen extends Screen {
 
 	/**

@@ -247,7 +247,7 @@ public class GameEnvironment {
 	
 	/**
 	 * Sets the players gold to the given value.
-	 * @param new gold value
+	 * @param gold new gold value
 	 */
 	public void setGold(int gold) {
 		this.gold = gold;

@@ -18,6 +18,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 
+/**
+ * 
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class RandomEventScreen extends Screen {
 	
 	/**

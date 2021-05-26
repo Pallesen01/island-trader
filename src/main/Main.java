@@ -29,7 +29,7 @@ public class Main {
 	
 	/**
 	 * Creates an instance of the game with a command line UI or GUI.
-	 * @param args
+	 * @param args arguments passed in when running main in terminal
 	 */
 	public static void main(String[] args) {
 		if (TEXT_MODE) {

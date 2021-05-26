@@ -22,6 +22,11 @@ import javax.swing.JTable;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
+/**
+ * Displays the properties of the player's ship, what's in the cargo, and which cargo items are weapons.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class ShipInfoScreen extends Screen {
 
 	/**

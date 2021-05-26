@@ -19,6 +19,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+/**
+ * Displays the island's available routes and the items the player can buy and sell at its store.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class DisplayIslandInfoScreen extends Screen {
 	
 	/**

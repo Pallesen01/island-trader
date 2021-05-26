@@ -4,6 +4,12 @@ import core.GameEnvironment;
 import core.Island;
 import core.Route;
 
+/**
+ * Interface for any user interface class. Includes methods that need to be implemented, and strings that
+ * can be used to keep output consistent over different user interfaces.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public interface GameUI {
 	
 	/**
@@ -135,8 +141,7 @@ public interface GameUI {
 	void start(GameEnvironment game);
 	
 	/**
-	 * Menu screen where the player can choose an option out of all the ones available
-	 * in the game.
+	 * Menu screen where the player can choose an option out of all the ones available in the game.
 	 */
 	void menu();
 	
@@ -152,7 +157,7 @@ public interface GameUI {
 	void goods();
 	
 	/**
-	 * Player can pick and island and view what routes are available on that island, as well as the items
+	 * Player can pick an island and view what routes are available on that island, as well as the items
 	 * they can buy and sell at the island's store.
 	 */
 	void islandInfo();

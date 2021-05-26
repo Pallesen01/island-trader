@@ -212,7 +212,7 @@ public class Ship {
 	
 	/**
 	 * Sets the ship's endurance.
-	 * @param speed new ship endurance
+	 * @param endurance new ship endurance
 	 */
 	public void setEndurance(int endurance) {
 		this.endurance = endurance;

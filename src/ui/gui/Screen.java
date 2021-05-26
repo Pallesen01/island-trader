@@ -7,6 +7,12 @@ import javax.swing.JFrame;
 
 import core.GameEnvironment;
 
+/**
+ * Abstract class for GUI screens that contains methods and attributes used across all of them
+ * and an abstract class that must be implemented in each one.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public abstract class Screen {
 	
 	/**

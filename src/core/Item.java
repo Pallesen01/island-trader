@@ -110,7 +110,7 @@ public class Item {
 	
 	/**
 	 * Sets a new price for the item.
-	 * @param new price for the item
+	 * @param price new price for the item
 	 */
 	public void setPrice(int price) {
 		this.price = price;

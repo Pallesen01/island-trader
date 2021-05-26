@@ -9,7 +9,7 @@ import core.Item;
 import core.Route;
 import core.Ship;
 
-public class TextUI implements GameUI{
+public class TextUI implements GameUI {
 	
 	private final Scanner input;
 	private GameEnvironment game;

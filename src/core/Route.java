@@ -75,7 +75,7 @@ public class Route {
 	 * Returns string of what island the route will go to,
 	 * how many days it will take,
 	 * and the chances of encountering random events.
-	 * @param currentIsland island the player is currently on
+	 * @param island island the player is currently on
 	 * @param speed speed of the player's ship
 	 * @return string of information
 	 */

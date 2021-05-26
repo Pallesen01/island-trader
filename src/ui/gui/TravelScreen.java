@@ -20,6 +20,11 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
+/**
+ * Displays the available routes on the current island and allows the player to choose one to take.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class TravelScreen extends Screen {
 	
 	/**

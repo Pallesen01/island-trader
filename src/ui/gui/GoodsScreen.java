@@ -19,6 +19,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.Color;
 
+/**
+ * Displays all the goods the user has ever bought, how much they were bought and sold for,
+ * and where they were sold.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class GoodsScreen extends Screen {
 	
 	/**

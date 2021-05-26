@@ -23,7 +23,8 @@ import core.Ship;
 import ui.GameUI;
 
 /**
- * This class creates the starting screen for the game.
+ * This class creates the starting screen for the game where the player is asked for their name, 
+ * the number of days they want to play for, and which ship they want.
  * @author Dillon Pike, Daniel Pallesen
  * @version 25 May 2021
  */

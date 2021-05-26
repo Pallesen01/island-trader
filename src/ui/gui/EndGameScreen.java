@@ -12,6 +12,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import javax.swing.JButton;
 
+/**
+ * Displays a game over screen with the reason for the game ending, player's name, 
+ * expected and actual game duration, final gold, final cargo value, and the player's final score.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class EndGameScreen extends Screen {
 	
 	/**

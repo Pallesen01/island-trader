@@ -20,6 +20,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.Color;
 
+/**
+ * Displays the player's gold and a list of items the player can choose to buy and sell.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class StoreScreen extends Screen {
 	
 	/**

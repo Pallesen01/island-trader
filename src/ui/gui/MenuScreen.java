@@ -14,6 +14,11 @@ import java.awt.Dimension;
 import core.GameEnvironment;
 import javax.swing.JProgressBar;
 
+/**
+ * Menu screen where the player can choose an option out of all the ones available in the game.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class MenuScreen extends Screen{
 	
 	/**

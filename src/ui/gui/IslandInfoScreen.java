@@ -17,6 +17,12 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ * Screen where player can pick an island and view what routes are available on that island, 
+ * as well as the items they can buy and sell at the island's store.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class IslandInfoScreen extends Screen {
 
 	/**

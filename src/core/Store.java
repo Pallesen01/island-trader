@@ -54,8 +54,8 @@ public class Store {
 	}
 	
 	/**
-	 * Generates random price for an item within a range
-	 * @param item
+	 * Generates random price for an item within a range.
+	 * @param item item to generate a price for
 	 * @return Returns price for item
 	 */
 	private int randomizePrice(Item item) {

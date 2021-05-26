@@ -8,6 +8,11 @@ import core.Item;
 import core.Route;
 import ui.GameUI;
 
+/**
+ * Implements the game's user interface with graphics.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class GUI implements GameUI {
 	
 	/**
