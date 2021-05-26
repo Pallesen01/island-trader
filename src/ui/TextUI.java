@@ -9,10 +9,30 @@ import core.Item;
 import core.Route;
 import core.Ship;
 
+/**
+ * Implements the game's user interface with text.
+ * @author Dillon Pike, Daniel Pallesen
+ * @version 25 May 2021
+ */
 public class TextUI implements GameUI {
 	
+	/**
+	 * Scanner that reads the player's input.
+	 */
 	private final Scanner input;
+	
+	/**
+	 * Instance of the game.
+	 */
 	private GameEnvironment game;
+	
+	/**
+	 * Initialises the scanner that reads the player's input.
+	 */
+	public TextUI() {
+		this.input = new Scanner(System.in);
+		input.useDelimiter("\\s*\n\\s*");
+	}
 	
 	enum MenuOption {
 		SHIP_INFO("View ship information"),
@@ -40,11 +60,6 @@ public class TextUI implements GameUI {
         StoreOption(String label) {
             this.label = label;
         }
-	}
-	
-	public TextUI() {
-		this.input = new Scanner(System.in);
-		input.useDelimiter("\\s*\n\\s*");
 	}
 
 	@Override

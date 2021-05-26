@@ -208,7 +208,8 @@ public class GameEnvironment {
 	}
 	
 	/** 
-	 * Ends the game
+	 * Ends the game.
+	 * @param reason reason for game ending
 	 */
 	public void endGame(String reason) {
 		ui.endGame(reason);
@@ -400,6 +401,10 @@ public class GameEnvironment {
 		return totalValue > PIRATE_CARGO_THRESHOLD;
 	}
 	
+	/**
+	 * Simulates a battle between the player and the pirate's ship.
+	 * @return damage done to the player's ship
+	 */
 	public int pirateEvent() {
 		Random randomGenerator = new Random();
 		// Generate enemy ship
