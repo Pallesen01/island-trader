@@ -161,14 +161,17 @@ public class StartScreen extends Screen {
 			}
 		});
 		
-		JButton confirmBtn = new JButton("Confirm");
-		confirmBtn.addActionListener(e -> finish());
-		
 		nameErrorLbl = new JLabel("");
 		nameErrorLbl.setForeground(Color.RED);
 		
 		shipErrorLbl = new JLabel("");
 		shipErrorLbl.setForeground(Color.RED);
+		
+		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.addActionListener(e -> finish());
+		btnConfirm.setFont(new Font("Dialog", Font.PLAIN, 15));
+		btnConfirm.setFocusable(false);
+		btnConfirm.setBackground(Color.LIGHT_GRAY);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -176,7 +179,7 @@ public class StartScreen extends Screen {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(welcomeLabel, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+							.addComponent(welcomeLabel, GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -186,7 +189,7 @@ public class StartScreen extends Screen {
 											.addGroup(groupLayout.createSequentialGroup()
 												.addComponent(daysLbl)
 												.addGap(18)
-												.addComponent(daysSlider, GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
+												.addComponent(daysSlider, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
 											.addGroup(groupLayout.createSequentialGroup()
 												.addComponent(nameLabel)
 												.addGap(18)
@@ -194,13 +197,13 @@ public class StartScreen extends Screen {
 													.addComponent(nameErrorLbl)
 													.addComponent(nameField, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
 										.addGap(47))
-									.addComponent(confirmBtn)
-									.addComponent(tableScrollPane, GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE))
+									.addComponent(tableScrollPane, GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+									.addComponent(btnConfirm, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(shipLbl)
 									.addGap(18)
 									.addComponent(shipErrorLbl)
-									.addPreferredGap(ComponentPlacement.RELATED, 271, GroupLayout.PREFERRED_SIZE)))
+									.addPreferredGap(ComponentPlacement.RELATED, 308, GroupLayout.PREFERRED_SIZE)))
 							.addGap(21))))
 		);
 		groupLayout.setVerticalGroup(
@@ -228,8 +231,8 @@ public class StartScreen extends Screen {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(tableScrollPane, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(confirmBtn)
-					.addContainerGap(34, Short.MAX_VALUE))
+					.addComponent(btnConfirm, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(62, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

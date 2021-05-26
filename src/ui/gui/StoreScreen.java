@@ -93,7 +93,7 @@ public class StoreScreen extends Screen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialiseFrame() {
-		frame.setBounds(100, 100, 727, 585);
+		frame.setBounds(100, 100, 760, 585);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel storeLbl = new JLabel(getGame().getIsland().getName() + " Store");
