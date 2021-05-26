@@ -29,9 +29,11 @@ class ShipTest {
 	@BeforeAll
 	static void initialiseShip() {
 		randomGenerator = new Random();
-		ships = ObjectsListGenerator.generateShip();
-		testShip = ships.get(randomGenerator.nextInt(ships.size()));
 		items = ObjectsListGenerator.generateItem();
+		ships = ObjectsListGenerator.generateShip();
+		
+		// Picks a random ship for testing
+		testShip = ships.get(randomGenerator.nextInt(ships.size()));
 	}
 
 	@Test
@@ -67,8 +69,22 @@ class ShipTest {
 	}
 	
 	@Test
-	void () {
+	void healthConstrainedTest() {
+		// Checks that ship's health is kept at 0 or above
+		testShip.setHealth(-1);
+		assertEquals(0, testShip.getHealth());
 		
+		// Checks that ship's health is kept at its max health or below
+		testShip.setHealth(testShip.getMaxHealth() + 1);
+		assertEquals(testShip.getMaxHealth(), testShip.getHealth());
+	}
+	
+	@Test
+	void emptyCargoTest() {
+		// Empties cargo and checks that the ship's cargo and weapons are empty
+		testShip.emptyCargo();
+		assertEquals(0, testShip.getCargo().size());
+		assertEquals(0, testShip.getWeapons().size());
 	}
 
 }
