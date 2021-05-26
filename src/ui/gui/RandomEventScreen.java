@@ -13,10 +13,13 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+import javax.swing.JPanel;
 
 /**
  * Screen that displays a random event to the player.
@@ -168,19 +171,16 @@ public class RandomEventScreen extends Screen {
 		continueBtn.setFocusable(false);
 		continueBtn.setBackground(Color.LIGHT_GRAY);
 		
-		JTextPane outcomeTextPane = new JTextPane();
-		outcomeTextPane.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		setMessageText(outcomeTextPane);
-		outcomeTextPane.setBackground(UIManager.getColor("menu"));
+		JPanel panel = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(titleLbl, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-						.addComponent(continueBtn, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-						.addComponent(outcomeTextPane, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+						.addComponent(titleLbl, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+						.addComponent(continueBtn, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -189,11 +189,20 @@ public class RandomEventScreen extends Screen {
 					.addContainerGap()
 					.addComponent(titleLbl)
 					.addGap(18)
-					.addComponent(outcomeTextPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
 					.addComponent(continueBtn, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
+		
+		JTextPane outcomeTextPane = new JTextPane();
+		outcomeTextPane.setDisabledTextColor(Color.BLACK);
+		outcomeTextPane.setEnabled(false);
+		outcomeTextPane.setEditable(false);
+		panel.add(outcomeTextPane, BorderLayout.CENTER);
+		outcomeTextPane.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		setMessageText(outcomeTextPane);
+		outcomeTextPane.setBackground(UIManager.getColor("menu"));
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }
