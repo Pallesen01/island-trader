@@ -34,6 +34,9 @@ public class TextUI implements GameUI {
 		input.useDelimiter("\\s*\n\\s*");
 	}
 	
+	/**
+	 * Options for the player to choose in the menu with a textual description.
+	 */
 	enum MenuOption {
 		SHIP_INFO("View ship information"),
 		GOODS("View goods"),
@@ -49,6 +52,9 @@ public class TextUI implements GameUI {
         }
 	}
 	
+	/**
+	 * Options for the player to choose in the store with a textual description.
+	 */
 	enum StoreOption {
 		LEAVE("Leave"),
 		GOODS("View goods"),
@@ -177,7 +183,7 @@ public class TextUI implements GameUI {
 			System.out.println(TRAVEL_SHIP_ERROR);
 		} else {
 			System.out.println("Reachable Islands:");
-			printIslands();
+			printRoutes();
 			ArrayList<Route> routes = game.getIsland().getRoutes();
 			String prompt = "Choose route to take or enter '0' to cancel: ";
 			int choice = getValidInt(0, routes.size(), prompt, INT_ERROR);
@@ -192,7 +198,10 @@ public class TextUI implements GameUI {
 		}
 	}
 	
-	
+	/**
+	 * Gets a valid name from the user.
+	 * @return valid name from the user
+	 */
 	private String getName() {
 		while (true) {
 			System.out.println(NAME_PROMPT);
@@ -205,12 +214,12 @@ public class TextUI implements GameUI {
 	}
 	
 	/**
-	 * Gets a valid integer from the user within a specific range.
-	 * @param lowerBound
-	 * @param upperBound
-	 * @param prompt
-	 * @param errorMsg
-	 * @return
+	 * Gets a valid integer from the player within a specific range.
+	 * @param lowerBound smallest value for the valid integer
+	 * @param upperBound largest value for the valid integer
+	 * @param prompt textual prompt to get the player to type an integer
+	 * @param errorMsg message to display when the player's integer isn't valid
+	 * @return valid integer entered by the player
 	 */
 	private int getValidInt(int lowerBound, int upperBound, String prompt, String errorMsg) {
 		while (true) {
@@ -227,6 +236,10 @@ public class TextUI implements GameUI {
 		}
 	}
 	
+	/**
+	 * Gets the player to choose a ship.
+	 * @return ship chosen by the player
+	 */
 	private Ship getShip() {
 		System.out.println(SHIP_HEADER);
 		ArrayList<Ship> ships = game.getShips();
@@ -240,11 +253,17 @@ public class TextUI implements GameUI {
 		return ships.get(choice-1);
 	}
 	
+	/**
+	 * Prints how many days are remaining and the current island.
+	 */
 	private void printGameState() {
 		System.out.println("\n" + game.getDaysLeft()+" Days Remaining");
 		System.out.println("Current Island: " + game.getIsland().getName());
 	}
 	
+	/**
+	 * Prints the menu options that the player can choose from.
+	 */
 	private void printMenuOptions() {
 		System.out.println("\nAvaliable Actions:");
 		int i = 0;
@@ -254,6 +273,9 @@ public class TextUI implements GameUI {
 		}
 	}
 	
+	/**
+	 * Prints the store options that the player can choose from.
+	 */
 	private void printStoreOptions() {
 		System.out.println("\nAvaliable Actions:");
 		int i = 0;
@@ -263,6 +285,10 @@ public class TextUI implements GameUI {
 		}
 	}
 	
+	/**
+	 * Shows the player's gold and items they can buy from the store.
+	 * Player can buy an item by entering the corresponding integer next to the item.
+	 */
 	private void buy() {
 		while (true) {
 			System.out.println("\nCurrent gold: " + game.getGold());
@@ -283,6 +309,10 @@ public class TextUI implements GameUI {
 		}
 	}
 	
+	/**
+	 * Shows the player's gold and items they can sell to the store.
+	 * Player can sell an item by entering the corresponding integer next to the item.
+	 */
 	private void sell() {
 		while (true) {
 			System.out.println("\nCurrent gold: " + game.getGold());
@@ -303,6 +333,10 @@ public class TextUI implements GameUI {
 		}
 	}
 	
+	/**
+	 * Prints each item in items.
+	 * @param items ArrayList of items to be printed.
+	 */
 	private void printItems(ArrayList<Item> items) {
 		int i = 0;
 		for (Item item : items) {
@@ -316,7 +350,10 @@ public class TextUI implements GameUI {
 		}
 	}
 	
-	private void printIslands() {
+	/**
+	 * Prints all the route the player can travel along.
+	 */
+	private void printRoutes() {
 		Island island = game.getIsland();
 		ArrayList<Route> routes = island.getRoutes();
 		Ship ship = game.getShip();
@@ -372,13 +409,13 @@ public class TextUI implements GameUI {
 
 	@Override
 	public void displayIslandInfo(Island island) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		
 	}
 
 	@Override
 	public void endGame(String reason) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		
 	}
 }

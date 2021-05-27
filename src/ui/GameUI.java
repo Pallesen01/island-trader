@@ -3,7 +3,6 @@ package ui;
 import core.GameEnvironment;
 import core.Island;
 import core.Route;
-import core.Ship;
 
 /**
  * Interface for any user interface class. Includes methods that need to be implemented, and strings that

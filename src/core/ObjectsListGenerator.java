@@ -39,11 +39,8 @@ public class ObjectsListGenerator {
 			int value = itemData.nextInt();
 			Item newItem = new Item(name, desc, size, value, false);
 			itemList.add(newItem);
-		}
-		
-		
+		}	
 		return itemList;
-		
 	}
 	
 	/** 
@@ -77,10 +74,7 @@ public class ObjectsListGenerator {
 			Item newItem = new Weapon(name, desc, size, value, shots, damage);
 			itemList.add(newItem);
 		}
-		
-		
 		return itemList;
-		
 	}
 	
 	/** 
@@ -114,10 +108,7 @@ public class ObjectsListGenerator {
 			Ship newShip = new Ship(name,crew,space,health,speed,endurance);
 			shipList.add(newShip);
 		}
-		
-		
 		return shipList;
-		
 	}
 	
 	/** 
@@ -148,18 +139,14 @@ public class ObjectsListGenerator {
 			islandList.add(newIsland);
 			
 		}
-		
-		
 		return islandList;
-		
 	}
 	
 	/** 
 	 * Returns an ArrayList of in-game routes.
 	 * @param islands ArrayList of islands in the game
-	 * @return ArrrayList of Route objects
 	 */
-	public static ArrayList<Route> generateRoute(ArrayList<Island> islands) {
+	public static void generateRoute(ArrayList<Island> islands) {
 		ArrayList<Route> routeList = new ArrayList<Route>();
 		Scanner routeData = null;
 		
@@ -202,11 +189,6 @@ public class ObjectsListGenerator {
 			island1.addRoute(newRoute);
 			island2.addRoute(newRoute);
 			routeList.add(newRoute);
-		}
-		
-		
-		return routeList;
-		
+		}	
 	}
-
 }

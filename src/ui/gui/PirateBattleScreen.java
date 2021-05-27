@@ -3,28 +3,20 @@ package ui.gui;
 import javax.swing.JFrame;
 
 import core.GameEnvironment;
-import core.ObjectsListGenerator;
 import core.Route;
 import core.Ship;
-import ui.GameUI;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
-import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.SystemColor;
-import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Color;
 

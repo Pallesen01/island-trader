@@ -33,7 +33,7 @@ public class IslandInfoScreen extends Screen {
 	/**
 	 * Combo box with all the game's islands.
 	 */
-	private JComboBox comboBoxIslands;
+	private JComboBox<String> comboBoxIslands;
 	
 	/**
 	 * ArrayList of all the game's islands.
@@ -92,7 +92,7 @@ public class IslandInfoScreen extends Screen {
 		backBtn.setFocusable(false);
 		backBtn.setBackground(Color.LIGHT_GRAY);
 		
-		comboBoxIslands = new JComboBox();
+		comboBoxIslands = new JComboBox<String>();
 		String[] islandNames = new String[islands.size()];
 		int i = 0;
 		for (Island island : islands) {
@@ -104,7 +104,7 @@ public class IslandInfoScreen extends Screen {
 			}			
 			i++;
 		}
-		comboBoxIslands.setModel(new DefaultComboBoxModel(islandNames));
+		comboBoxIslands.setModel(new DefaultComboBoxModel<String>(islandNames));
 		
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.setFont(new Font("Tahoma", Font.PLAIN, 15));

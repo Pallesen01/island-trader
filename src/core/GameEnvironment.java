@@ -67,11 +67,6 @@ public class GameEnvironment {
 	 */
 	private ArrayList<Item> goods;
 	
-	// TODO Unused so perhaps delete?
-	private ArrayList<Item> items;
-	private ArrayList<Item> weapons;
-	private ArrayList<Route> routes;
-	
 	/**
 	 * User interface used by the game.
 	 */
@@ -124,7 +119,6 @@ public class GameEnvironment {
 		this.island = islands.get(islandIndex);
 		this.gold = gold;
 		this.ship = ships.get(0);
-		ui.start(this);
 	}
 	
 	/**
@@ -132,10 +126,8 @@ public class GameEnvironment {
 	 */
 	private void initArrayLists() {
 		ships = ObjectsListGenerator.generateShip();
-		items = ObjectsListGenerator.generateItem();
-		weapons = ObjectsListGenerator.generateWeapon();
 		islands = ObjectsListGenerator.generateIsland();
-		routes = ObjectsListGenerator.generateRoute(islands);
+		ObjectsListGenerator.generateRoute(islands); // generates routes for each island
 		goods = new ArrayList<Item>();
 	}
 	
@@ -581,5 +573,37 @@ public class GameEnvironment {
 	 */
 	public void setGameOver() {
 		this.gameOver = true;
+	}
+	
+	/**
+	 * Checks if it is possible for the ship to travel along any routes.
+	 * @return returns true if it is possible to travel, else false.
+	 */
+	public boolean checkCanTravel() {
+		
+		ArrayList<Route> routes = island.getRoutes();
+		
+		// Calculate gold that can be made by selling cargo
+		ArrayList<Item> storeSell = island.getStore().getSells();
+		int storeGold = 0;
+		for (Item item1: storeSell) {
+			for (Item item2: ship.getCargo()) {
+				if (item1.getName().equals(item2.getName())){
+					storeGold += item1.getPrice();
+				}
+			}
+		}
+		// Check that it is possible to travel at least one route with max gold 
+		// selling items and repairing ship
+		int goldAfterAction = gold - ship.getRepairCost() + storeGold;
+		boolean canTravel = false;
+		for (Route route: routes) {
+			int days = route.getDays(ship.getSpeed());
+			if (days <= daysLeft && getTravelCost(route) <= goldAfterAction ) {
+				canTravel = true;
+				break;	
+			}
+		}
+		return canTravel;
 	}
 }

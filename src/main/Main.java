@@ -35,9 +35,11 @@ public class Main {
 		if (TEXT_MODE) {
 			GameUI ui = new TextUI();
 			GameEnvironment game = new GameEnvironment(ui, STARTING_ISLAND_INDEX, STARTING_GOLD);
+			game.getUI().start(game);
 		} else {
 			GameUI ui = new GUI();
 			GameEnvironment game = new GameEnvironment(ui, STARTING_ISLAND_INDEX, STARTING_GOLD);
+			game.getUI().start(game);
 		}
 	}
 }
