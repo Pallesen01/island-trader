@@ -27,7 +27,7 @@ public class Main {
 	 * @param args arguments passed in when running main in terminal
 	 */
 	public static void main(String[] args) {
-		if (args.length > 0 && args[0] == "text") {
+		if (args.length > 0 && args[0].equals("text")) {
 			GameUI ui = new TextUI();
 			GameEnvironment game = new GameEnvironment(ui, STARTING_ISLAND_INDEX, STARTING_GOLD);
 			game.getUI().start(game);

@@ -246,20 +246,6 @@ public class Ship {
 	}
 	
 	/**
-	 * Prints the items in the ship's cargo.
-	 */
-	public void printCargo() {
-		System.out.println(name + "'s cargo:");
-		if (cargo.size() == 0) {
-			System.out.println("\tEmpty");
-		}
-		for (int i = 0; i < cargo.size(); i++) {
-			System.out.println("\t" + (i+1) + " - " + cargo.get(i).getName() + ", " + cargo.get(i).getSize() + "kg, "+cargo.get(i).getPrice() + " gold");
-		}
-		System.out.println();
-	}
-	
-	/**
 	 * Adds an item to the ship's cargo if there is enough space. Also adds to weapons if it's a weapon
 	 * Returns true if item successfully added, otherwise false.
 	 * @param item item to be added

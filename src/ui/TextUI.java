@@ -106,31 +106,18 @@ public class TextUI implements GameUI {
 	@Override
 	public void shipInfo() {
 		System.out.println(game.getShip());
-		// TODO add extra info
 	}
 
 	@Override
 	public void goods() {
 		// TODO implement sold goods
 		System.out.println("Current goods:");
-		int i = 0;
-		for (Item item : game.getShip().getCargo()) {
-			if (item.isWeapon()) {
-				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getBasePrice() + " gold - \""+item.getDesc()+"\"");
-			}
-			else {
-				System.out.println("\t" + (i+1) + " - " + item.getName() + ", " + item.getSize() + "kg, " + item.getBasePrice() + " gold");
-			
-			}
-			i++;
-		}
-
+		printCargo();
 	}
 
 	@Override
 	public void islandInfo() {
-		// TODO Auto-generated method stub
-
+		// Auto-generated method stub
 	}
 
 	@Override
@@ -363,6 +350,21 @@ public class TextUI implements GameUI {
 			System.out.println(route.getInfo(island, ship.getSpeed()) + "\n");
 			i++;
 		}
+	}
+	
+	/**
+	 * Prints the items in the ship's cargo.
+	 */
+	private void printCargo() {
+		System.out.println(game.getShip().getName() + "'s cargo:");
+		ArrayList<Item> cargo = game.getShip().getCargo();
+		if (cargo.size() == 0) {
+			System.out.println("\tEmpty");
+		}
+		for (int i = 0; i < cargo.size(); i++) {
+			System.out.println("\t" + (i+1) + " - " + cargo.get(i).getName() + ", " + cargo.get(i).getSize() + "kg, "+cargo.get(i).getPrice() + " gold");
+		}
+		System.out.println();
 	}
 
 	@Override
