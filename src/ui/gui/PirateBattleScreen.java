@@ -50,13 +50,8 @@ public class PirateBattleScreen extends Screen {
 		this.game = game;
 		this.initialHealth = game.getShip().getHealth();
 		this.route = route;
-		this.ui = ui;
-		Random randomGenerator = new Random();
-		// Generate enemy ship
-		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
-		int shipInt = randomGenerator.nextInt(ships.size());
-		Ship pirateShip = ships.get(shipInt);	
-		this.pirateShip = pirateShip;
+		this.ui = ui;		
+		this.pirateShip = game.generatePirateShip();
 		this.battleText = "";
 		initialiseFrame();
 		configureFrame();
@@ -64,11 +59,11 @@ public class PirateBattleScreen extends Screen {
 	
 	private void progressGame() {
 		battleText += game.playerTurn(pirateShip);
-		if (game.getShip().getHealth() <= 0) {
+		if (pirateShip.getHealth() <= 0) {
 			ui.pirateResolutionScreen(route, (initialHealth - game.getShip().getHealth()));
 		}
 		battleText += game.pirateTurn(pirateShip);
-		if (pirateShip.getHealth() <= 0) {
+		if (game.getShip().getHealth() <= 0) {
 			ui.pirateResolutionScreen(route, (initialHealth - game.getShip().getHealth()));
 		}
 		battleTextPane.setText(battleText);

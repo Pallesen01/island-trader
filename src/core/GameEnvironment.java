@@ -49,6 +49,10 @@ public class GameEnvironment {
 	private final double CARGO_VALUE_MODIFIER = 0.7;
 
 	/**
+	 * This number is added on to the player's final score multiplied by (totalDays-daysLeft)/totalDays
+	 */
+	private final int REMAINING_DAYS_SCORE_MODIFIER = 200;
+	/**
 	 * Ships available in the game.
 	 */
 	private ArrayList<Ship> ships;
@@ -96,7 +100,7 @@ public class GameEnvironment {
 	/**
 	 * Total number of days the game will take place over
 	 */
-	private int totalDays;
+	private int totalDays = 35;
 	
 	/**
 	 * Player's ship
@@ -426,7 +430,7 @@ public class GameEnvironment {
 				pirateShip.setHealth(pirateShip.getHealth() - damage + resisted);
 			}
 			else {
-				battleText += "Missed pirate ship\n";
+				battleText += "\tThe shot missed the pirate ship\n";
 			}
 			}	
 		
@@ -434,6 +438,22 @@ public class GameEnvironment {
 		return battleText;
 	}
 	
+	/**
+	 * Generates a random pirate ship.
+	 * @return pirate ship
+	 */
+	public Ship generatePirateShip() {
+		Random randomGenerator = new Random();
+		ArrayList<Ship> ships = ObjectsListGenerator.generateShip();
+		int shipInt = randomGenerator.nextInt(ships.size());
+		Ship pirateShip = ships.get(shipInt);
+		ArrayList<Item> weapons = ObjectsListGenerator.generateWeapon();
+		pirateShip.emptyCargo();
+		int weaponInt = randomGenerator.nextInt(weapons.size());
+		Item weapon = weapons.get(weaponInt);
+		pirateShip.addCargo(weapon);
+		return pirateShip;	
+	}
 	/**
 	 * Simulates pirate turn in a battle.
 	 * @param pirateShip
@@ -458,7 +478,7 @@ public class GameEnvironment {
 					playerShip.setHealth(playerShip.getHealth() - damage + resisted);
 				}
 				else {
-					battleText += "Missed your ship\n";
+					battleText += "\tThe shot missed your ship\n";
 				}
 			}			
 		}
@@ -540,7 +560,12 @@ public class GameEnvironment {
 	 * @return score
 	 */
 	public int calcScore() {
-		return (int) (this.gold + Math.round(ship.getCargoValue()*CARGO_VALUE_MODIFIER) - ship.getRepairCost());
+		
+		int goldScore = this.gold;
+		int cargoScore = (int) Math.round(ship.getCargoValue()*CARGO_VALUE_MODIFIER);
+		int daysScore = (int) Math.round(((double)(totalDays-daysLeft)/(double) totalDays)*REMAINING_DAYS_SCORE_MODIFIER);
+		int repairScore = ship.getRepairCost();
+		return goldScore + cargoScore + daysScore - repairScore;
 	}
 	
 	/**
