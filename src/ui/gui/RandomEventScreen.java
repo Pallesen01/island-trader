@@ -112,9 +112,6 @@ public class RandomEventScreen extends Screen {
 					messageTextPane.setText("Your ship has taken " + resultValue + " damage.");
 				} else {
 					messageTextPane.setText("Your ship has been destroyed in the storm.");
-					getGame().loseGold();
-					getGame().getShip().emptyCargo();
-					getGame().endGame("Ship destroyed in storm");
 				}
 				break;
 			case SAILORS: 
@@ -138,6 +135,11 @@ public class RandomEventScreen extends Screen {
 					break;
 				}
 			case WEATHER: 
+				if (getGame().getShip().getHealth() <= 0) {
+					getGame().loseGold();
+					getGame().getShip().emptyCargo();
+					getGame().endGame("Ship destroyed in storm");
+				}
 				if (route.encounterLostSailors()) {
 					getGame().getUI().sailorEncounter(route);
 					break;
@@ -157,7 +159,7 @@ public class RandomEventScreen extends Screen {
 	 * Initialise the contents of the frame.
 	 */
 	private void initialiseFrame() {
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 525, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel titleLbl = new JLabel();
