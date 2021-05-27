@@ -46,7 +46,7 @@ public class MenuScreen extends Screen{
 	 * Initialise the contents of the frame.
 	 */
 	void initialiseFrame() {
-		frame.setBounds(100, 100, 700, 500);
+		frame.setBounds(100, 100, 700, 240);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel daysLbl = new JLabel(getGame().getDaysLeft() + " Days Remaining");
@@ -91,10 +91,6 @@ public class MenuScreen extends Screen{
 		travelBtn.setFocusable(false);
 		travelBtn.setBackground(Color.LIGHT_GRAY);
 		
-		JLabel lblNewLabel = new JLabel("Idk maybe put an image here");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setPreferredSize(new Dimension(10, 11));
 		progressBar.setMaximumSize(new Dimension(10, 11));
@@ -109,30 +105,29 @@ public class MenuScreen extends Screen{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(daysLbl)
 							.addGap(18)
-							.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+							.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
 							.addGap(14))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(islandLbl)
-							.addContainerGap(471, Short.MAX_VALUE))
+							.addContainerGap(466, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(goldLbl)
-							.addContainerGap(621, Short.MAX_VALUE))
+							.addContainerGap(631, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(shipInfoBtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-								.addComponent(visitStoreBtn, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+								.addComponent(shipInfoBtn, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+								.addComponent(visitStoreBtn, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(repairShipBtn, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-								.addComponent(viewGoodsbtn, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+								.addComponent(repairShipBtn, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+								.addComponent(viewGoodsbtn, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(travelBtn, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-								.addComponent(viewIslandInfoBtn, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+								.addComponent(travelBtn, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+								.addComponent(viewIslandInfoBtn, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
 							.addGap(14))))
 		);
 		groupLayout.setVerticalGroup(
@@ -157,9 +152,7 @@ public class MenuScreen extends Screen{
 							.addComponent(repairShipBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 							.addComponent(visitStoreBtn, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 						.addComponent(travelBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-					.addContainerGap())
+					.addContainerGap(313, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

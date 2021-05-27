@@ -13,11 +13,6 @@ import ui.gui.GUI;
 public class Main {
 	
 	/**
-	 * Whether or not the game will use the command line UI.
-	 */
-	private static final boolean TEXT_MODE = false;
-	
-	/**
 	 * ArrayList index of the starting island.
 	 */
 	private static final int STARTING_ISLAND_INDEX = 0;
@@ -32,7 +27,7 @@ public class Main {
 	 * @param args arguments passed in when running main in terminal
 	 */
 	public static void main(String[] args) {
-		if (TEXT_MODE) {
+		if (args.length > 0 && args[0] == "text") {
 			GameUI ui = new TextUI();
 			GameEnvironment game = new GameEnvironment(ui, STARTING_ISLAND_INDEX, STARTING_GOLD);
 			game.getUI().start(game);
