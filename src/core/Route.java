@@ -9,6 +9,11 @@ import java.util.Random;
 public class Route {
 	
 	/**
+	 * Modifier that multiplies the number of days needed before dividing by ship speed.
+	 */
+	private final int DAYS_MODIFIER = 20;
+	
+	/**
 	 * Random number generator.
 	 */
 	private Random randomGenerator;
@@ -99,7 +104,7 @@ public class Route {
 	 * @return days
 	 */
 	public int getDays(int speed) {
-		return days * 20 / speed;
+		return days * DAYS_MODIFIER / speed;
 	}
 	
 	/**

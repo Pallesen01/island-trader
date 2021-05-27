@@ -34,8 +34,11 @@ class ShipTest {
 	 */
 	private static ArrayList<Item> items;
 	
+	/**
+	 * Initialises the ships and item arrays, as well as the test ship.
+	 */
 	@BeforeAll
-	static void initialiseShip() {
+	static void initialiseTests() {
 		randomGenerator = new Random();
 		items = ObjectsListGenerator.generateItem();
 		ships = ObjectsListGenerator.generateShip();
@@ -44,6 +47,9 @@ class ShipTest {
 		testShip = ships.get(randomGenerator.nextInt(ships.size()));
 	}
 
+	/**
+	 * Tests that adding and removing cargo works as expected.
+	 */
 	@Test
 	void cargoAddRemoveTest() {
 		// Get three random items
@@ -75,6 +81,10 @@ class ShipTest {
 		assertEquals(false, testShip.removeCargo(item3));
 	}
 	
+	/**
+	 * Checks that the ship's health is kept between 0 and its maximum health
+	 * when setting its health.
+	 */
 	@Test
 	void healthConstrainedTest() {
 		// Checks that ship's health is kept at 0 or above
@@ -86,6 +96,9 @@ class ShipTest {
 		assertEquals(testShip.getMaxHealth(), testShip.getHealth());
 	}
 	
+	/**
+	 * Checks that the ship's cargo and weapons are empty after running the emptyCargo method.
+	 */
 	@Test
 	void emptyCargoTest() {
 		// Empties cargo and checks that the ship's cargo and weapons are empty
